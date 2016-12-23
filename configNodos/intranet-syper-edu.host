@@ -1,0 +1,2 @@
+ifconfig eth0 193.81.7.12/24
+route add default gw 193.81.7.1
