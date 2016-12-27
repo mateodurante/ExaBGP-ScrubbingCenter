@@ -25,8 +25,8 @@ node n30 {
 	!
     }
     canvas c4
-    iconcoords {220.0 352.0}
-    labelcoords {187.0 376.0}
+    iconcoords {219.0 351.0}
+    labelcoords {186.0 375.0}
     interface-peer {eth0 n29}
     custom-config {
 	custom-config-id service:servicios
@@ -162,7 +162,7 @@ node n34 {
 	
 	}
     }
-    services {DefaultRoute StaticRoute SSH ratelimit servicios}
+    services {DefaultRoute StaticRoute SSH Docker}
 }
 
 node n35 {
@@ -1014,8 +1014,8 @@ node n36 {
 	!
     }
     canvas c3
-    iconcoords {703.0 343.0}
-    labelcoords {703.0 375.0}
+    iconcoords {700.0 346.0}
+    labelcoords {700.0 378.0}
     interface-peer {eth0 n33}
 }
 
@@ -1175,8 +1175,8 @@ node n43 {
 	!
     }
     canvas c7
-    iconcoords {287.0 432.0}
-    labelcoords {287.0 432.0}
+    iconcoords {287.0 431.0}
+    labelcoords {287.0 431.0}
     interface-peer {0 n37}
     mirror n42
 }
@@ -1201,8 +1201,8 @@ node n40 {
 	!
     }
     canvas c7
-    iconcoords {287.0 246.0}
-    labelcoords {287.0 246.0}
+    iconcoords {288.0 247.0}
+    labelcoords {288.0 247.0}
     interface-peer {0 n37}
     mirror n39
 }
@@ -1411,7 +1411,7 @@ annotation a3 {
     label {AS 256}
     labelcolor black
     fontfamily {Arial}
-    fontsize 14
+    fontsize {14}
     color #C0C0FF
     width 0
     border black
@@ -1532,7 +1532,7 @@ annotation a15 {
     label {Scrubbing Center}
     labelcolor black
     fontfamily {Arial}
-    fontsize 24
+    fontsize {24}
     effects {bold italic}
     canvas c3
 }
@@ -1543,7 +1543,7 @@ annotation a4 {
     label {AS 123}
     labelcolor black
     fontfamily {Arial}
-    fontsize 14
+    fontsize {14}
     color #CFCFFF
     width 0
     border black
@@ -1557,7 +1557,7 @@ annotation a16 {
     label {ExaBGP}
     labelcolor black
     fontfamily {Arial}
-    fontsize 12
+    fontsize {12}
     canvas c3
 }
 
@@ -1567,7 +1567,7 @@ annotation a17 {
     label {ExaBGP}
     labelcolor black
     fontfamily {Arial}
-    fontsize 12
+    fontsize {12}
     canvas c2
 }
 
@@ -1577,7 +1577,7 @@ annotation a18 {
     label {Atacante - AS 666}
     labelcolor black
     fontfamily {Arial}
-    fontsize 14
+    fontsize {14}
     color #C0C0FF
     width 0
     border black
@@ -1592,7 +1592,7 @@ annotation a20 {
     label {ISP-B - AS 512}
     labelcolor black
     fontfamily {Arial}
-    fontsize 18
+    fontsize {18}
     color #C0C0FF
     width 0
     border black
@@ -1607,7 +1607,7 @@ annotation a21 {
     label {ISP Tier 1 - AS 128}
     labelcolor black
     fontfamily {Arial}
-    fontsize 12
+    fontsize {12}
     color #CFCFFF
     width 0
     border black
@@ -1649,6 +1649,9 @@ hook 4:runtime_hook.sh {
 
 # Puente entre VM e Internet
 BReth2=`brctl show | grep -w eth2 | cut -f1`
+if [ -z $BReth2 ]; then
+	BReth2=`brctl show | grep -w veth8.2* | cut -f1`
+fi
 
 
 # Puente con router de Syper-Borde para Nfsen
@@ -1657,6 +1660,7 @@ nfsen=$(brctl show | grep -w "veth2.0.*" | cut -f1)
 
 # Puente con eth1
 BReth1=$(brctl show | grep -w  eth1 | cut -f1)
+
 
 # Completo la tabla de ruteo de la VM para que alcance las rutas de la topologia.
 ifconfig "$BReth1" 10.0.3.2 netmask 255.255.255.0
@@ -1710,6 +1714,7 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
