@@ -6,7 +6,7 @@ from pymongo import MongoClient
 import datetime
 
 ###  DB Setup ###
-client = MongoClient('localhost', 27017)
+client = MongoClient('10.0.4.2', 27017)
 db = client.exabgp_db
 updates = db.bgp_updates
 
@@ -50,9 +50,9 @@ while True:
 #    try:
         line = stdin.readline().strip()
 
-        f = open('/home/mate/Documentos/workfile', 'a')
-        f.write(line)
-        f.close()
+        #f = open('/home/redes/Documentos/workfile', 'a')
+        #f.write(line)
+        #f.close()
 
         # When the parent dies we are seeing continual newlines, so we only access so many before stopping
         if line == "":
