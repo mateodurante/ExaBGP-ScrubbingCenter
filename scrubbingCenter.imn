@@ -162,7 +162,7 @@ node n34 {
 	
 	}
     }
-    services {DefaultRoute StaticRoute SSH Docker}
+    services {DefaultRoute StaticRoute SSH}
 }
 
 node n35 {
@@ -344,8 +344,8 @@ node n8 {
 	!
     }
     canvas c1
-    iconcoords {663.0 306.0}
-    labelcoords {665.0 284.0}
+    iconcoords {663.0 307.0}
+    labelcoords {665.0 285.0}
     interface-peer {eth0 n7}
     services {zebra BGP vtysh IPForward Firewall}
     interface-peer {eth1 n22}
@@ -413,8 +413,8 @@ node n9 {
 	!
     }
     canvas c2
-    iconcoords {318.1525895333195 156.90188250042883}
-    labelcoords {314.1525895333195 137.90188250042866}
+    iconcoords {317.1525895333195 156.90188250042883}
+    labelcoords {313.1525895333195 137.90188250042866}
     interface-peer {eth0 n20}
     custom-config {
 	custom-config-id service:resolvconf
@@ -430,7 +430,7 @@ node n9 {
 	nameserver 163.10.251.10
 	}
     }
-    services {DefaultRoute resolvconf}
+    services {DefaultRoute Docker}
 }
 
 node n10 {
@@ -784,8 +784,8 @@ node n19 {
 	!
     }
     canvas c2
-    iconcoords {192.0 223.0}
-    labelcoords {191.0 284.0}
+    iconcoords {190.0 222.0}
+    labelcoords {189.0 283.0}
     interface-peer {eth0 n20}
     interface-peer {eth1 n6}
     interface-peer {eth2 n21}
@@ -850,8 +850,8 @@ node n21 {
 	!
     }
     canvas c2
-    iconcoords {48.0 224.0}
-    labelcoords {48.0 224.0}
+    iconcoords {49.0 224.0}
+    labelcoords {49.0 224.0}
     interface-peer {0 n19}
     mirror n22
 }
@@ -863,8 +863,8 @@ node n22 {
 	!
     }
     canvas c1
-    iconcoords {830.0 441.0}
-    labelcoords {830.0 441.0}
+    iconcoords {876.0 413.0}
+    labelcoords {876.0 413.0}
     interface-peer {0 n8}
     mirror n21
 }
@@ -1666,7 +1666,7 @@ BReth1=$(brctl show | grep -w  eth1 | cut -f1)
 ifconfig "$BReth1" 10.0.3.2 netmask 255.255.255.0
 ifconfig "$BReth2" 10.0.4.2 netmask 255.255.255.0
 route add -net 193.81.7.0/24 gw 10.0.4.1
-route add -net 163.10.251.0/24 gw 10.0.4.1
+route add -net 163.10.0.0/16 gw 10.0.4.1
 
 #ifconfig "$INTERFAZ" 163.10.250.5 netmask 255.255.255.0
 #route add -net 193.81.7.0/24 gw 163.10.250.1
@@ -1714,6 +1714,7 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
