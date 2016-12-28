@@ -18,6 +18,7 @@
 * Pararse en la carpeta de este proyecto:
   * `git clone https://gitlab.linti.unlp.edu.ar/certunlp/ExaBGP-ScrubbingCenter.git && cd ExaBGP-ScrubbingCenter`
   * `sudo cp ConfExaBGP/syslog.py /usr/bin/syslog.py`
+  * `sudo cp ConfExaBGP/*.ini /root/` (necesario para que funcione el hook, se debe mejorar).
 
 * En la máquina del AS de UNLP:
   * `env exabgp.daemon.daemonize=false exabgp.tcp.bind=163.10.252.2 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp ./exabgpUNLP.ini`

@@ -850,8 +850,8 @@ node n21 {
 	!
     }
     canvas c2
-    iconcoords {49.0 224.0}
-    labelcoords {49.0 224.0}
+    iconcoords {49.0 223.0}
+    labelcoords {49.0 223.0}
     interface-peer {0 n19}
     mirror n22
 }
@@ -863,8 +863,8 @@ node n22 {
 	!
     }
     canvas c1
-    iconcoords {876.0 413.0}
-    labelcoords {876.0 413.0}
+    iconcoords {876.0 412.0}
+    labelcoords {876.0 412.0}
     interface-peer {0 n8}
     mirror n21
 }
@@ -977,8 +977,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {191.0 87.0}
-    labelcoords {191.0 119.0}
+    iconcoords {187.0 86.0}
+    labelcoords {187.0 118.0}
     interface-peer {eth0 n19}
 }
 
@@ -1014,8 +1014,8 @@ node n36 {
 	!
     }
     canvas c3
-    iconcoords {700.0 346.0}
-    labelcoords {700.0 378.0}
+    iconcoords {699.0 345.0}
+    labelcoords {699.0 377.0}
     interface-peer {eth0 n33}
 }
 
@@ -1136,8 +1136,8 @@ node n38 {
 	!
     }
     canvas c7
-    iconcoords {719.0 338.0}
-    labelcoords {719.0 338.0}
+    iconcoords {719.0 337.0}
+    labelcoords {719.0 337.0}
     interface-peer {0 n37}
     mirror n41
 }
@@ -1162,8 +1162,8 @@ node n42 {
 	!
     }
     canvas c1
-    iconcoords {817.0 179.0}
-    labelcoords {817.0 179.0}
+    iconcoords {817.0 178.0}
+    labelcoords {817.0 178.0}
     interface-peer {0 n8}
     mirror n43
 }
@@ -1686,13 +1686,18 @@ route add -net 163.10.0.0/16 gw 10.0.4.1
 # Enmascaro las direcciones IP para que la topologia salga a Internet.
 /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
-#core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
+core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #cd $core_path
 
 # Netflow para Nfcapd OUT
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and src net 193.81.7.0/24' 10.0.3.2:5555
 # Netflow para Nfcapd IN
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and dst net 193.81.7.0/24' 10.0.3.2:5556
+
+# Se copian los archivos .ini de ExaBGP para los nodos n32 y n36:
+#cp /home/redes/Git/ExaBGP-ScrubbingCenter/ConfExaBGP/exabgpUNLP.ini $core_path/n32.conf/
+cp /root/exabgpUNLP.ini $core_path/n32.conf/
+cp /root/exabgpScrubbing.ini $core_path/n36.conf/
 }
 
 hook 6:shutdown_hook.sh {
@@ -1714,6 +1719,7 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
