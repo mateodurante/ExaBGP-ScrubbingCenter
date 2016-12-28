@@ -10,6 +10,9 @@
   * `sudo apt-get install mongodb`
   * Configurar la `bind_ip` en el archivo de configuración con la ip `0.0.0.0`.
 
+* PyMongo:
+  * `sudo pip install pymongo`
+
 #### Comandos que debemos ejecutar:
 
 * Pararse en la carpeta de este proyecto:
@@ -20,7 +23,7 @@
   * `env exabgp.daemon.daemonize=false exabgp.tcp.bind=163.10.252.2 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp ./exabgpUNLP.ini`
 
 * En la máquina del Scrubbing:
-  * `env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp ./scrubbing.ini`
+  * `env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp ./exabgpScrubbing.ini`
 
 
 
