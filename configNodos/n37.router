@@ -25,6 +25,8 @@ router bgp 128
  neighbor 10.0.12.1 remote-as 256
  neighbor 10.0.12.1 soft-reconfiguration inbound
 !
+ip route 0.0.0.0/0 10.0.12.1
+!
 ip forwarding
 ipv6 forwarding
 !
