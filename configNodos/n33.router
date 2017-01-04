@@ -17,6 +17,7 @@ router bgp 123
  network 10.0.9.0/24
  neighbor 10.0.10.1 remote-as 128
  neighbor 10.0.10.1 soft-reconfiguration inbound
+ neighbor 10.0.9.10 remote-as 123
 !
 ip route 0.0.0.0/0 10.0.10.1
 !
