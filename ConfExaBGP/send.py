@@ -19,11 +19,11 @@ while True:
     line = stdin.readline().strip()
 
     j_line = json.loads(line)
-    if j_line["type"] == "update":      
-        f = open('/home/redes/Documentos/workfile', 'a')
-        f.write("Scrubbing: " + line + "\n")
-        f.close()
-    
+    #if j_line["type"] == "update":      
+    f = open('/home/redes/Documentos/workfile', 'a')
+    f.write("UNLP: " + line + "\n")
+    f.close()
+
 
     # When the parent dies we are seeing continual newlines, so we only access so many before stopping
     if line == "":
