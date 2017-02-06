@@ -28,6 +28,13 @@
   * `env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp ./exabgpScrubbing.ini`
 
 
+Instalar
+sudo apt-get install redis-server
+sudo apt-get install -y python-redis python-pip 
+sudo pip install rq
+
+Falta
+Que el n36 del scrubbing haga un ip route del tráfico flowspec que le anuncia la UNLP de vuelta a traves del gre.
 
 Continuará...
 
