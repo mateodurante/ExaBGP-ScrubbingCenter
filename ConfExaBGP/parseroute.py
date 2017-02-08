@@ -24,24 +24,35 @@ while True:
 	
 	 
 	message = json.loads(line)
-	
-	if message["type"] == "update":
-		peer = message['neighbor']['address']['peer']
-		net  = message['neighbor']['message']['update']['announce']['ipv4 unicast'][peer]
-		ip = net[0]['nlri']
-		asn = message['neighbor']['asn']['peer']
-	        print("Entreeeeeee")
-	
-	
-		# Announce received ExaBGP-route trough Quagga peering	
-		if (ip):
-			value = "announce route "+ ip + " next-hop self"
-			post = requests.post('http://localhost:5000/', data = {'command':value})
-			os.system("ip route {0}  dev {1}".format(ip,asn))
-	
- 			# log some shit
-			f = open('/home/redes/Desktop/workfile', 'a+')
-			f.write(str(post))
-			f.close()
 
+	if message["type"] == "update":
+		
+		try:	
+			peer = message['neighbor']['address']['peer']
+			net  = message['neighbor']['message']['update']['announce']['ipv4 unicast'][peer]
+			ip = net[0]['nlri']
+			asn = message['neighbor']['asn']['peer']
+	 		
+				
+		 	# log some shit
+			f = open('/home/redes/Desktop/workfile', 'a+')			
+			f.write("\n LOG:" + str(message)+"\n")
+			f.close()
+		
+
+			# Announce received ExaBGP-route trough Quagga peering	
+			if (ip):
+				value = "announce route "+ ip + " next-hop self"
+				post = requests.post('http://localhost:5000/', data = {'command':value})
+				out = os.system("ip route add "+str(ip)+" dev "+str(asn))
+		
+		 		# log some shit
+				#f = open('/home/redes/Desktop/workfile', 'a+')			
+				#f.write(str(out))
+				#f.close()
+		except KeyError: 
+			continue
+		
+			
+		
 
