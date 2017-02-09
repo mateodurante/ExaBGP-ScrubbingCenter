@@ -217,8 +217,8 @@ node n6 {
 	!
     }
     canvas c2
-    iconcoords {192.0 362.0}
-    labelcoords {192.0 394.0}
+    iconcoords {192.0 363.0}
+    labelcoords {192.0 395.0}
     custom-config {
 	custom-config-id service:Resolver
 	custom-command Resolver
@@ -850,8 +850,8 @@ node n21 {
 	!
     }
     canvas c2
-    iconcoords {49.0 223.0}
-    labelcoords {49.0 223.0}
+    iconcoords {48.0 223.0}
+    labelcoords {48.0 223.0}
     interface-peer {0 n19}
     mirror n22
 }
@@ -863,8 +863,8 @@ node n22 {
 	!
     }
     canvas c1
-    iconcoords {876.0 412.0}
-    labelcoords {876.0 412.0}
+    iconcoords {877.0 415.0}
+    labelcoords {877.0 415.0}
     interface-peer {0 n8}
     mirror n21
 }
@@ -977,8 +977,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {187.0 86.0}
-    labelcoords {187.0 118.0}
+    iconcoords {183.0 73.0}
+    labelcoords {183.0 105.0}
     interface-peer {eth0 n19}
 }
 
@@ -996,8 +996,8 @@ node n33 {
 	!
     }
     canvas c3
-    iconcoords {283.0 343.0}
-    labelcoords {283.0 375.0}
+    iconcoords {284.0 343.0}
+    labelcoords {284.0 375.0}
     interface-peer {eth0 n36}
     interface-peer {eth1 n41}
     services {zebra BGP vtysh IPForward}
@@ -1014,8 +1014,8 @@ node n36 {
 	!
     }
     canvas c3
-    iconcoords {699.0 345.0}
-    labelcoords {699.0 377.0}
+    iconcoords {697.0 348.0}
+    labelcoords {697.0 380.0}
     interface-peer {eth0 n33}
 }
 
@@ -1162,8 +1162,8 @@ node n42 {
 	!
     }
     canvas c1
-    iconcoords {817.0 178.0}
-    labelcoords {817.0 178.0}
+    iconcoords {817.0 177.0}
+    labelcoords {817.0 177.0}
     interface-peer {0 n8}
     mirror n43
 }
@@ -1175,8 +1175,8 @@ node n43 {
 	!
     }
     canvas c7
-    iconcoords {287.0 431.0}
-    labelcoords {287.0 431.0}
+    iconcoords {287.0 430.0}
+    labelcoords {287.0 430.0}
     interface-peer {0 n37}
     mirror n42
 }
@@ -1486,7 +1486,7 @@ annotation a13 {
 }
 
 annotation a14 {
-    iconcoords {134 24 892 443}
+    iconcoords {130 19 892 442}
     type rectangle
     label {}
     labelcolor black
@@ -1698,6 +1698,11 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #cp /home/redes/Git/ExaBGP-ScrubbingCenter/ConfExaBGP/exabgpUNLP.ini $core_path/n32.conf/
 cp /root/exabgpUNLP.ini $core_path/n32.conf/
 cp /root/exabgpScrubbing.ini $core_path/n36.conf/
+
+# Ejecutamos los comandos para levantar los exaBGP:
+#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n36.conf/exabgpScrubbing.ini"
+
+#/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=163.10.252.2 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n32.conf/exabgpUNLP.ini"
 }
 
 hook 6:shutdown_hook.sh {
@@ -1719,6 +1724,9 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
+
+
 
 
 
