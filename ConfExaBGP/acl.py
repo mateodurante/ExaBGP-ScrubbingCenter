@@ -309,6 +309,29 @@ def convert_exabgp_to_pyflow(flow):
     return pyflow_list
 
 
+# Funcion para crear el tunel GRE en Scrubbing (por alguna razon, no funciona correctamente en un archivo separado)
+def create_gre(line):
+    json_line = json.loads(line)
+    try:
+        if json_line["type"] == "update":
+            neighbor = json_line["neighbor"]
+            remote = neighbor["address"]["peer"]
+            local = neighbor["address"]["local"]
+            asn_remote = neighbor["asn"]["peer"]
+            if "announce" in neighbor["message"]["update"].keys() and neighbor["direction"] == "receive":
+                command = """
+ip tunnel add {2} mode gre remote {0} local {1} ttl 255
+ip link set {2} up
+ip addr add 172.16.17.18 dev {2}
+ip route add 172.19.20.0/24 dev {2}
+"""
+                os.system(command.format(remote, local, asn_remote))
+                return True
+    except KeyError:
+        pass
+    return None
+
+
 
 while True:
     try:
@@ -329,6 +352,9 @@ while True:
 
 # Peer shutdown notification:
 # { "exabgp": "3.5.0", "time": 1431900440, "host" : "filter.fv.ee", "pid" : 8637, "ppid" : 8435, "counter": 21, "type": "state", "neighbor": { "address": { "local": "10.0.3.115", "peer": "10.0.3.114" }, "asn": { "local": "1234", "peer": "65001" }, "state": "down", "reason": "in loop, peer reset, message [closing connection] error[the TCP connection was closed by the remote end]" } }
+
+        # Llamado a crear GRE tunnel, se verifica dentro de la funcion el tipo de mensaje recibido:
+        create_gre(line)
 
         # Fix bug: https://github.com/Exa-Networks/exabgp/issues/269
         line = line.replace('0x800900000000000A', '"0x800900000000000A"')
