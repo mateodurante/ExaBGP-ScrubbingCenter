@@ -25,6 +25,25 @@ updates = db.bgp_updates
 }
 """
 
+"""
+
+{ "exabgp": "3.5.0", 
+"time": 1486745263.61, "host" : "n36", "pid" : 29, "ppid" : 1, "counter": 16, 
+"type": "update", 
+"header": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF004702", "body": "00000030800E1500018500000F0120A30A00010220010101010381014001010040020602010000163CC010088006000000000000", 
+"neighbor": { 
+	"address": { "local": "10.0.9.10", "peer": "163.10.252.2" }, 
+	"asn": { "local": "123", "peer": "5692" }, 
+	"direction": "receive", 
+	"message": { 
+		"update": { 
+			"attribute": { "origin": "igp", "as-path": [ 5692 ], "confederation-path": [], 
+			"extended-community": [ 9225060886715039744 ] }, 
+			"announce": { "ipv4 flow": { 
+				"no-nexthop": [ { "destination-ipv4": [ "163.10.0.1/32" ], "source-ipv4": [ "1.1.1.1/32" ], "protocol": [ "=icmp" ], "string": "flow destination-ipv4 163.10.0.1/32 source-ipv4 1.1.1.1/32 protocol =icmp" } ] } } } } } }
+
+"""
+
 def create_gre(line):
 	json_line = json.loads(line)
 	try:
