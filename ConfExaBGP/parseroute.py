@@ -42,7 +42,9 @@ while True:
 
 			# Announce received ExaBGP-route trough Quagga peering	
 			if (ip):
-				value = "announce route "+ ip + " next-hop self"
+				#value = "announce route "+ ip + " next-hop self"
+				# Pagina para la sintaxis: https://thepacketgeek.com/advanced-router-peering-and-route-announcement/
+				value = "announce route {0} next-hop self origin igp as-path [{1}]".format(ip,asn)
 				post = requests.post('http://localhost:5000/', data = {'command':value})
 				out = os.system("ip route add "+str(ip)+" dev "+str(asn))
 		
