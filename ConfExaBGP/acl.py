@@ -9,6 +9,8 @@ import json
 from StringIO import StringIO
 import pprint
 
+import config_gre
+
 # apt-get install -y python-redis python-pip
 # pip install rq
 
@@ -351,10 +353,10 @@ def create_gre(line):
                     command = """
 ip tunnel add {2} mode gre remote {0} local {1} ttl 255
 ip link set {2} up
-ip addr add 172.16.17.18 dev {2}
-ip route add 172.19.20.0/24 dev {2}
+ip addr add {3} dev {2}
+ip route add {4} dev {2}
 """
-                    os.system(command.format(remote, local, asn_remote))
+                    os.system(command.format(remote, local, asn_remote, config_gre.MY_GRE_IP, config_gre.NETWORKS[asn_remote]))
                     return True
     except KeyError:
         pass
