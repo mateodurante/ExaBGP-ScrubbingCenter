@@ -27,7 +27,8 @@ import multiprocessing
 import logging
 import os
 
-logging.basicConfig(filename='/var/log/firewall_queue_worker.log', level=logging.INFO)
+logging.basicConfig(filename='/tmp/firewall_queue_worker.log', level=logging.INFO)
+#logging.basicConfig(filename='/var/log/firewall_queue_worker.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # netmap-ipfw or iptables
@@ -43,7 +44,7 @@ firewall_comment_text = "Received from: "
 # u'string': u'flow destination-ipv4 10.0.0.2/32 source-ipv4 10.0.0.1/32 protocol =tcp destination-port =3128'}
 
 class AbstractFirewall:
-    def generate_rules(self, peer_ip, pyflow_list):
+    def generate_rules(self, peer_ip, pyflow_list, policy):
         generated_rules = []
         for pyflow_rule in pyflow_list:
             flow_is_correct = self.check_pyflow_rule_correctness(pyflow_rule)
@@ -51,7 +52,7 @@ class AbstractFirewall:
             if not flow_is_correct:
                 return
 
-            generated_rules.append(self.generate_rule(peer_ip, pyflow_rule))
+            generated_rules.append(self.generate_rule(peer_ip, pyflow_rule, policy))
 
         return generated_rules
     def check_pyflow_rule_correctness(self, pyflow_rule):
@@ -86,21 +87,36 @@ class Iptables(AbstractFirewall):
         # In some cases we could work on INPUT/OUTPUT
         #self.working_chain = 'FORWARD'
         self.working_chain = 'INPUT'
-    def flush_rules(self, peer_ip):
+    def flush_rules(self, peer_ip, pyflow_list):
         # iptables -nvL FORWARD -x --line-numbers
-        execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain  ])
+        logger.info("We will flush all rules from peer " + peer_ip)
+        #logger.info("Command iptables: --flush {0}".format(self.working_chain))
+
+        if pyflow_list == None:
+            execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain ])
+            return True
+
+        rules_list = self.generate_rules(peer_ip, pyflow_list, "-D")
+        if rules_list != None and len(rules_list) > 0:
+            for iptables_rule in rules_list:
+                execute_command_with_shell(self.iptables_path, iptables_rule)
+        else:
+            logger.error("Generated rule list is blank!")
+
     def flush(self):
+        logger.info("We will flush all rules from peer " + peer_ip)
+        logger.info("Command iptables: --flush {0}".format(self.working_chain))
         execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain  ])
     def add_rules(self, peer_ip, pyflow_list):
-        rules_list = self.generate_rules(peer_ip, pyflow_list)
+        rules_list = self.generate_rules(peer_ip, pyflow_list, "-I")
 
         if rules_list != None and len(rules_list) > 0:
             for iptables_rule in rules_list:
                 execute_command_with_shell(self.iptables_path, iptables_rule)
         else:
             logger.error("Generated rule list is blank!")
-    def generate_rule(self, peer_ip, pyflow_rule):
-            iptables_arguments = ['-I', self.working_chain ]
+    def generate_rule(self, peer_ip, pyflow_rule, policy):
+            iptables_arguments = [ policy, self.working_chain ]
 
             if pyflow_rule['protocol'] != 'all':
                 iptables_arguments.extend(['-p', pyflow_rule['protocol']])
@@ -242,17 +258,29 @@ def manage_flow(action, peer_ip, flow, firewall):
     logger.info(pp.pformat(flow))
 
     if action == 'withdrawal' and flow == None:
-        firewall.flush_rules(peer_ip)
+    	# Esto es lo que no tenemos que romper nunca mas:
+    	logger.info("Call flush_rules flow None")	
+        firewall.flush_rules(peer_ip, None)
+        #firewall.flush_rules(peer_ip)
+        return True
+    elif action == 'withdrawal' and flow != None:
+        py_flow_list = convert_exabgp_to_pyflow(flow)
+        logger.info("Call flush_rules non None") 
+        logger.info("PyFlow: "+str(py_flow_list))
+        firewall.flush_rules(peer_ip, py_flow_list)
         return True
 
     py_flow_list = convert_exabgp_to_pyflow(flow)
+    #py_flow_list = convert_exabgp_to_pyflow(flow)
     logger.info("Call add_rules")
     logger.info("PyFlow: "+str(py_flow_list))
+    #logger.info("PyFlow: "+str(py_flow_list))
     return firewall.add_rules(peer_ip, py_flow_list)
 
 def convert_exabgp_to_pyflow(flow):
     # Flow in python format, here
     # We use customer formate because ExaBGP output is not so friendly for firewall generation
+    logger.info("In convert: "+str(flow))
     current_flow = {
         'action'        : 'deny',
         'protocol'      : 'all',
@@ -381,15 +409,25 @@ while True:
         except KeyError:
             pass
 
-	# Withdraws routes from specified peer
-	# TODO: Borra todos los flows de un peer, no se puede seleccionar que flow borrar, hay que modificar funcion manage_flow
-	try:
-		 if decoded_update["neighbor"]["message"]["update"]["withdraw"]:
-           		 peer_ip = decoded_update['neighbor']['address']['peer']
-			 manage_flow('withdrawal', peer_ip, None, firewall)	
+        # Withdraws routes from specified peer
+        # TODO: Borra todos los flows de un peer, no se puede seleccionar que flow borrar, hay que modificar funcion manage_flow
+#        try:
+#            if decoded_update["neighbor"]["message"]["update"]["withdraw"]:
+#                flow = decoded_update["neighbor"]["message"]["update"]["withdraw"]["ipv4 flow"]
+#                peer_ip = decoded_update['neighbor']['address']['peer']
+#                manage_flow('withdrawal', peer_ip, flow, firewall)	
+#
+#    	except KeyError:
+#    		pass
 
-	except KeyError:
-		pass
+        try:
+            current_flow_withdraw = decoded_update["neighbor"]["message"]["update"]["withdraw"]["ipv4 flow"]
+            peer_ip = decoded_update['neighbor']['address']['peer']
+            for flow in current_flow_withdraw:
+                pp.pprint(flow)
+                manage_flow('withdrawal', peer_ip, flow, firewall)
+        except KeyError:
+            pass
 
         # We got notification about neighbor status
         if 'type' in decoded_update and decoded_update['type'] == 'state':
