@@ -381,6 +381,16 @@ while True:
         except KeyError:
             pass
 
+	# Withdraws routes from specified peer
+	# TODO: Borra todos los flows de un peer, no se puede seleccionar que flow borrar, hay que modificar funcion manage_flow
+	try:
+		 if decoded_update["neighbor"]["message"]["update"]["withdraw"]:
+           		 peer_ip = decoded_update['neighbor']['address']['peer']
+			 manage_flow('withdrawal', peer_ip, None, firewall)	
+
+	except KeyError:
+		pass
+
         # We got notification about neighbor status
         if 'type' in decoded_update and decoded_update['type'] == 'state':
             if 'state' in decoded_update['neighbor'] and decoded_update['neighbor']['state'] == 'down':
