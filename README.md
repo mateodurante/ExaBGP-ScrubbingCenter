@@ -56,4 +56,4 @@ Continuará...
 * Anunciando una ruta (probar desde máquina de UNLP):
   * `curl --form "command=announce route 107.10.0.0/24 next-hop self" http://localhost:5000/`.
 * Anunciando una regla de FW:
-  * `curl --form "command=announce flow route { match { source 163.10.42.236/32; destination 0.0.0.0/0; protocol icmp; } then { discard; } } " http://10.0.9.10:5000/`.
+  * `curl --form "command=announce flow route { match { source 163.10.42.236/32; destination 0.0.0.0/0; protocol icmp; } then { discard; } } " http://localhost:5000/`.
