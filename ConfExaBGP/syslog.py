@@ -39,36 +39,16 @@ def message_parser(line):
     # If message is a different type, ignore
     return None
 
-
-#f = open('/home/mate/Documentos/workfile', 'w+')
-#f.write('0123456789abcdef')
-#f.close()
-
 counter = 0
 while True:
-#    print('AAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFF DALEEEEEEEEEEEEEEEEee')
-#    try:
-        line = stdin.readline().strip()
 
-        #f = open('/home/redes/Documentos/workfile', 'a')
-        #f.write(line)
-        #f.close()
+    line = stdin.readline().strip()
+    # When the parent dies we are seeing continual newlines, so we only access so many before stopping
+    if line == "":
+        counter += 1
+        if counter > 100:
+            break
+        continue
+    counter = 0
 
-        # When the parent dies we are seeing continual newlines, so we only access so many before stopping
-        if line == "":
-            counter += 1
-            if counter > 100:
-                break
-            continue
-        counter = 0
-
-        # Parse message, and if it's the correct type, store in the database
-        #message = message_parser(line)
-        #if message:
-        updates.insert({"data": line}, check_keys=False)
-
-#    except KeyboardInterrupt:
-#        pass
-#    except IOError:
-        # most likely a signal during readline
-#        pass
+    updates.insert({"data": line}, check_keys=False)

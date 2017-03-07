@@ -183,60 +183,6 @@ def execute_command_with_shell(command_name, arguments):
 
     subprocess.Popen( args );
 
-class Ipfw(AbstractFirewall):
-    def __init__(self):
-        logger.info( "We have following number of processors: " + str(multiprocessing.cpu_count()) )
-
-        self.number_of_netmap_instances = multiprocessing.cpu_count()
-        self.netmap_path = '/usr/src/netmap-ipfw/ipfw/ipfw'
-        self.netmap_initial_port = 5550
-        self.netmap_env_port_name = 'IPFW_PORT'
-
-    def execute_command_for_all_ipfw_backends(self, ipfw_command):
-        for instance_number in range(0, self.number_of_netmap_instances - 1):
-            port_for_current_instance = self.netmap_initial_port + instance_number
-
-            args = [ self.netmap_path ]
-            # split interpret multiple spaces as single
-            args.extend( ipfw_command )
-
-            new_env = os.environ.copy()
-            # Will fail without explicit conversion:
-            #  TypeError: execve() arg 3 contains a non-string value
-            new_env[ self.netmap_env_port_name ] = str(port_for_current_instance)
-
-            subprocess.Popen( args, env=new_env)
-    def flush_rules(self, peer_ip):
-        # If we got blank flow we should remove all rules for this peer
-        logger.info("We will flush all rules from peer " + peer_ip)
-        # TODO: switch to another code parser
-        self.execute_command_for_all_ipfw_backends("-f flush")
-    def add_rules(self, peer_ip, pyflow_list):
-        generated_rules = self.generate_rules(peer_ip, pyflow_list)
-
-        for rule in generated_text_rules:
-            self.execute_command_for_all_ipfw_backends(rule)
-    def generate_rule(self, peer_ip, pyflow_rule):
-        # Add validity check for IP for source and target hosts
-        ipfw_command = "add %(action) %(protocol) from %(source_host) %(source_port) to %(target_host) %(target_port)".format(pyflow_rule)
-
-        if pyflow_rule['fragmentation']:
-            ipfw_command += " frag"
-
-        if 'tcp_flags' in pyflow_rule and len(pyflow_rule['tcp_flags']) > 0:
-            ipfw_command += " tcpflags " + ','.join(pyflow_rule['tcp_flags']).lower()
-
-        # We could specify multiple values here
-        if 'packet-length' in pyflow_rule:
-            ipfw_command += " iplen " + pyflow_rule['packet-length']
-
-        # Add comment
-        ipfw_command += '//' + firewall_comment_text + peer_ip
-
-        # Add skip for multiple spaces to single
-        logger.info( "We generated this command: " + ipfw_command )
-
-        return ipfw_command.split()
 
 firewall = None;
 
@@ -436,7 +382,6 @@ while True:
             if 'state' in decoded_update['neighbor'] and decoded_update['neighbor']['state'] == 'down':
                 peer_ip = decoded_update['neighbor']['address']['peer']
                 print >> sys.stderr, "We received notification about peer down for: " + peer_ip
-
                 #q.enqueue(firewall_queue.manage_flow, 'withdrawal', peer_ip, None)
                 manage_flow('withdrawal', peer_ip, None, firewall)
 

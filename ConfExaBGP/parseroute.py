@@ -8,6 +8,7 @@ import requests
 counter = 0
 peer = {}
 red = {}
+
 while True:
 
 	line = stdin.readline().strip()
@@ -17,12 +18,9 @@ while True:
 		counter += 1
 		if counter > 100:
 			break
-	
 		continue
 	counter = 0
 	
-	
-	 
 	message = json.loads(line)
 
 	if message["type"] == "update":
@@ -32,14 +30,12 @@ while True:
 			net  = message['neighbor']['message']['update']['announce']['ipv4 unicast'][peer]
 			ip = net[0]['nlri']
 			asn = message['neighbor']['asn']['peer']
-	 		
-				
+	 				
 		 	# log some shit
 			f = open('/home/redes/Desktop/workfile', 'a+')			
 			f.write("\n LOG:" + str(message)+"\n")
 			f.close()
 		
-
 			# Announce received ExaBGP-route trough Quagga peering	
 			if (ip):
 				#value = "announce route "+ ip + " next-hop self"
@@ -47,14 +43,6 @@ while True:
 				value = "announce route {0} next-hop self origin igp as-path [{1}]".format(ip,asn)
 				post = requests.post('http://localhost:5000/', data = {'command':value})
 				out = os.system("ip route add "+str(ip)+" dev "+str(asn))
-		
-		 		# log some shit
-				#f = open('/home/redes/Desktop/workfile', 'a+')			
-				#f.write(str(out))
-				#f.close()
+
 		except KeyError: 
 			continue
-		
-			
-		
-
