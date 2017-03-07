@@ -34,6 +34,16 @@ sleep 10
 
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n36.conf/exabgpScrubbing.ini" &
 
+echo "Instalando módulo PyMongo en máquina de UNLP"
+
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "pip3 install pymongo"
+
+echo "Iniciando mongodb en máquina de UNLP"
+
+[[ -d /tmp/data/ ]] || mkdir /tmp/data/
+
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "mongod --dbpath /tmp/data/" &
+
 echo "Iniciando servicio web en máquina de UNLP"
 
 /usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path/manage.py runserver 0.0.0.0:80" &

@@ -14,4 +14,9 @@ do
 	kill -9 $webserver; 
 done
 
+for process in $(ps ax | grep "mongod --dbpath" | awk '{print $1}');
+do
+	kill -9 $process;
+done
+
 exit 0
