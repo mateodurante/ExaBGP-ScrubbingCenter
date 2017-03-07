@@ -10,35 +10,6 @@ client = MongoClient('10.0.4.2', 27017)
 db = client.exabgp_db
 updates = db.bgp_updates
 
-def message_parser(line):
-    # Parse JSON string  to dictionary
-    temp_message = json.loads(line)
-
-    # Convert Unix timestamp to python datetime
-    timestamp = temp_message['time']
-
-    if temp_message['type'] == 'state':
-        message = {
-            'type': 'state',
-            'time': timestamp,
-            'peer': temp_message['neighbor']['ip'],
-            'state': temp_message['neighbor']['state'],
-        }
-
-        return message
-
-    if temp_message['type'] == 'keepalive':
-        message = {
-            'type': 'keepalive',
-            'time': timestamp,
-            'peer': temp_message['neighbor']['ip'],
-        }
-
-        return message
-
-    # If message is a different type, ignore
-    return None
-
 counter = 0
 while True:
 
