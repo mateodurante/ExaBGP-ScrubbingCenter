@@ -88,7 +88,7 @@ class Iptables(AbstractFirewall):
         self.iptables_path = '/sbin/iptables'
         # In some cases we could work on INPUT/OUTPUT
         #self.working_chain = 'FORWARD'
-        self.working_chain = 'INPUT'
+        self.working_chain = 'FORWARD'
     def flush_rules(self, peer_ip, pyflow_list):
         # iptables -nvL FORWARD -x --line-numbers
         logger.info("We will flush all rules from peer " + peer_ip)
