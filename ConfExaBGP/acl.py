@@ -1,11 +1,14 @@
 #!/usr/bin/env python
-
 import os
 import sys
 import time
 import json
-from StringIO import StringIO
+import copy
 import pprint
+import logging
+import subprocess
+import multiprocessing
+from StringIO import StringIO
 
 import config_gre
 
@@ -13,13 +16,6 @@ import config_gre
 # pip install rq
 
 exabgp_log = open("/tmp/exabgp.log", "a")
-
-import subprocess
-import pprint
-import multiprocessing
-import logging
-import os
-import copy
 
 logging.basicConfig(filename='/tmp/firewall_queue_worker.log', level=logging.INFO)
 #logging.basicConfig(filename='/var/log/firewall_queue_worker.log', level=logging.INFO)
@@ -75,7 +71,6 @@ class Iptables(AbstractFirewall):
     def flush_rules(self, peer_ip, pyflow_list):
         # iptables -nvL FORWARD -x --line-numbers
         logger.info("We will flush all rules from peer " + peer_ip)
-        #logger.info("Command iptables: --flush {0}".format(self.working_chain))
 
         if pyflow_list == None:
             execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain ])
@@ -90,7 +85,6 @@ class Iptables(AbstractFirewall):
 
     def flush(self):
         logger.info("We will flush all rules from peer " + peer_ip)
-        logger.info("Command iptables: --flush {0}".format(self.working_chain))
         execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain  ])
     def add_rules(self, peer_ip, pyflow_list):
         rules_list = self.generate_rules(peer_ip, pyflow_list, "-I")
@@ -173,10 +167,7 @@ def manage_flow(action, peer_ip, flow, firewall):
     logger.info(pp.pformat(flow))
 
     if action == 'withdrawal' and flow == None:
-    	# Esto es lo que no tenemos que romper nunca mas:
-    	logger.info("Call flush_rules flow None")	
         firewall.flush_rules(peer_ip, None)
-        #firewall.flush_rules(peer_ip)
         return True
     elif action == 'withdrawal' and flow != None:
         py_flow_list = convert_exabgp_to_pyflow(flow)
@@ -186,10 +177,6 @@ def manage_flow(action, peer_ip, flow, firewall):
         return True
 
     py_flow_list = convert_exabgp_to_pyflow(flow)
-    #py_flow_list = convert_exabgp_to_pyflow(flow)
-    logger.info("Call add_rules")
-    logger.info("PyFlow: "+str(py_flow_list))
-    #logger.info("PyFlow: "+str(py_flow_list))
     return firewall.add_rules(peer_ip, py_flow_list)
 
 def convert_exabgp_to_pyflow(flow):
@@ -275,7 +262,6 @@ ip route add {4} dev {2}
     return None
 
 
-
 while True:
     try:
         line = sys.stdin.readline().strip()
@@ -285,7 +271,6 @@ while True:
         counter = 0
 
 # { "exabgp": "3.5.0", "time": 1431716393, "host" : "synproxied.fv.ee", "pid" : 2599, "ppid" : 2008, "counter": 1, "type": "update", "neighbor": { "address": { "local": "10.0.3.115", "peer": "10.0.3.114" }, "asn": { "local": "1234", "peer": "65001" }, "direction": "receive", "message": { "update": { "attribute": { "origin": "igp", "as-path": [ 65001 ], "confederation-path": [], "extended-community": [ 9225060886715039744 ] }, "announce": { "ipv4 flow": { "no-nexthop": { "flow-0": { "destination-ipv4": [ "10.0.0.2/32" ], "source-ipv4": [ "10.0.0.1/32" ], "protocol": [ "=tcp" ], "destination-port": [ "=3128" ], "string": "flow destination-ipv4 10.0.0.2/32 source-ipv4 10.0.0.1/32 protocol =tcp destination-port =3128" } } } } } } } }
-# { "exabgp": "3.5.0", "time": 1431716393, "host" : "synproxied.fv.ee", "pid" : 2599, "ppid" : 2008, "counter": 11, "type": "update", "neighbor": { "address": { "local": "10.0.3.115", "peer": "10.0.3.114" }, "asn": { "local": "1234", "peer": "65001" }, "direction": "receive", "message": { "eor": { "afi" : 11.22.33.44
 
 # u'destination-ipv4': [u'10.0.0.2/32'],
 # u'destination-port': [u'=3128'],
@@ -316,23 +301,10 @@ while True:
                 flow_announce_with_certain_hop = current_flow_announce[next_hop]
 
                 for flow in flow_announce_with_certain_hop:
-                    #pp.pprint(flow)
                     pp.pprint(flow)
-                    #q.enqueue(firewall_queue.manage_flow, 'announce', peer_ip, flow)
                     manage_flow('announce', peer_ip, flow, firewall)
         except KeyError:
             pass
-
-        # Withdraws routes from specified peer
-        # TODO: Borra todos los flows de un peer, no se puede seleccionar que flow borrar, hay que modificar funcion manage_flow
-#        try:
-#            if decoded_update["neighbor"]["message"]["update"]["withdraw"]:
-#                flow = decoded_update["neighbor"]["message"]["update"]["withdraw"]["ipv4 flow"]
-#                peer_ip = decoded_update['neighbor']['address']['peer']
-#                manage_flow('withdrawal', peer_ip, flow, firewall)	
-#
-#    	except KeyError:
-#    		pass
 
         try:
             current_flow_withdraw = decoded_update["neighbor"]["message"]["update"]["withdraw"]["ipv4 flow"]
@@ -348,7 +320,6 @@ while True:
             if 'state' in decoded_update['neighbor'] and decoded_update['neighbor']['state'] == 'down':
                 peer_ip = decoded_update['neighbor']['address']['peer']
                 print >> sys.stderr, "We received notification about peer down for: " + peer_ip
-                #q.enqueue(firewall_queue.manage_flow, 'withdrawal', peer_ip, None)
                 manage_flow('withdrawal', peer_ip, None, firewall)
 
         exabgp_log.write(line + "\n")
