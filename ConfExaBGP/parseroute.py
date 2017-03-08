@@ -44,5 +44,24 @@ while True:
 				post = requests.post('http://localhost:5000/', data = {'command':value})
 				out = os.system("ip route add "+str(ip)+" dev "+str(asn))
 
+
+		except KeyError: 
+			continue
+
+		try:	
+			peer = message['neighbor']['address']['peer']
+			net  = message['neighbor']['message']['update']['withdraw']['ipv4 unicast'][peer]
+			ip = net[0]['nlri']
+			asn = message['neighbor']['asn']['peer']
+
+			# Withdraw received ExaBGP-route trough Quagga peering	
+			if (ip):
+				#value = "announce route "+ ip + " next-hop self"
+				# Pagina para la sintaxis: https://thepacketgeek.com/advanced-router-peering-and-route-announcement/
+				value = "withdraw route {0} ".format(ip)
+				post = requests.post('http://localhost:5000/', data = {'command':value})
+				out = os.system("ip route del "+str(ip)+" dev "+str(asn))
+
+
 		except KeyError: 
 			continue
