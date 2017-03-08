@@ -3,8 +3,6 @@
 import os
 import sys
 import time
-#from redis import Redis
-#from rq import Queue
 import json
 from StringIO import StringIO
 import pprint
@@ -14,14 +12,7 @@ import config_gre
 # apt-get install -y python-redis python-pip
 # pip install rq
 
-# Run worker:
-# rqworker  --path /usr/src/fastnetmon/src/scripts
 exabgp_log = open("/tmp/exabgp.log", "a")
-
-#import firewall_queue
-
-#q = Queue(connection=Redis())
-
 
 import subprocess
 import pprint
@@ -33,17 +24,9 @@ logging.basicConfig(filename='/tmp/firewall_queue_worker.log', level=logging.INF
 #logging.basicConfig(filename='/var/log/firewall_queue_worker.log', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# netmap-ipfw or iptables
 firewall_backend = 'iptables'
 
-
 firewall_comment_text = "Received from: "
-
-# u'destination-ipv4': [u'10.0.0.2/32'],
-# u'destination-port': [u'=3128'],
-# u'protocol': [u'=tcp'],
-# u'source-ipv4': [u'10.0.0.1/32'],
-# u'string': u'flow destination-ipv4 10.0.0.2/32 source-ipv4 10.0.0.1/32 protocol =tcp destination-port =3128'}
 
 class AbstractFirewall:
     def generate_rules(self, peer_ip, pyflow_list, policy):
@@ -87,7 +70,6 @@ class Iptables(AbstractFirewall):
     def __init__(self):
         self.iptables_path = '/sbin/iptables'
         # In some cases we could work on INPUT/OUTPUT
-        #self.working_chain = 'FORWARD'
         self.working_chain = 'FORWARD'
     def flush_rules(self, peer_ip, pyflow_list):
         # iptables -nvL FORWARD -x --line-numbers
@@ -158,23 +140,7 @@ class Iptables(AbstractFirewall):
 
             return iptables_arguments
 
-# Ban specific protocol:
-# ipfw add deny udp from any to 10.10.10.221/32
 
-# Block fragmentation:
-# ipfw add deny all from any to 10.10.10.221/32 frag
-
-# Block all traffic:
-# ipfw add deny all from any to 10.10.10.221/32
-
-# Black traffic from specific port:
-# ipfw add deny udp from any 53 to 10.10.10.221/32
-
-# Block traffic to specific port:
-# ipfw add deny udp from any to 10.10.10.221/32 8080
-
-# command_name - is absolute path to binary
-# arguments - array of arguments, one argument per element
 def execute_command_with_shell(command_name, arguments):
     args = [ command_name ]
 
@@ -273,7 +239,6 @@ def convert_exabgp_to_pyflow(flow):
     pyflow_list = []
 
     if 'protocol' in flow:
-        global_result = True
 
         for current_protocol in flow['protocol']:
             current_flow['protocol'] = current_protocol.lstrip('=')
