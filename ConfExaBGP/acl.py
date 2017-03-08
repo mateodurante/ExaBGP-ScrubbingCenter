@@ -19,6 +19,7 @@ import pprint
 import multiprocessing
 import logging
 import os
+import copy
 
 logging.basicConfig(filename='/tmp/firewall_queue_worker.log', level=logging.INFO)
 #logging.basicConfig(filename='/var/log/firewall_queue_worker.log', level=logging.INFO)
@@ -242,7 +243,7 @@ def convert_exabgp_to_pyflow(flow):
 
         for current_protocol in flow['protocol']:
             current_flow['protocol'] = current_protocol.lstrip('=')
-            pyflow_list.append(current_flow)
+            pyflow_list.append(copy.copy(current_flow))
     else:
         current_flow['protocol'] = 'all'
         pyflow_list.append(current_flow)
