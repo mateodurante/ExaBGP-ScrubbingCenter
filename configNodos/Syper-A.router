@@ -10,12 +10,20 @@ interface eth1
  ip address 10.0.0.1/24
  ipv6 nd suppress-ra
 !
+interface gre0
+ ipv6 nd suppress-ra
+!
+interface gretap0
+ ipv6 nd suppress-ra
+!
 interface lo
 !
 router ospf
  ospf router-id 193.81.7.1
  network 10.0.0.0/24 area 0.0.0.0
  network 193.81.7.0/24 area 0.0.0.0
+!
+ip route 0.0.0.0/0 10.0.0.2
 !
 ip forwarding
 ipv6 forwarding

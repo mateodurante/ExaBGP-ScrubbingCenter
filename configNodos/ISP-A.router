@@ -11,11 +11,23 @@ interface eth1
  ipv6 address 2001:2::2/64
  ipv6 nd suppress-ra
 !
+interface gre0
+ ipv6 nd suppress-ra
+!
+interface gretap0
+ ipv6 nd suppress-ra
+!
 interface lo
 !
-router bgp 7
+router bgp 256
  bgp router-id 10.0.2.1
- redistribute connected
+ neighbor 10.0.1.1 remote-as 2200
+ neighbor 10.0.1.1 soft-reconfiguration inbound
+ neighbor 10.0.2.2 remote-as 256
+ neighbor 10.0.2.2 next-hop-self
+ neighbor 10.0.2.2 soft-reconfiguration inbound
+!
+ip route 0.0.0.0/0 10.0.2.2
 !
 ip forwarding
 ipv6 forwarding

@@ -14,6 +14,12 @@ interface eth2
  ip address 10.0.11.2/24
  ipv6 nd suppress-ra
 !
+interface gre0
+ ipv6 nd suppress-ra
+!
+interface gretap0
+ ipv6 nd suppress-ra
+!
 interface lo
 !
 router bgp 128
