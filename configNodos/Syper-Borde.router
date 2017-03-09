@@ -25,6 +25,7 @@ interface lo
 router bgp 2200
  bgp router-id 10.0.3.1
  network 193.81.7.0/24
+ redistribute ospf
  neighbor 10.0.1.2 remote-as 256
  neighbor 10.0.1.2 soft-reconfiguration inbound
 !

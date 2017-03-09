@@ -344,8 +344,8 @@ node n8 {
 	!
     }
     canvas c1
-    iconcoords {661.0 306.0}
-    labelcoords {663.0 284.0}
+    iconcoords {660.0 306.0}
+    labelcoords {662.0 284.0}
     interface-peer {eth0 n7}
     services {zebra BGP vtysh IPForward Firewall}
     interface-peer {eth1 n22}
@@ -749,6 +749,9 @@ node n3 {
     network-config {
 	hostname Syper-A
 	!
+	interface eth2
+	 ip address 193.81.8.1/24
+	!
 	interface eth1
 	 ip address 10.0.0.1/24
 	!
@@ -762,6 +765,7 @@ node n3 {
     interface-peer {eth0 n29}
     services {zebra OSPFv2 vtysh IPForward}
     interface-peer {eth1 n2}
+    interface-peer {eth2 n44}
 }
 
 node n19 {
@@ -910,8 +914,8 @@ node n2 {
 	!
     }
     canvas c4
-    iconcoords {781.0 223.0}
-    labelcoords {779.0 198.0}
+    iconcoords {781.0 222.0}
+    labelcoords {779.0 197.0}
     interface-peer {eth0 n3}
     interface-peer {eth1 n4}
     interface-peer {eth2 n1}
@@ -977,8 +981,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {188.0 93.0}
-    labelcoords {188.0 125.0}
+    iconcoords {192.0 82.0}
+    labelcoords {192.0 114.0}
     interface-peer {eth0 n19}
 }
 
@@ -1207,6 +1211,22 @@ node n40 {
     mirror n39
 }
 
+node n44 {
+    type router
+    model host
+    network-config {
+	hostname ExaBGPSyper
+	!
+	interface eth0
+	 ip address 193.81.8.2/24
+	!
+    }
+    canvas c4
+    iconcoords {575.0 96.0}
+    labelcoords {575.0 128.0}
+    interface-peer {eth0 n3}
+}
+
 link l30 {
     nodes {n29 n35}
     bandwidth 0
@@ -1385,6 +1405,11 @@ link l33 {
 link l34 {
     mirror l33
     nodes {n37 n40}
+}
+
+link l23 {
+    nodes {n44 n3}
+    bandwidth 0
 }
 
 annotation a1 {
@@ -1666,6 +1691,7 @@ nfsen=$(brctl show | grep -w "veth2.0.*" | cut -f1)
 #ifconfig "$BReth1" 10.0.3.2 netmask 255.255.255.0
 ifconfig "$BReth1" 10.0.4.2 netmask 255.255.255.0
 route add -net 193.81.7.0/24 gw 10.0.4.1
+route add -net 193.81.8.0/24 gw 10.0.4.1
 route add -net 163.10.0.0/16 gw 10.0.4.1
 
 #ifconfig "$INTERFAZ" 163.10.250.5 netmask 255.255.255.0
@@ -1713,6 +1739,7 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
