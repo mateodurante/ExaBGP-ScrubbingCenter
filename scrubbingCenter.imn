@@ -176,8 +176,8 @@ node n35 {
 	!
     }
     canvas c4
-    iconcoords {141.0 165.0}
-    labelcoords {143.0 144.0}
+    iconcoords {140.0 165.0}
+    labelcoords {142.0 144.0}
     interface-peer {eth0 n29}
     services {DefaultRoute SSH HTTP ratelimit}
     custom-config {
@@ -977,8 +977,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {183.0 73.0}
-    labelcoords {183.0 105.0}
+    iconcoords {188.0 93.0}
+    labelcoords {188.0 125.0}
     interface-peer {eth0 n19}
 }
 
@@ -996,8 +996,8 @@ node n33 {
 	!
     }
     canvas c3
-    iconcoords {284.0 343.0}
-    labelcoords {284.0 375.0}
+    iconcoords {285.0 344.0}
+    labelcoords {285.0 376.0}
     interface-peer {eth0 n36}
     interface-peer {eth1 n41}
     services {zebra BGP vtysh IPForward}
@@ -1014,8 +1014,8 @@ node n36 {
 	!
     }
     canvas c3
-    iconcoords {697.0 348.0}
-    labelcoords {697.0 380.0}
+    iconcoords {691.0 344.0}
+    labelcoords {691.0 376.0}
     interface-peer {eth0 n33}
 }
 
@@ -1031,8 +1031,8 @@ node n24 {
 	!
     }
     canvas c5
-    iconcoords {783.0 329.0}
-    labelcoords {743.0 361.0}
+    iconcoords {780.0 329.0}
+    labelcoords {740.0 361.0}
     interface-peer {eth0 n25}
 }
 
@@ -1562,7 +1562,7 @@ annotation a16 {
 }
 
 annotation a17 {
-    iconcoords {161.0 52.0}
+    iconcoords {161.0 53.0}
     type text
     label {ExaBGP}
     labelcolor black
@@ -1679,7 +1679,6 @@ route add -net 163.10.0.0/16 gw 10.0.4.1
 #/usr/sbin/fprobe -i"$nfsen" -f'ip and src net 163.10.0.0/16' localhost:5555
 #/usr/sbin/fprobe -i"$nfsen" -f'ip and dst net 163.10.0.0/16' localhost:5556
 
-
 # Inicio Nfsen
 #/etc/init.d/nfsen start
 
@@ -1693,16 +1692,6 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and src net 193.81.7.0/24' 10.0.3.2:5555
 # Netflow para Nfcapd IN
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and dst net 193.81.7.0/24' 10.0.3.2:5556
-
-# Se copian los archivos .ini de ExaBGP para los nodos n32 y n36:
-#cp /home/redes/Git/ExaBGP-ScrubbingCenter/ConfExaBGP/exabgpUNLP.ini $core_path/n32.conf/
-cp /root/exabgpUNLP.ini $core_path/n32.conf/
-cp /root/exabgpScrubbing.ini $core_path/n36.conf/
-
-# Ejecutamos los comandos para levantar los exaBGP:
-#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=10.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n36.conf/exabgpScrubbing.ini"
-
-#/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=163.10.252.2 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n32.conf/exabgpUNLP.ini"
 }
 
 hook 6:shutdown_hook.sh {
