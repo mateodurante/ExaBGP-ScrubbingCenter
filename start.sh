@@ -29,15 +29,15 @@ cp /root/exabgpScrubbing2.ini $core_path/n52.conf/
 
 echo "Ejecutando ExaBGP en ambos nodos de CORE."
 
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n32.conf/exabgpScrubbing1.ini" &
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.9.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n36.conf/exabgpScrubbing1.ini" &
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.13.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/ExaBGPSyper.conf/exabgpCentral.ini" &
+/usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.13.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/WebService.conf/exabgpCentral.ini" &
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/n52 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.15.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n32.conf/exabgpScrubbing2.ini" &
+/usr/sbin/vcmd -c $core_path/n52 -- bash -E -c "env exabgp.daemon.daemonize=false exabgp.tcp.bind=100.0.15.10 exabgp.daemon.user=root /opt/exabgp/sbin/exabgp $core_path/n52.conf/exabgpScrubbing2.ini" &
 
 echo "Instalando módulo PyMongo en máquina de WebService"
 

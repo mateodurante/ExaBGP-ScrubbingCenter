@@ -10,6 +10,11 @@ interface eth1
  ip address 10.0.11.1/24
  ipv6 nd suppress-ra
 !
+interface eth2
+ ip address 10.0.14.1/24
+ ipv6 address 2001:6::1/64
+ ipv6 nd suppress-ra
+!
 interface gre0
  ipv6 nd suppress-ra
 !
@@ -24,6 +29,8 @@ router bgp 512
  neighbor 10.0.7.1 soft-reconfiguration inbound
  neighbor 10.0.11.2 remote-as 128
  neighbor 10.0.11.2 soft-reconfiguration inbound
+ neighbor 10.0.14.2 remote-as 124
+ neighbor 10.0.14.2 soft-reconfiguration inbound
 !
 ip forwarding
 ipv6 forwarding

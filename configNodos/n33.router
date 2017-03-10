@@ -21,9 +21,9 @@ interface lo
 router bgp 123
  bgp router-id 10.0.10.2
  network 100.0.9.0/24
- neighbor 100.0.9.10 remote-as 123
  neighbor 10.0.10.1 remote-as 128
  neighbor 10.0.10.1 soft-reconfiguration inbound
+ neighbor 100.0.9.10 remote-as 123
 !
 ip route 0.0.0.0/0 10.0.10.1
 !
