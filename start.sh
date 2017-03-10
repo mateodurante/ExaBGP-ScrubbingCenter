@@ -51,7 +51,14 @@ echo "Iniciando mongodb en máquina de UNLP"
 
 echo "Iniciando servicio web en máquina de UNLP"
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path/manage.py runserver 0.0.0.0:80" &
+[[ -d /tmp/unlp/ ]] || mkdir -p /tmp/unlp/
+cp -r $webapp_path_repo $webapp_path_unlp
+#Cambiamos nombre de variables en settings.py basado en el archivo de configuración config_gre.py
+sed -i -- "s/LOCAL_IP = '193.81.8.2'/LOCAL_IP = '163.10.252.2'/g" $webapp_path_unlp/WebScrub/settings.py
+sed -i -- "s/LOCAL_ASN = '2200'/LOCAL_ASN = '5692'/g" $webapp_path_unlp/WebScrub/settings.py
+sed -i -- "s/MY_GRE_IP = '172.16.6.1'/MY_GRE_IP = '172.16.2.1'/g" $webapp_path_unlp/WebScrub/settings.py
+
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_unlp/manage.py runserver 0.0.0.0:80" &
 
 # ================ Máquina Syper ===================
 
@@ -67,4 +74,7 @@ echo "Iniciando mongodb en máquina de Syper"
 
 echo "Iniciando servicio web en máquina de Syper"
 
-/usr/sbin/vcmd -c $core_path/ExaBGPSyper -- bash -E -c "python3 $webapp_path/manage.py runserver 0.0.0.0:80" &
+[[ -d /tmp/syper/ ]] || mkdir -p /tmp/syper/
+cp -r $webapp_path_repo $webapp_path_syper
+
+/usr/sbin/vcmd -c $core_path/ExaBGPSyper -- bash -E -c "python3 $webapp_path_syper/manage.py runserver 0.0.0.0:80" &

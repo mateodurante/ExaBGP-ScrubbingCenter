@@ -19,4 +19,11 @@ do
 	kill -9 $process;
 done
 
+echo "Elimino las bases de datos de las aplicaciones para eliminar datos sucios"
+rm -r /tmp/data/
+
+echo "Elimino las app web de cada nodo"
+rm -r /tmp/unlp/
+rm -r /tmp/syper/
+
 exit 0
