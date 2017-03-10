@@ -78,3 +78,6 @@ echo "Iniciando servicio web en máquina de Syper"
 cp -r $webapp_path_repo $webapp_path_syper
 
 /usr/sbin/vcmd -c $core_path/ExaBGPSyper -- bash -E -c "python3 $webapp_path_syper/manage.py runserver 0.0.0.0:80" &
+
+# Ejecutamos el script atacante.sh
+bash ./atacante.sh

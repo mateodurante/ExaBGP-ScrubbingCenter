@@ -19,6 +19,11 @@ do
 	kill -9 $process;
 done
 
+for process in $(ps ax | grep "ping" | awk '{print $1}');
+do
+	kill -9 $process;
+done
+
 echo "Elimino las bases de datos de las aplicaciones para eliminar datos sucios"
 rm -r /tmp/data/
 
