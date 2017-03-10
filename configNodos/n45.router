@@ -23,6 +23,8 @@ router bgp 6969
  network 100.0.13.0/24
  neighbor 10.0.8.1 remote-as 256
  neighbor 10.0.8.1 soft-reconfiguration inbound
+ neighbor 100.0.13.10 remote-as 6969
+ neighbor 100.0.13.10 soft-reconfiguration inbound
 !
 ip forwarding
 ipv6 forwarding
