@@ -3,7 +3,7 @@
 service integrated-vtysh-config
 !
 interface eth0
- ip address 10.0.9.1/24
+ ip address 100.0.9.1/24
  ipv6 nd suppress-ra
 !
 interface eth1
@@ -20,8 +20,8 @@ interface lo
 !
 router bgp 123
  bgp router-id 10.0.10.2
- network 10.0.9.0/24
- neighbor 10.0.9.10 remote-as 123
+ network 100.0.9.0/24
+ neighbor 100.0.9.10 remote-as 123
  neighbor 10.0.10.1 remote-as 128
  neighbor 10.0.10.1 soft-reconfiguration inbound
 !

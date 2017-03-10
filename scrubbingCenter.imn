@@ -307,6 +307,10 @@ node n7 {
     network-config {
 	hostname ISP-A
 	!
+	interface eth2
+	 ip address 10.0.8.1/24
+	 ipv6 address 2001:3::1/64
+	!
 	interface eth1
 	 ip address 10.0.1.2/24
 	 ipv6 address 2001:2::2/64
@@ -321,6 +325,7 @@ node n7 {
     interface-peer {eth0 n8}
     services {zebra BGP vtysh IPForward}
     interface-peer {eth1 n5}
+    interface-peer {eth2 n46}
 }
 
 node n8 {
@@ -637,8 +642,8 @@ node n16 {
 	!
     }
     canvas c2
-    iconcoords {561.7810397892475 341.04475334984306}
-    labelcoords {561.7810397892475 373.04475334984306}
+    iconcoords {559.7810397892475 342.04475334984306}
+    labelcoords {559.7810397892475 374.04475334984306}
     interface-peer {eth0 n20}
     custom-config {
 	custom-config-id service:resolvconf
@@ -788,8 +793,8 @@ node n19 {
 	!
     }
     canvas c2
-    iconcoords {190.0 222.0}
-    labelcoords {189.0 283.0}
+    iconcoords {188.0 222.0}
+    labelcoords {187.0 283.0}
     interface-peer {eth0 n20}
     interface-peer {eth1 n6}
     interface-peer {eth2 n21}
@@ -981,8 +986,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {192.0 82.0}
-    labelcoords {192.0 114.0}
+    iconcoords {189.0 81.0}
+    labelcoords {189.0 113.0}
     interface-peer {eth0 n19}
 }
 
@@ -992,16 +997,16 @@ node n33 {
     network-config {
 	hostname n33
 	!
+	interface eth0
+	 ip address 100.0.9.1/24
+	!
 	interface eth1
 	 ip address 10.0.10.2/24
 	!
-	interface eth0
-	 ip address 10.0.9.1/24
-	!
     }
     canvas c3
-    iconcoords {285.0 344.0}
-    labelcoords {285.0 376.0}
+    iconcoords {279.0 345.0}
+    labelcoords {279.0 377.0}
     interface-peer {eth0 n36}
     interface-peer {eth1 n41}
     services {zebra BGP vtysh IPForward}
@@ -1014,13 +1019,14 @@ node n36 {
 	hostname n36
 	!
 	interface eth0
-	 ip address 10.0.9.10/24
+	 ip address 100.0.9.10/24
 	!
     }
     canvas c3
-    iconcoords {691.0 344.0}
-    labelcoords {691.0 376.0}
+    iconcoords {697.0 345.0}
+    labelcoords {697.0 377.0}
     interface-peer {eth0 n33}
+    services {DefaultRoute SSH}
 }
 
 node n24 {
@@ -1035,8 +1041,8 @@ node n24 {
 	!
     }
     canvas c5
-    iconcoords {780.0 329.0}
-    labelcoords {740.0 361.0}
+    iconcoords {778.0 329.0}
+    labelcoords {738.0 361.0}
     interface-peer {eth0 n25}
 }
 
@@ -1054,8 +1060,8 @@ node n25 {
 	!
     }
     canvas c5
-    iconcoords {292.0 329.0}
-    labelcoords {292.0 361.0}
+    iconcoords {290.0 328.0}
+    labelcoords {290.0 360.0}
     interface-peer {eth0 n24}
     interface-peer {eth1 n26}
     services {zebra BGP vtysh IPForward}
@@ -1067,6 +1073,10 @@ node n28 {
     network-config {
 	hostname n28
 	!
+	interface eth2
+	 ip address 10.0.14.1/24
+	 ipv6 address 2001:6::1/64
+	!
 	interface eth1
 	 ip address 10.0.11.1/24
 	!
@@ -1075,11 +1085,12 @@ node n28 {
 	!
     }
     canvas c6
-    iconcoords {509.0 275.0}
-    labelcoords {509.0 307.0}
+    iconcoords {507.0 319.0}
+    labelcoords {507.0 351.0}
     interface-peer {eth0 n27}
     interface-peer {eth1 n39}
     services {zebra BGP vtysh IPForward}
+    interface-peer {eth2 n50}
 }
 
 node n26 {
@@ -1102,8 +1113,8 @@ node n27 {
 	!
     }
     canvas c6
-    iconcoords {762.0 274.0}
-    labelcoords {762.0 274.0}
+    iconcoords {768.0 320.0}
+    labelcoords {768.0 320.0}
     interface-peer {0 n28}
     mirror n26
 }
@@ -1153,8 +1164,8 @@ node n41 {
 	!
     }
     canvas c3
-    iconcoords {109.0 344.0}
-    labelcoords {109.0 344.0}
+    iconcoords {109.0 343.0}
+    labelcoords {109.0 343.0}
     interface-peer {0 n33}
     mirror n38
 }
@@ -1166,8 +1177,8 @@ node n42 {
 	!
     }
     canvas c1
-    iconcoords {817.0 177.0}
-    labelcoords {817.0 177.0}
+    iconcoords {817.0 176.0}
+    labelcoords {817.0 176.0}
     interface-peer {0 n8}
     mirror n43
 }
@@ -1192,8 +1203,8 @@ node n39 {
 	!
     }
     canvas c6
-    iconcoords {277.0 272.0}
-    labelcoords {277.0 272.0}
+    iconcoords {252.0 319.0}
+    labelcoords {252.0 319.0}
     interface-peer {0 n28}
     mirror n40
 }
@@ -1205,8 +1216,8 @@ node n40 {
 	!
     }
     canvas c7
-    iconcoords {288.0 247.0}
-    labelcoords {288.0 247.0}
+    iconcoords {287.0 246.0}
+    labelcoords {287.0 246.0}
     interface-peer {0 n37}
     mirror n39
 }
@@ -1222,9 +1233,137 @@ node n44 {
 	!
     }
     canvas c4
-    iconcoords {575.0 96.0}
-    labelcoords {575.0 128.0}
+    iconcoords {569.0 93.0}
+    labelcoords {569.0 125.0}
     interface-peer {eth0 n3}
+}
+
+node n45 {
+    type router
+    model router
+    network-config {
+	hostname n45
+	!
+	interface eth1
+	 ip address 100.0.13.1/24
+	!
+	interface eth0
+	 ip address 10.0.8.2/24
+	!
+    }
+    canvas c8
+    iconcoords {467.0 331.0}
+    labelcoords {467.0 363.0}
+    interface-peer {eth0 n47}
+    interface-peer {eth1 n48}
+    services {zebra BGP vtysh IPForward}
+}
+
+node n46 {
+    type pseudo
+    network-config {
+	hostname n45
+	!
+    }
+    canvas c1
+    iconcoords {441.0 527.0}
+    labelcoords {441.0 527.0}
+    interface-peer {0 n7}
+    mirror n47
+}
+
+node n47 {
+    type pseudo
+    network-config {
+	hostname n7
+	!
+    }
+    canvas c8
+    iconcoords {138.0 330.0}
+    labelcoords {138.0 330.0}
+    interface-peer {0 n45}
+    mirror n46
+}
+
+node n48 {
+    type router
+    model host
+    network-config {
+	hostname WebService
+	!
+	interface eth0
+	 ip address 100.0.13.10/24
+	!
+    }
+    canvas c8
+    iconcoords {806.0 326.0}
+    labelcoords {806.0 358.0}
+    interface-peer {eth0 n45}
+    services {DefaultRoute SSH}
+}
+
+node n49 {
+    type router
+    model router
+    network-config {
+	hostname n49
+	!
+	interface eth1
+	 ip address 100.0.15.1/24
+	!
+	interface eth0
+	 ip address 10.0.14.2/24
+	!
+    }
+    canvas c9
+    iconcoords {383.0 333.0}
+    labelcoords {383.0 365.0}
+    interface-peer {eth0 n51}
+    interface-peer {eth1 n52}
+    services {zebra BGP vtysh IPForward}
+}
+
+node n50 {
+    type pseudo
+    network-config {
+	hostname n49
+	!
+    }
+    canvas c6
+    iconcoords {509.0 190.0}
+    labelcoords {509.0 190.0}
+    interface-peer {0 n28}
+    mirror n51
+}
+
+node n51 {
+    type pseudo
+    network-config {
+	hostname n28
+	!
+    }
+    canvas c9
+    iconcoords {214.0 334.0}
+    labelcoords {214.0 334.0}
+    interface-peer {0 n49}
+    mirror n50
+}
+
+node n52 {
+    type router
+    model host
+    network-config {
+	hostname n52
+	!
+	interface eth0
+	 ip address 100.0.15.10/24
+	!
+    }
+    canvas c9
+    iconcoords {630.0 333.0}
+    labelcoords {630.0 365.0}
+    interface-peer {eth0 n49}
+    services {DefaultRoute SSH}
 }
 
 link l30 {
@@ -1412,6 +1551,36 @@ link l23 {
     bandwidth 0
 }
 
+link l39 {
+    mirror l40
+    nodes {n7 n46}
+}
+
+link l40 {
+    mirror l39
+    nodes {n45 n47}
+}
+
+link l38 {
+    nodes {n45 n48}
+    bandwidth 0
+}
+
+link l42 {
+    mirror l43
+    nodes {n28 n50}
+}
+
+link l43 {
+    mirror l42
+    nodes {n49 n51}
+}
+
+link l41 {
+    nodes {n49 n52}
+    bandwidth 0
+}
+
 annotation a1 {
     iconcoords {363.0 177.0}
     type text
@@ -1552,7 +1721,7 @@ annotation a10 {
 }
 
 annotation a15 {
-    iconcoords {356.0 69.0}
+    iconcoords {331.0 69.0}
     type text
     label {Scrubbing Center}
     labelcolor black
@@ -1639,32 +1808,99 @@ annotation a21 {
     canvas c7
 }
 
-canvas c4 {
-    name {Syper}
+annotation a22 {
+    iconcoords {779.0 276.0}
+    type text
+    label {ExaBGP}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 12
+    canvas c8
 }
 
-canvas c1 {
-    name {ISP Tier 2}
+annotation a23 {
+    iconcoords {444.0 162.0}
+    type text
+    label {AS 6969}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 14
+    effects {bold}
+    canvas c8
+}
+
+annotation a24 {
+    iconcoords {448.0 132.0}
+    type text
+    label {AS 124}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 14
+    effects {bold}
+    canvas c9
+}
+
+annotation a25 {
+    iconcoords {401.0 173.0}
+    type text
+    label {Scrubbing Center 2}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 12
+    canvas c9
+}
+
+annotation a26 {
+    iconcoords {598.0 393.0}
+    type text
+    label {ExaBGP}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 12
+    canvas c9
+}
+
+annotation a27 {
+    type text
+    iconcoords {501.0 388.0}
+    label {}
+    canvas c9
+}
+
+canvas c4 {
+    name {Syper}
 }
 
 canvas c2 {
     name {UNLP}
 }
 
-canvas c7 {
-    name {ISP Tier 1}
+canvas c3 {
+    name {Scrub 1}
 }
 
-canvas c6 {
-    name {ISP Tier 2B}
+canvas c9 {
+    name {Scrub 2}
+}
+
+canvas c8 {
+    name {WebScrub}
 }
 
 canvas c5 {
     name {Atacante}
 }
 
-canvas c3 {
-    name {Scrubbing Center}
+canvas c7 {
+    name {ISP Tier 1}
+}
+
+canvas c1 {
+    name {ISP Tier 2}
+}
+
+canvas c6 {
+    name {ISP Tier 2B}
 }
 
 hook 4:runtime_hook.sh {
@@ -1718,6 +1954,8 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and src net 193.81.7.0/24' 10.0.3.2:5555
 # Netflow para Nfcapd IN
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and dst net 193.81.7.0/24' 10.0.3.2:5556
+
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1739,6 +1977,8 @@ route del -net 163.10.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
+
 
 
 
