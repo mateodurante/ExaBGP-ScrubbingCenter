@@ -1,4 +1,5 @@
 #!/bin/bash
+# Cristian gato
 
 source .env
 
