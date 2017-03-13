@@ -26,6 +26,8 @@ router bgp 6969
  neighbor 100.0.13.10 remote-as 6969
  neighbor 100.0.13.10 soft-reconfiguration inbound
 !
+ip route 0.0.0.0/0 10.0.8.1
+!
 ip forwarding
 ipv6 forwarding
 !
