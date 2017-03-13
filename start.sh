@@ -44,7 +44,7 @@ echo "Instalando módulo PyMongo en máquina de WebService"
 
 /usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "pip3 install pymongo"
 
-echo "Iniciando mongodb en máquina de UNLP"
+echo "Iniciando mongodb en máquina de WebService"
 
 [[ -d /tmp/data/WebService ]] || mkdir -p /tmp/data/WebService
 
@@ -55,4 +55,4 @@ echo "Iniciando servicio web en máquina de WebService"
 /usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "python3 $webapp_path_repo/manage.py runsslserver 0.0.0.0:443" &
 
 # Ejecutamos el script atacante.sh
-bash ./atacante.sh
+#bash ./atacante.sh
