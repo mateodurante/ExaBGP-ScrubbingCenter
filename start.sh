@@ -51,7 +51,7 @@ echo "Iniciando mongodb en máquina de UNLP"
 
 echo "Iniciando servicio web en máquina de WebService"
 
-/usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "python3 $webapp_path_repo/manage.py runserver 0.0.0.0:80" &
+/usr/sbin/vcmd -c $core_path/WebService -- bash -E -c "python3 $webapp_path_repo/manage.py runsslserver 0.0.0.0:443" &
 
 # Ejecutamos el script atacante.sh
 bash ./atacante.sh
