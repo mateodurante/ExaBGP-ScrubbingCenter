@@ -156,8 +156,8 @@ node n15 {
 	!
     }
     canvas c2
-    iconcoords {412.8523771027325 91.10471262138924}
-    labelcoords {412.8523771027325 123.10471262138924}
+    iconcoords {573.8523771027325 180.10471262138924}
+    labelcoords {573.8523771027325 212.10471262138924}
     interface-peer {eth0 n20}
     custom-config {
 	custom-config-id service:resolvconf
@@ -190,6 +190,7 @@ node n20 {
     interface-peer {e9 n19}
     interface-peer {e0 n6}
     interface-peer {e1 n30}
+    hidden 1
 }
 
 node n3 {
@@ -270,8 +271,8 @@ node n19 {
 	!
     }
     canvas c2
-    iconcoords {165.0 346.0}
-    labelcoords {191.0 377.0}
+    iconcoords {164.0 301.0}
+    labelcoords {190.0 332.0}
     interface-peer {eth0 n20}
     custom-config {
 	custom-config-id service:Firewall
@@ -774,10 +775,44 @@ node n6 {
 	!
     }
     canvas c2
-    iconcoords {593.0 344.0}
-    labelcoords {620.0 325.0}
+    iconcoords {699.0 296.0}
+    labelcoords {726.0 277.0}
     interface-peer {eth0 n20}
     interface-peer {eth1 n9}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 163.20.10.2/24
+	  ipv6 address 2001:1::1/64
+	!
+	interface eth1
+	  ip address 10.0.8.3/24
+	  ipv6 address 10:11::3/64
+	!
+	!
+	! BGP configuration
+	!
+	! You should configure the AS number below,
+	! along with this router's peers.
+	!
+	router bgp 5692
+	  bgp router-id 163.20.10.2
+	  network 163.20.0.0/16
+	  neighbor 10.0.8.4 remote-as 52376
+	!
+	
+	}
+    }
+    services {zebra BGP vtysh IPForward}
 }
 
 node n9 {
@@ -810,10 +845,44 @@ node n10 {
 	!
     }
     canvas c2
-    iconcoords {592.0 482.0}
-    labelcoords {592.0 514.0}
+    iconcoords {620.0 480.0}
+    labelcoords {620.0 512.0}
     interface-peer {eth0 n9}
     interface-peer {eth1 n12}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.0.8.1/24
+	  
+	!
+	interface eth1
+	  ip address 182.23.0.2/16
+	  ipv6 address 10:12::2/64
+	!
+	!
+	! BGP configuration
+	!
+	! You should configure the AS number below,
+	! along with this router's peers.
+	!
+	router bgp 6243
+	  bgp router-id 10.0.8.1
+	  network 182.23.0.0/16
+	  neighbor 10.0.8.4 remote-as 52376
+	!
+	
+	}
+    }
+    services {zebra BGP vtysh IPForward}
 }
 
 node n11 {
@@ -835,6 +904,40 @@ node n11 {
     labelcoords {620.0 686.0}
     interface-peer {eth0 n9}
     interface-peer {eth1 n22}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.0.8.2/24
+	  
+	!
+	interface eth1
+	  ip address 10.0.13.2/24
+	  ipv6 address 10:13::2/64
+	!
+	!
+	! BGP configuration
+	!
+	! You should configure the AS number below,
+	! along with this router's peers.
+	!
+	router bgp 3928
+	  bgp router-id 10.0.8.2
+	  network 110.20.0.0/16
+	  neighbor 10.0.8.4 remote-as 52376
+	!
+	
+	}
+    }
+    services {zebra BGP vtysh IPForward}
 }
 
 node n13 {
@@ -878,13 +981,43 @@ node n14 {
 	!
 	interface eth0
 	 ip address 10.0.8.4/24
-	 ipv6 address 10:11::1/64
 	!
     }
     canvas c2
-    iconcoords {902.0 476.0}
-    labelcoords {902.0 508.0}
+    iconcoords {937.0 552.0}
+    labelcoords {937.0 584.0}
     interface-peer {eth0 n9}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.0.8.4/24
+	  ipv6 address 10:11::1/64
+	!
+	!
+	! BGP configuration
+	!
+	! You should configure the AS number below,
+	! along with this router's peers.
+	!
+	router bgp 52376
+	  bgp router-id 10.0.8.4
+	  neighbor 10.0.8.3 remote-as 5692
+	  neighbor 10.0.8.1 remote-as 6243
+	  neighbor 10.0.8.2 remote-as 3928
+	!
+	
+	}
+    }
+    services {zebra BGP vtysh IPForward}
 }
 
 node n16 {
@@ -933,8 +1066,8 @@ node n18 {
 	!
     }
     canvas c2
-    iconcoords {553.0 575.0}
-    labelcoords {553.0 607.0}
+    iconcoords {585.0 586.0}
+    labelcoords {585.0 618.0}
     interface-peer {eth0 n22}
 }
 
@@ -1147,17 +1280,6 @@ link l35 {
     bandwidth 0
 }
 
-annotation a6 {
-    iconcoords {443.0 42.0}
-    type text
-    label {UNLP - AS 5692 - 163.20.0.0/16}
-    labelcolor black
-    fontfamily {Arial}
-    fontsize {14}
-    effects {bold italic}
-    canvas c2
-}
-
 annotation a8 {
     type text
     iconcoords {431.0 36.0}
@@ -1191,20 +1313,6 @@ annotation a13 {
     type text
     iconcoords {216.0 86.0}
     label {}
-    canvas c2
-}
-
-annotation a14 {
-    iconcoords {120.0 9.0 734.0 353.0}
-    type rectangle
-    label {}
-    labelcolor #00b300
-    fontfamily {Arial}
-    fontsize {12}
-    color #5cf440
-    width 0
-    border black
-    rad 25
     canvas c2
 }
 
@@ -1378,7 +1486,7 @@ annotation a20 {
 annotation a21 {
     iconcoords {238.0 543.0 621.0 693.0}
     type rectangle
-    label {CooperativaY - AS 3928}
+    label {CooperativaY - AS 3928 110.20.0.0/16}
     labelcolor black
     fontfamily {Arial}
     fontsize {12}
@@ -1393,7 +1501,22 @@ annotation a21 {
 annotation a23 {
     iconcoords {700 366 951 668}
     type rectangle
-    label {IX - NAP - AS 1110}
+    label {CABASE - AS 52376}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #C0C0FF
+    width 0
+    border black
+    rad 25
+    effects {bold}
+    canvas c2
+}
+
+annotation a2 {
+    iconcoords {135 27 740 314}
+    type rectangle
+    label {UNLP - AS 5692 - 163.20.0.0/16}
     labelcolor black
     fontfamily {Arial}
     fontsize {12}
@@ -1475,6 +1598,8 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1496,6 +1621,8 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
+
 
 
 
