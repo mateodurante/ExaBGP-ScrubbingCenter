@@ -24,6 +24,8 @@ router bgp 5692
  bgp router-id 163.20.10.2
  network 163.20.0.0/16
  neighbor 10.0.8.4 remote-as 52376
+ neighbor 163.20.10.1 remote-as 5692
+ neighbor 163.20.10.1 soft-reconfiguration inbound
 !
 ip forwarding
 ipv6 forwarding
