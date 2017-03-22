@@ -4,7 +4,7 @@ node n29 {
 	hostname n29
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {101.0 225.0}
     labelcoords {101.0 249.0}
     interface-peer {e0 n3}
@@ -37,7 +37,7 @@ node n8 {
 	 ip address 10.0.4.1/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {155.0 428.0}
     labelcoords {157.0 480.0}
     services {zebra BGP vtysh IPForward Firewall}
@@ -206,7 +206,7 @@ node n3 {
 	 ip address 193.81.7.1/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {156.0 208.0}
     labelcoords {157.0 190.0}
     interface-peer {eth0 n29}
@@ -334,7 +334,7 @@ node n23 {
 	hostname eth1
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {38.0 337.0}
     labelcoords {38.0 369.0}
     interface-peer {0 n8}
@@ -370,7 +370,7 @@ node n33 {
 	 ip address 10.0.9.1/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {748.0 217.0}
     labelcoords {748.0 249.0}
     interface-peer {eth0 n36}
@@ -388,7 +388,7 @@ node n36 {
 	 ip address 10.0.9.10/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {953.0 224.0}
     labelcoords {953.0 256.0}
     interface-peer {eth0 n33}
@@ -405,7 +405,7 @@ node n24 {
 	 ipv6 address 10:7::20/64
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {922.0 57.0}
     labelcoords {882.0 89.0}
     interface-peer {eth0 n25}
@@ -425,7 +425,7 @@ node n25 {
 	 ip address 10.0.7.1/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {685.0 71.0}
     labelcoords {658.0 52.0}
     interface-peer {eth1 n28}
@@ -451,7 +451,7 @@ node n28 {
 	 ip address 10.0.7.2/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {546.0 152.0}
     labelcoords {536.0 132.0}
     interface-peer {eth0 n25}
@@ -478,7 +478,7 @@ node n37 {
 	 ip address 10.0.12.2/24
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {398.0 423.0}
     labelcoords {379.0 408.0}
     interface-peer {eth1 n8}
@@ -502,7 +502,7 @@ node n1 {
 	 ipv6 address 10:3::2/64
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {363.0 66.0}
     labelcoords {347.0 47.0}
     interface-peer {eth0 n2}
@@ -558,7 +558,7 @@ node n2 {
 	 ipv6 address 10:2::2/64
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {378.0 226.0}
     labelcoords {378.0 258.0}
     interface-peer {eth0 n4}
@@ -614,7 +614,7 @@ node n4 {
 	 ipv6 address 10:1::2/64
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {594.0 284.0}
     labelcoords {594.0 316.0}
     interface-peer {eth0 n37}
@@ -632,7 +632,7 @@ node n5 {
 	 ipv6 address 10:6::20/64
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {125.0 94.0}
     labelcoords {125.0 126.0}
     interface-peer {eth0 n29}
@@ -686,7 +686,7 @@ node n31 {
 	hostname n27
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {427.0 555.0}
     labelcoords {427.0 555.0}
     interface-peer {0 n37}
@@ -712,7 +712,7 @@ node n39 {
 	hostname n26
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {119.0 551.0}
     labelcoords {119.0 551.0}
     interface-peer {0 n8}
@@ -738,7 +738,7 @@ node n7 {
 	hostname n19
 	!
     }
-    canvas c4
+    canvas c1
     iconcoords {279.0 552.0}
     labelcoords {279.0 552.0}
     interface-peer {0 n8}
@@ -1162,7 +1162,7 @@ annotation a8 {
     type text
     iconcoords {431.0 36.0}
     label {}
-    canvas c4
+    canvas c1
 }
 
 annotation a19 {
@@ -1177,7 +1177,7 @@ annotation a19 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a11 {
@@ -1203,7 +1203,7 @@ annotation a14 {
     fontsize {12}
     color #5cf440
     width 0
-    border #009e00
+    border black
     rad 25
     canvas c2
 }
@@ -1222,7 +1222,7 @@ annotation a22 {
     type text
     iconcoords {667.0 489.0}
     label {}
-    canvas c4
+    canvas c1
 }
 
 annotation a4 {
@@ -1237,7 +1237,7 @@ annotation a4 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a9 {
@@ -1252,7 +1252,7 @@ annotation a9 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a1 {
@@ -1267,7 +1267,7 @@ annotation a1 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a3 {
@@ -1282,7 +1282,7 @@ annotation a3 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a7 {
@@ -1297,7 +1297,7 @@ annotation a7 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a10 {
@@ -1312,7 +1312,7 @@ annotation a10 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a15 {
@@ -1327,7 +1327,7 @@ annotation a15 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a16 {
@@ -1342,7 +1342,7 @@ annotation a16 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a18 {
@@ -1357,7 +1357,7 @@ annotation a18 {
     border black
     rad 25
     effects {bold}
-    canvas c4
+    canvas c1
 }
 
 annotation a20 {
@@ -1405,7 +1405,7 @@ annotation a23 {
     canvas c2
 }
 
-canvas c4 {
+canvas c1 {
     name {Ruteo-Internet}
 }
 
@@ -1474,6 +1474,7 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1495,6 +1496,7 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
