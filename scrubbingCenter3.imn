@@ -56,7 +56,7 @@ node n8 {
 	  ipv6 address 10::2/64
 	!
 	interface eth1
-	  ip address 10.0.5.2/24
+	  ip address 10.0.5.1/24
 	  
 	!
 	interface eth2
@@ -188,7 +188,6 @@ node n20 {
     interface-peer {e9 n19}
     interface-peer {e0 n6}
     interface-peer {e1 n30}
-    hidden 1
 }
 
 node n3 {
@@ -322,7 +321,7 @@ node n19 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
     interface-peer {eth3 n32}
     interface-peer {eth2 n21}
 }
@@ -361,11 +360,11 @@ node n33 {
     network-config {
 	hostname GW-Scrub
 	!
+	interface eth0
+	 ip address 133.1.0.1/24
+	!
 	interface eth1
 	 ip address 10.0.10.2/24
-	!
-	interface eth0
-	 ip address 10.0.9.1/24
 	!
     }
     canvas c1
@@ -383,12 +382,12 @@ node n36 {
 	hostname n36
 	!
 	interface eth0
-	 ip address 10.0.9.10/24
+	 ip address 133.1.0.10/24
 	!
     }
     canvas c1
-    iconcoords {953.0 224.0}
-    labelcoords {953.0 256.0}
+    iconcoords {978.0 248.0}
+    labelcoords {978.0 280.0}
     interface-peer {eth0 n33}
 }
 
@@ -399,8 +398,7 @@ node n24 {
 	hostname n24
 	!
 	interface eth0
-	 ip address 10.0.6.20/24
-	 ipv6 address 10:7::20/64
+	 ip address 66.0.6.20/24
 	!
     }
     canvas c1
@@ -416,7 +414,7 @@ node n25 {
 	hostname ISP-China
 	!
 	interface eth0
-	 ip address 10.0.6.1/24
+	 ip address 66.0.6.1/24
 	!
 	interface eth1
 	 ip address 10.0.7.1/24
@@ -654,7 +652,7 @@ node n27 {
 	hostname CooperativaY
 	!
 	interface eth1
-	 ip address 10.0.13.1/24
+	 ip address 110.20.0.1/24
 	!
 	interface eth0
 	 ip address 10.0.14.2/24
@@ -797,7 +795,7 @@ node n6 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
 }
 
 node n9 {
@@ -813,6 +811,7 @@ node n9 {
     interface-peer {e1 n11}
     interface-peer {e2 n6}
     interface-peer {e3 n14}
+    interface-peer {e4 n35}
 }
 
 node n10 {
@@ -876,7 +875,7 @@ node n11 {
 	hostname gw-NAP-Y
 	!
 	interface eth1
-	 ip address 10.0.13.2/24
+	 ip address 110.20.0.2/24
 	!
 	interface eth0
 	 ip address 10.0.8.2/24
@@ -935,8 +934,8 @@ node n13 {
 	!
     }
     canvas c2
-    iconcoords {579.0 428.0}
-    labelcoords {605.0 438.0}
+    iconcoords {566.0 433.0}
+    labelcoords {592.0 443.0}
     interface-peer {eth0 n12}
 }
 
@@ -953,7 +952,6 @@ node n12 {
     interface-peer {e1 n10}
     interface-peer {e2 n13}
     interface-peer {e3 n16}
-    hidden 1
 }
 
 node n14 {
@@ -1015,8 +1013,8 @@ node n16 {
 	!
     }
     canvas c2
-    iconcoords {333.0 492.0}
-    labelcoords {333.0 524.0}
+    iconcoords {296.0 507.0}
+    labelcoords {296.0 539.0}
     interface-peer {eth0 n12}
 }
 
@@ -1027,8 +1025,7 @@ node n17 {
 	hostname GRE-Y
 	!
 	interface eth0
-	 ip address 10.0.13.10/24
-	 ipv6 address 10:13::10/64
+	 ip address 110.20.0.10/24
 	!
     }
     canvas c2
@@ -1044,8 +1041,7 @@ node n18 {
 	hostname www-y
 	!
 	interface eth0
-	 ip address 10.0.13.11/24
-	 ipv6 address 10:13::11/64
+	 ip address 110.20.0.11/24
 	!
     }
     canvas c2
@@ -1067,7 +1063,6 @@ node n22 {
     interface-peer {e1 n17}
     interface-peer {e2 n18}
     interface-peer {e3 n11}
-    hidden 1
 }
 
 node n30 {
@@ -1085,6 +1080,22 @@ node n30 {
     iconcoords {271.0 162.0}
     labelcoords {307.0 146.0}
     interface-peer {eth0 n20}
+}
+
+node n35 {
+    type router
+    model host
+    network-config {
+	hostname ScrubCABASE
+	!
+	interface eth0
+	 ip address 10.0.8.10/24
+	!
+    }
+    canvas c2
+    iconcoords {871.0 606.0}
+    labelcoords {871.0 638.0}
+    interface-peer {eth0 n9}
 }
 
 link l16 {
@@ -1260,6 +1271,11 @@ link l32 {
 
 link l35 {
     nodes {n30 n20}
+    bandwidth 0
+}
+
+link l37 {
+    nodes {n35 n9}
     bandwidth 0
 }
 
@@ -1584,6 +1600,8 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1605,6 +1623,8 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
+
 
 
 

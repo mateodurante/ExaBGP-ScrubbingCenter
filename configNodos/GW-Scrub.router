@@ -4,26 +4,32 @@ service integrated-vtysh-config
 !
 interface eth0
  ip address 10.0.9.1/24
+ ip address 133.1.0.1/24
  ipv6 nd suppress-ra
+ no link-detect
 !
 interface eth1
  ip address 10.0.10.2/24
  ipv6 nd suppress-ra
+ no link-detect
 !
 interface gre0
  ipv6 nd suppress-ra
+ no link-detect
 !
 interface gretap0
  ipv6 nd suppress-ra
+ no link-detect
 !
 interface lo
+ no link-detect
 !
 router bgp 33
  bgp router-id 10.0.9.1
  network 133.1.0.0/16
- redistribute connected
  neighbor 10.0.10.1 remote-as 28
  neighbor 10.0.10.1 soft-reconfiguration inbound
+ exit
 !
 ip forwarding
 ipv6 forwarding
