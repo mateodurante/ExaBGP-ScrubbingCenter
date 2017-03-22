@@ -3,20 +3,15 @@
 service integrated-vtysh-config
 !
 interface eth0
- ip address 10.0.2.2/24
+ ip address 10.0.14.1/24
  ipv6 nd suppress-ra
 !
 interface eth1
- ip address 10.0.5.2/24
+ ip address 10.0.12.2/24
  ipv6 nd suppress-ra
 !
 interface eth2
- ip address 10.0.4.1/24
- ipv6 nd suppress-ra
-!
-interface eth3
- ip address 10.0.12.1/24
- ipv6 address 2001:4::1/64
+ ip address 10.0.1.1/24
  ipv6 nd suppress-ra
 !
 interface gre0
@@ -27,16 +22,12 @@ interface gretap0
 !
 interface lo
 !
-router bgp 256
- bgp router-id 10.0.12.1
- neighbor 10.0.2.1 remote-as 256
- neighbor 10.0.2.1 soft-reconfiguration inbound
- neighbor 10.0.5.1 remote-as 5692
- neighbor 10.0.5.1 soft-reconfiguration inbound
- neighbor 10.0.12.2 remote-as 128
- neighbor 10.0.12.2 soft-reconfiguration inbound
-!
-ip route 0.0.0.0/0 10.0.4.2
+router bgp 444
+ bgp router-id 10.0.14.1
+ neighbor 10.0.1.2 remote-as 4
+ neighbor 10.0.1.2 soft-reconfiguration inbound
+ neighbor 10.0.12.1 remote-as 555
+ neighbor 10.0.12.1 soft-reconfiguration inbound
 !
 ip forwarding
 ipv6 forwarding

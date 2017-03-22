@@ -1,0 +1,32 @@
+!
+!
+service integrated-vtysh-config
+!
+interface eth0
+ ip address 10.0.8.1/24
+ ipv6 nd suppress-ra
+!
+interface eth1
+ ip address 182.23.0.2/16
+ ipv6 address 10:12::2/64
+ ipv6 nd suppress-ra
+!
+interface gre0
+ ipv6 nd suppress-ra
+!
+interface gretap0
+ ipv6 nd suppress-ra
+!
+interface lo
+!
+router bgp 6243
+ bgp router-id 10.0.8.1
+ network 182.23.0.0/16
+ neighbor 10.0.8.4 remote-as 52376
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end

@@ -18,14 +18,12 @@ interface gretap0
 !
 interface lo
 !
-router bgp 123
- bgp router-id 10.0.10.2
- network 10.0.9.0/24
- neighbor 10.0.9.10 remote-as 123
- neighbor 10.0.10.1 remote-as 128
+router bgp 33
+ bgp router-id 10.0.9.1
+ network 133.1.0.0/16
+ redistribute connected
+ neighbor 10.0.10.1 remote-as 28
  neighbor 10.0.10.1 soft-reconfiguration inbound
-!
-ip route 0.0.0.0/0 10.0.10.1
 !
 ip forwarding
 ipv6 forwarding

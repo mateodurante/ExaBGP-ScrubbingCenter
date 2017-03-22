@@ -1,0 +1,41 @@
+!
+!
+service integrated-vtysh-config
+!
+debug ospf6 lsa unknown
+!
+interface eth0
+ ip address 10.0.16.2/24
+ ipv6 nd suppress-ra
+ ipv6 ospf6 network broadcast
+!
+interface eth1
+ ip address 182.23.0.1/16
+ ipv6 address 10:12::1/64
+ ipv6 nd suppress-ra
+ ipv6 ospf6 network broadcast
+!
+interface gre0
+ ipv6 nd suppress-ra
+!
+interface gretap0
+ ipv6 nd suppress-ra
+!
+interface lo
+!
+router ospf
+ ospf router-id 10.0.16.2
+ network 10.0.16.0/24 area 0.0.0.0
+ network 182.23.0.0/16 area 0.0.0.0
+!
+router ospf6
+ router-id 10.0.16.2
+ interface eth0 area 0.0.0.0
+ interface eth1 area 0.0.0.0
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end
