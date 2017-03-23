@@ -28,6 +28,7 @@ router-id 163.20.10.1
 router bgp 5692
  bgp router-id 163.20.252.1
  network 163.20.0.0/16
+ network 163.20.252.0/24
  neighbor 10.0.5.1 remote-as 555
  neighbor 10.0.5.1 soft-reconfiguration inbound
  neighbor 163.20.10.2 remote-as 5692
