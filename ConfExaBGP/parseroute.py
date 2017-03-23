@@ -12,7 +12,7 @@ red = {}
 while True:
 
 	line = stdin.readline().strip()
-	
+
 	# When the parent dies we are seeing continual newlines, so we only access so many before 	  #stopping
 	if line == "":
 		counter += 1
@@ -20,7 +20,7 @@ while True:
 			break
 		continue
 	counter = 0
-	
+
 	message = json.loads(line)
 
 	if message["type"] == "update":
@@ -37,14 +37,15 @@ while True:
 				message_type = "withdraw"
 
 			net = array[0]['nlri']
-			asn = message['neighbor']['asn']['peer']
+			#asn = message['neighbor']['asn']['peer']
+			asn = update_hash['attribute']['as-path'][0]
 			value = "{0} route {1} next-hop self origin igp as-path [{2}]".format(message_type, net, asn)
 
-			# Announce received ExaBGP-route trough Quagga peering	
+			# Announce received ExaBGP-route trough Quagga peering
 			if (net):
 				# Pagina para la sintaxis: https://thepacketgeek.com/advanced-router-peering-and-route-announcement/
 				post = requests.post('http://localhost:5000/', data = {'command' : value})
 				out = os.system("ip route {0} {1} dev {2}".format(action, net, asn))
 
-		except KeyError: 
+		except KeyError:
 			continue
