@@ -177,12 +177,11 @@ node n20 {
 	!
     }
     canvas c2
-    iconcoords {401.8510721212347 260.74804833050854}
-    labelcoords {401.8510721212347 284.74804833050854}
+    iconcoords {312.8510721212347 191.74804833050854}
+    labelcoords {312.8510721212347 215.74804833050854}
     interface-peer {e8 n15}
     interface-peer {e9 n19}
     interface-peer {e0 n6}
-    interface-peer {e1 n30}
 }
 
 node n3 {
@@ -256,6 +255,10 @@ node n19 {
     network-config {
 	hostname unlp-gw
 	!
+	interface eth1
+	 ipv6 address 2001:3::1/64
+	 ip address 163.20.9.1/24
+	!
 	interface eth2
 	 ip address 10.0.5.2/24
 	 ipv6 address 10:9::2/64
@@ -268,8 +271,8 @@ node n19 {
 	!
     }
     canvas c2
-    iconcoords {164.0 301.0}
-    labelcoords {190.0 332.0}
+    iconcoords {203.0 249.0}
+    labelcoords {149.0 256.0}
     interface-peer {eth0 n20}
     custom-config {
 	custom-config-id service:Firewall
@@ -324,6 +327,7 @@ node n19 {
     services {zebra OSPFv2 BGP vtysh IPForward}
     interface-peer {eth3 n32}
     interface-peer {eth2 n21}
+    interface-peer {eth1 n40}
 }
 
 node n23 {
@@ -349,8 +353,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {192.0 82.0}
-    labelcoords {192.0 114.0}
+    iconcoords {158.0 130.0}
+    labelcoords {158.0 162.0}
     interface-peer {eth0 n19}
 }
 
@@ -368,8 +372,8 @@ node n33 {
 	!
     }
     canvas c1
-    iconcoords {748.0 217.0}
-    labelcoords {748.0 249.0}
+    iconcoords {746.0 217.0}
+    labelcoords {746.0 249.0}
     interface-peer {eth0 n36}
     services {zebra BGP vtysh IPForward}
     interface-peer {eth1 n28}
@@ -402,8 +406,8 @@ node n24 {
 	!
     }
     canvas c1
-    iconcoords {922.0 57.0}
-    labelcoords {882.0 89.0}
+    iconcoords {921.0 57.0}
+    labelcoords {881.0 89.0}
     interface-peer {eth0 n25}
 }
 
@@ -630,20 +634,25 @@ node n26 {
     network-config {
 	hostname CooperativaX
 	!
+	interface eth1
+	 ip address 182.23.0.1/24
+	!
+	interface eth0
+	 ipv6 address 2001:2::1/64
+	 ip address 182.23.9.1/24
+	!
 	interface eth2
 	 ip address 10.0.6.2/24
 	 ipv6 address 2001:0::2/64
 	!
-	interface eth1
-	 ip address 182.23.0.1/16
-	!
     }
     canvas c2
     iconcoords {256.0 425.0}
-    labelcoords {256.0 457.0}
+    labelcoords {261.0 403.0}
     interface-peer {eth1 n12}
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
     interface-peer {eth2 n41}
+    interface-peer {eth0 n39}
 }
 
 node n27 {
@@ -651,6 +660,10 @@ node n27 {
     model router
     network-config {
 	hostname CooperativaY
+	!
+	interface eth2
+	 ipv6 address 2001:5::1/64
+	 ip address 110.20.9.1/24
 	!
 	interface eth1
 	 ip address 110.20.0.1/24
@@ -660,11 +673,12 @@ node n27 {
 	!
     }
     canvas c2
-    iconcoords {268.0 594.0}
-    labelcoords {268.0 626.0}
+    iconcoords {281.0 604.0}
+    labelcoords {292.0 590.0}
     interface-peer {eth0 n34}
     interface-peer {eth1 n22}
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
+    interface-peer {eth2 n42}
 }
 
 node n31 {
@@ -733,8 +747,8 @@ node n6 {
 	!
     }
     canvas c2
-    iconcoords {699.0 296.0}
-    labelcoords {726.0 277.0}
+    iconcoords {700.0 296.0}
+    labelcoords {727.0 277.0}
     interface-peer {eth0 n20}
     interface-peer {eth1 n9}
     custom-config {
@@ -796,15 +810,15 @@ node n10 {
 	hostname gw-NAP-X
 	!
 	interface eth1
-	 ip address 182.23.0.2/16
+	 ip address 182.23.0.2/24
 	!
 	interface eth0
 	 ip address 10.0.8.1/24
 	!
     }
     canvas c2
-    iconcoords {620.0 480.0}
-    labelcoords {620.0 512.0}
+    iconcoords {619.0 480.0}
+    labelcoords {619.0 512.0}
     interface-peer {eth0 n9}
     interface-peer {eth1 n12}
     custom-config {
@@ -840,7 +854,7 @@ node n10 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
 }
 
 node n11 {
@@ -857,8 +871,8 @@ node n11 {
 	!
     }
     canvas c2
-    iconcoords {620.0 654.0}
-    labelcoords {620.0 686.0}
+    iconcoords {619.0 653.0}
+    labelcoords {619.0 685.0}
     interface-peer {eth0 n9}
     interface-peer {eth1 n22}
     custom-config {
@@ -894,7 +908,7 @@ node n11 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {zebra OSPFv2 BGP vtysh IPForward}
 }
 
 node n13 {
@@ -904,8 +918,8 @@ node n13 {
 	hostname www-x
 	!
 	interface eth0
-	 ip address 182.23.0.10/16
 	 ipv6 address 10:12::10/64
+	 ip address 182.23.0.10/24
 	!
     }
     canvas c2
@@ -926,7 +940,6 @@ node n12 {
     interface-peer {e0 n26}
     interface-peer {e1 n10}
     interface-peer {e2 n13}
-    interface-peer {e3 n16}
 }
 
 node n14 {
@@ -983,14 +996,14 @@ node n16 {
 	hostname GRE-X
 	!
 	interface eth0
-	 ip address 182.23.0.11/16
-	 ipv6 address 10:12::11/64
+	 ip address 182.23.9.10/24
+	 ipv6 address 2001:2::10/64
 	!
     }
     canvas c2
-    iconcoords {296.0 507.0}
-    labelcoords {296.0 539.0}
-    interface-peer {eth0 n12}
+    iconcoords {315.0 497.0}
+    labelcoords {315.0 529.0}
+    interface-peer {eth0 n39}
 }
 
 node n17 {
@@ -1000,13 +1013,14 @@ node n17 {
 	hostname GRE-Y
 	!
 	interface eth0
-	 ip address 110.20.0.10/24
+	 ip address 110.20.9.10/24
+	 ipv6 address 2001:5::10/64
 	!
     }
     canvas c2
-    iconcoords {346.0 671.0}
-    labelcoords {346.0 703.0}
-    interface-peer {eth0 n22}
+    iconcoords {345.0 670.0}
+    labelcoords {345.0 702.0}
+    interface-peer {eth0 n42}
 }
 
 node n18 {
@@ -1035,7 +1049,6 @@ node n22 {
     iconcoords {461.0 662.0}
     labelcoords {461.0 686.0}
     interface-peer {e0 n27}
-    interface-peer {e1 n17}
     interface-peer {e2 n18}
     interface-peer {e3 n11}
 }
@@ -1047,14 +1060,14 @@ node n30 {
 	hostname GRE-unlp
 	!
 	interface eth0
-	 ip address 163.20.10.10/24
-	 ipv6 address 2001:1::10/64
+	 ip address 163.20.9.10/24
+	 ipv6 address 2001:3::10/64
 	!
     }
     canvas c2
-    iconcoords {267.0 163.0}
-    labelcoords {303.0 147.0}
-    interface-peer {eth0 n20}
+    iconcoords {380.0 283.0}
+    labelcoords {416.0 267.0}
+    interface-peer {eth0 n40}
 }
 
 node n35 {
@@ -1068,8 +1081,8 @@ node n35 {
 	!
     }
     canvas c2
-    iconcoords {871.0 606.0}
-    labelcoords {871.0 638.0}
+    iconcoords {867.0 606.0}
+    labelcoords {867.0 638.0}
     interface-peer {eth0 n9}
 }
 
@@ -1097,6 +1110,48 @@ node n41 {
     labelcoords {69.0 454.0}
     interface-peer {0 n26}
     mirror n38
+}
+
+node n39 {
+    type lanswitch
+    network-config {
+	hostname n39
+	!
+    }
+    canvas c2
+    iconcoords {235.0 497.0}
+    labelcoords {235.0 521.0}
+    interface-peer {e0 n26}
+    interface-peer {e1 n16}
+    hidden 1
+}
+
+node n40 {
+    type lanswitch
+    network-config {
+	hostname n40
+	!
+    }
+    canvas c2
+    iconcoords {271.0 337.0}
+    labelcoords {271.0 361.0}
+    interface-peer {e0 n19}
+    interface-peer {e1 n30}
+    hidden 1
+}
+
+node n42 {
+    type lanswitch
+    network-config {
+	hostname n42
+	!
+    }
+    canvas c2
+    iconcoords {258.0 663.0}
+    labelcoords {258.0 687.0}
+    interface-peer {e0 n27}
+    interface-peer {e1 n17}
+    hidden 1
 }
 
 link l16 {
@@ -1235,18 +1290,8 @@ link l13 {
     bandwidth 0
 }
 
-link l17 {
-    nodes {n16 n12}
-    bandwidth 0
-}
-
 link l18 {
     nodes {n27 n22}
-    bandwidth 0
-}
-
-link l20 {
-    nodes {n17 n22}
     bandwidth 0
 }
 
@@ -1257,11 +1302,6 @@ link l30 {
 
 link l32 {
     nodes {n22 n11}
-    bandwidth 0
-}
-
-link l35 {
-    nodes {n30 n20}
     bandwidth 0
 }
 
@@ -1280,6 +1320,36 @@ link l40 {
     nodes {n26 n41}
 }
 
+link l17 {
+    nodes {n26 n39}
+    bandwidth 0
+}
+
+link l31 {
+    nodes {n39 n16}
+    bandwidth 0
+}
+
+link l35 {
+    nodes {n19 n40}
+    bandwidth 0
+}
+
+link l36 {
+    nodes {n40 n30}
+    bandwidth 0
+}
+
+link l20 {
+    nodes {n27 n42}
+    bandwidth 0
+}
+
+link l38 {
+    nodes {n42 n17}
+    bandwidth 0
+}
+
 annotation a8 {
     type text
     iconcoords {431.0 36.0}
@@ -1293,7 +1363,7 @@ annotation a19 {
     label {ISP C - AS 2200}
     labelcolor black
     fontfamily {Arial}
-    fontsize 14
+    fontsize {14}
     color #C0C0FF
     width 0
     border black
@@ -1469,7 +1539,7 @@ annotation a18 {
 }
 
 annotation a20 {
-    iconcoords {230.0 387.0 628.0 533.0}
+    iconcoords {223 373 629 527}
     type rectangle
     label {CooperativaX - AS 6243 - 182.23.0.0/16}
     labelcolor black
@@ -1526,6 +1596,7 @@ annotation a2 {
     rad 25
     effects {bold}
     canvas c2
+    hidden 1
 }
 
 canvas c1 {
@@ -1604,6 +1675,7 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1625,6 +1697,7 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 

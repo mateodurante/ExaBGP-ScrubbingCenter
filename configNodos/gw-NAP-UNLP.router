@@ -24,9 +24,20 @@ router bgp 5692
  bgp router-id 163.20.10.2
  network 163.20.0.0/16
  neighbor 10.0.8.4 remote-as 52376
+ neighbor 10.0.8.4 route-map non-transit out
  neighbor 163.20.10.1 remote-as 5692
  neighbor 163.20.10.1 next-hop-self
  neighbor 163.20.10.1 soft-reconfiguration inbound
+ neighbor 163.20.10.1 route-map transit out
+!
+router ospf
+ network 163.20.10.0/24 area 0.0.0.0
+!
+ip as-path access-list transit permit $^
+ip as-path access-list transit deny .*
+!
+route-map non-transit permit 10
+ match as-path transit
 !
 ip forwarding
 ipv6 forwarding

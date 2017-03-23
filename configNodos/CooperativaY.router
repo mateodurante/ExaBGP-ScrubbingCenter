@@ -12,6 +12,11 @@ interface eth1
  ipv6 address 10:13::1/64
  ipv6 nd suppress-ra
 !
+interface eth2
+ ip address 110.20.9.1/24
+ ipv6 address 2001:5::1/64
+ ipv6 nd suppress-ra
+!
 interface gre0
  ipv6 nd suppress-ra
 !
@@ -28,6 +33,12 @@ router bgp 3928
  neighbor 10.0.14.1 route-map nontransit out
  neighbor 110.20.0.2 remote-as 3928
  neighbor 110.20.0.2 soft-reconfiguration inbound
+!
+router ospf
+ ospf router-id 10.0.14.2
+ network 10.0.14.0/24 area 0.0.0.0
+ network 110.20.0.0/24 area 0.0.0.0
+ network 110.20.9.0/24 area 0.0.0.0
 !
 ip as-path access-list 1 permit ^$
 ip as-path access-list 1 deny .*

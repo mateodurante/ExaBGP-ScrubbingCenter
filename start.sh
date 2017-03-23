@@ -60,27 +60,27 @@ echo "Armado de túneles GRE"
 
 #networks = {
 #	"33"  : ["133.1.0.10", "172.16.1.0/24"],	# Scrubbing 1
-#	"5692" : ["163.20.10.10", "172.16.2.0/24"],	# UNLP
+#	"5692" : ["163.20.9.10", "172.16.2.0/24"],	# UNLP
 #	"52376"  : ["10.0.8.10", "172.16.3.0/24"],	# Scrubbing 2 (CABASE)
-#	"6243"  : ["182.23.0.11", "172.16.4.0/24"], # CooperativaX
-#	"3928"  : ["110.20.0.10", "172.16.5.0/24"], # CooperativaY
+#	"6243"  : ["182.23.9.10", "172.16.4.0/24"], # CooperativaX
+#	"3928"  : ["110.20.9.10", "172.16.5.0/24"], # CooperativaY
 #}
 
 # Túneles gre de unlp contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 163.20.10.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 163.20.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip link set scrub1 up"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip addr add 172.16.2.1 dev scrub1"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip route add 172.16.1.0/24 dev scrub1"
 
 
-/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 163.20.10.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 163.20.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip link set cabase up"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip addr add 172.16.2.2 dev cabase"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip route add 172.16.3.0/24 dev cabase"
 
 
-#/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add unlp mode gre remote 10.0.8.10 local 163.20.10.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add unlp mode gre remote 133.1.0.10 local 163.20.10.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add unlp mode gre remote 10.0.8.10 local 163.20.9.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add unlp mode gre remote 133.1.0.10 local 163.20.9.10 ttl 255"
 #/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip link set unlp up"
 #/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip addr add 172.16.2.1 dev unlp"
 #/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip route add 172.16.1.0/24 dev unlp"
@@ -88,20 +88,20 @@ echo "Armado de túneles GRE"
 
 
 # Túneles gre de CooperativaX contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 182.23.0.11 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 182.23.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip link set scrub1 up"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip addr add 172.16.4.1 dev scrub1"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip route add 172.16.1.0/24 dev scrub1"
 
 
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 182.23.0.11 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 182.23.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip link set cabase up"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip addr add 172.16.4.2 dev cabase"
 /usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip route add 172.16.3.0/24 dev cabase"
 
 
-#/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add CoopX mode gre remote 133.1.0.10 local 182.23.0.11 ttl 255"
-#/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add CoopX mode gre remote 10.0.8.10 local 182.23.0.11 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add CoopX mode gre remote 133.1.0.10 local 182.23.9.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add CoopX mode gre remote 10.0.8.10 local 182.23.9.10 ttl 255"
 #/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip link set CoopX up"
 #/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip addr add 172.16.4.1 dev CoopX"
 #/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip route add 172.16.1.0/24 dev CoopX"
@@ -109,19 +109,19 @@ echo "Armado de túneles GRE"
 
 
 # Túneles gre de CooperativaY contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 110.20.0.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 110.20.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip link set scrub1 up"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip addr add 172.16.5.1 dev scrub1"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip route add 172.16.1.0/24 dev scrub1"
 
 
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 110.20.0.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 110.20.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip link set cabase up"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip addr add 172.16.5.2 dev cabase"
 /usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip route add 172.16.3.0/24 dev cabase"
 
-#/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add CoopY mode gre remote 133.1.0.10 local 110.20.0.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add CoopY mode gre remote 10.0.8.10 local 182.23.0.11 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add CoopY mode gre remote 133.1.0.10 local 110.20.9.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add CoopY mode gre remote 10.0.8.10 local 182.23.9.10 ttl 255"
 #/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip link set CoopY up"
 #/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip addr add 172.16.5.1 dev CoopY"
 #/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip route add 172.16.1.0/24 dev CoopY"
@@ -129,26 +129,26 @@ echo "Armado de túneles GRE"
 
 
 # Túneles gre de Scrubbing 1 contra clientes:
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 5692 mode gre remote 163.20.10.10 local 133.1.0.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 5692 mode gre remote 163.20.9.10 local 133.1.0.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip link set 5692 up"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip addr add 172.16.1.1 dev 5692"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip route add 172.16.2.0/24 dev 5692"
 
 
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 6243 mode gre remote 182.23.0.11 local 133.1.0.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 6243 mode gre remote 182.23.9.10 local 133.1.0.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip link set 6243 up"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip addr add 172.16.1.2 dev 6243"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip route add 172.16.4.0/24 dev 6243"
 
 
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 3928 mode gre remote 110.20.0.10 local 133.1.0.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add 3928 mode gre remote 110.20.9.10 local 133.1.0.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip link set 3928 up"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip addr add 172.16.1.3 dev 3928"
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip route add 172.16.5.0/24 dev 3928"
 
-#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 163.20.10.10 local 133.1.0.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 182.23.0.11 local 133.1.0.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 110.20.0.10 local 133.1.0.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 163.20.9.10 local 133.1.0.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 182.23.9.10 local 133.1.0.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip tunnel add Scrub1 mode gre remote 110.20.9.10 local 133.1.0.10 ttl 255"
 #/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip link set Scrub1 up"
 #/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip addr add 172.16.1.1 dev Scrub1"
 #/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "ip route add 172.16.2.0/24 dev Scrub1"
@@ -157,27 +157,27 @@ echo "Armado de túneles GRE"
 
 
 # Túneles gre de Scrubbing 2 (CABASE) contra clientes:
-/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 5692 mode gre remote 163.20.10.10 local 10.0.8.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 5692 mode gre remote 163.20.9.10 local 10.0.8.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set 5692 up"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip addr add 172.16.3.1 dev 5692"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip route add 172.16.2.0/24 dev 5692"
 
 
-/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 6243 mode gre remote 182.23.0.11 local 10.0.8.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 6243 mode gre remote 182.23.9.10 local 10.0.8.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set 6243 up"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip addr add 172.16.3.2 dev 6243"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip route add 172.16.4.0/24 dev 6243"
 6243
 
-/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 3928 mode gre remote 110.20.0.10 local 10.0.8.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 3928 mode gre remote 110.20.9.10 local 10.0.8.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set 3928 up"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip addr add 172.16.3.3 dev 3928"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip route add 172.16.5.0/24 dev 3928"
 
 
-#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 163.20.10.10 local 10.0.8.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 182.23.0.11 local 10.0.8.10 ttl 255"
-#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 110.20.0.10 local 10.0.8.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 163.20.9.10 local 10.0.8.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 182.23.9.10 local 10.0.8.10 ttl 255"
+#/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add Scrub2 mode gre remote 110.20.9.10 local 10.0.8.10 ttl 255"
 #/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set Scrub2 up"
 #/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip addr add 172.16.3.1 dev Scrub2"
 #/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip route add 172.16.2.0/24 dev Scrub2"

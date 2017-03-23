@@ -28,6 +28,9 @@ router bgp 3928
  neighbor 110.20.0.1 next-hop-self
  neighbor 110.20.0.1 soft-reconfiguration inbound
 !
+router ospf
+ network 110.20.0.0/24 area 0.0.0.0
+!
 ip as-path access-list 1 permit ^$
 ip as-path access-list 1 deny .*
 !
