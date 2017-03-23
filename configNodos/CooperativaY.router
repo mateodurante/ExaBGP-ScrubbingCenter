@@ -7,6 +7,7 @@ interface eth0
  ipv6 nd suppress-ra
 !
 interface eth1
+ ip address 10.0.13.1/24
  ip address 110.20.0.1/24
  ipv6 address 10:13::1/64
  ipv6 nd suppress-ra
@@ -24,8 +25,15 @@ router bgp 3928
  network 110.20.0.0/16
  neighbor 10.0.14.1 remote-as 444
  neighbor 10.0.14.1 soft-reconfiguration inbound
+ neighbor 10.0.14.1 route-map nontransit out
  neighbor 110.20.0.2 remote-as 3928
  neighbor 110.20.0.2 soft-reconfiguration inbound
+!
+ip as-path access-list 1 permit ^$
+ip as-path access-list 1 deny .*
+!
+route-map nontransit permit 10
+ match as-path 1
 !
 ip forwarding
 ipv6 forwarding

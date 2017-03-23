@@ -5,24 +5,19 @@ service integrated-vtysh-config
 interface eth0
  ip address 193.81.7.1/24
  ipv6 nd suppress-ra
- no link-detect
 !
 interface eth1
  ip address 10.0.0.1/24
  ipv6 address 10::1/64
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gre0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gretap0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface lo
- no link-detect
 !
 router bgp 2200
  bgp router-id 193.81.7.1
@@ -30,7 +25,6 @@ router bgp 2200
  redistribute connected
  neighbor 10.0.0.2 remote-as 555
  neighbor 10.0.0.2 soft-reconfiguration inbound
- exit
 !
 router ospf
  ospf router-id 193.81.7.1

@@ -6,24 +6,19 @@ interface eth0
  ip address 163.20.10.2/24
  ipv6 address 2001:1::1/64
  ipv6 nd suppress-ra
- no link-detect
 !
 interface eth1
  ip address 10.0.8.3/24
  ipv6 address 10:11::3/64
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gre0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gretap0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface lo
- no link-detect
 !
 router bgp 5692
  bgp router-id 163.20.10.2
@@ -32,10 +27,6 @@ router bgp 5692
  neighbor 163.20.10.1 remote-as 5692
  neighbor 163.20.10.1 next-hop-self
  neighbor 163.20.10.1 soft-reconfiguration inbound
- exit
-!
-router ospf
- network 163.20.10.0/24 area 0.0.0.0
 !
 ip forwarding
 ipv6 forwarding

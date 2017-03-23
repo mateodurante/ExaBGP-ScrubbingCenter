@@ -5,23 +5,18 @@ service integrated-vtysh-config
 interface eth0
  ip address 10.0.1.2/24
  ipv6 nd suppress-ra
- no link-detect
 !
 interface eth1
  ip address 10.0.2.1/24
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gre0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface gretap0
  ipv6 nd suppress-ra
- no link-detect
 !
 interface lo
- no link-detect
 !
 router bgp 4
  bgp router-id 10.0.1.2
@@ -30,7 +25,6 @@ router bgp 4
  neighbor 10.0.1.1 soft-reconfiguration inbound
  neighbor 10.0.2.2 remote-as 345
  neighbor 10.0.2.2 soft-reconfiguration inbound
- exit
 !
 ip forwarding
 ipv6 forwarding

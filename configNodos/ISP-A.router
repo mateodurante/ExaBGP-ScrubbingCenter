@@ -9,6 +9,7 @@ interface eth0
 !
 interface eth1
  ip address 10.0.5.1/24
+ ip address 10.0.5.2/24
  ipv6 nd suppress-ra
 !
 interface eth2
@@ -38,8 +39,6 @@ router bgp 555
  network 10.0.4.0/24
  neighbor 10.0.0.1 remote-as 2200
  neighbor 10.0.0.1 soft-reconfiguration inbound
- neighbor 10.0.5.2 remote-as 5692
- neighbor 10.0.5.2 soft-reconfiguration inbound
  neighbor 10.0.12.2 remote-as 444
  neighbor 10.0.12.2 soft-reconfiguration inbound
  neighbor 10.0.16.2 remote-as 6243
