@@ -23,6 +23,8 @@ router bgp 33
  network 133.1.0.0/16
  neighbor 10.0.10.1 remote-as 28
  neighbor 10.0.10.1 soft-reconfiguration inbound
+ neighbor 133.1.0.10 remote-as 33
+ neighbor 133.1.0.10 soft-reconfiguration inbound
 !
 ip forwarding
 ipv6 forwarding
