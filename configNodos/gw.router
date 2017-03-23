@@ -11,6 +11,9 @@ interface eth1
  ipv6 address 10::1/64
  ipv6 nd suppress-ra
 !
+interface eth2
+ ipv6 nd suppress-ra
+!
 interface gre0
  ipv6 nd suppress-ra
 !
@@ -25,6 +28,8 @@ router bgp 2200
  redistribute connected
  neighbor 10.0.0.2 remote-as 555
  neighbor 10.0.0.2 soft-reconfiguration inbound
+ neighbor 10.0.6.2 remote-as 6243
+ neighbor 10.0.6.2 soft-reconfiguration inbound
 !
 router ospf
  ospf router-id 193.81.7.1
