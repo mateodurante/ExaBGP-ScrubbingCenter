@@ -28,7 +28,6 @@ router bgp 5692
  neighbor 163.20.10.1 remote-as 5692
  neighbor 163.20.10.1 next-hop-self
  neighbor 163.20.10.1 soft-reconfiguration inbound
- neighbor 163.20.10.1 route-map transit out
 !
 router ospf
  network 163.20.10.0/24 area 0.0.0.0

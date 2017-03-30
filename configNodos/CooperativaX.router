@@ -31,9 +31,7 @@ router bgp 6243
  network 182.23.0.0/16
  neighbor 10.0.6.1 remote-as 2200
  neighbor 10.0.6.1 soft-reconfiguration inbound
- neighbor 10.0.16.1 remote-as 555
- neighbor 10.0.16.1 soft-reconfiguration inbound
- neighbor 10.0.16.1 route-map nontransit out
+ neighbor 10.0.6.1 route-map nontransit out
  neighbor 182.23.0.2 remote-as 6243
  neighbor 182.23.0.2 soft-reconfiguration inbound
 !
