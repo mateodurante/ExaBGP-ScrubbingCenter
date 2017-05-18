@@ -632,7 +632,7 @@ node n26 {
     type router
     model router
     network-config {
-	hostname CooperativaX
+	hostname ISPX
 	!
 	interface eth1
 	 ip address 182.23.0.1/24
@@ -659,7 +659,7 @@ node n27 {
     type router
     model router
     network-config {
-	hostname CooperativaY
+	hostname ISPY
 	!
 	interface eth2
 	 ipv6 address 2001:5::1/64
@@ -1541,10 +1541,10 @@ annotation a18 {
 annotation a20 {
     iconcoords {223 373 629 527}
     type rectangle
-    label {CooperativaX - AS 6243 - 182.23.0.0/16}
+    label {ISP_X - AS 6243 - 182.23.0.0/16}
     labelcolor black
     fontfamily {Arial}
-    fontsize {12}
+    fontsize 12
     color #C0C0FF
     width 0
     border black
@@ -1556,10 +1556,10 @@ annotation a20 {
 annotation a21 {
     iconcoords {238.0 543.0 621.0 693.0}
     type rectangle
-    label {CooperativaY - AS 3928 110.20.0.0/16}
+    label {ISP_Y - AS 3928 110.20.0.0/16}
     labelcolor black
     fontfamily {Arial}
-    fontsize {12}
+    fontsize 12
     color #C0C0FF
     width 0
     border black
@@ -1596,7 +1596,6 @@ annotation a2 {
     rad 25
     effects {bold}
     canvas c2
-    hidden 1
 }
 
 canvas c1 {
@@ -1676,6 +1675,7 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1697,6 +1697,7 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
 
 
 
