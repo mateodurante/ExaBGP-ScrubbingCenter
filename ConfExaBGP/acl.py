@@ -6,9 +6,11 @@ import json
 import copy
 import pprint
 import logging
-import subprocess
 import multiprocessing
+from subprocess import Popen, PIPE
 from StringIO import StringIO
+import struct
+import uuid
 
 import config_gre
 
@@ -23,7 +25,9 @@ logger = logging.getLogger(__name__)
 
 firewall_backend = 'iptables'
 
-firewall_comment_text = "Received from: "
+fw_comment_text = "Received from: "
+
+insertion_policy = "-I"
 
 class AbstractFirewall:
     def generate_rules(self, peer_ip, pyflow_list, policy):
@@ -38,7 +42,7 @@ class AbstractFirewall:
 
         return generated_rules
     def check_pyflow_rule_correctness(self, pyflow_rule):
-        allowed_actions = [ 'allow', 'deny' ]
+        allowed_actions = [ 'allow', 'deny', 'rate-limit' ]
         allowed_protocols = [ 'udp', 'tcp', 'all', 'icmp' ]
 
         if not pyflow_rule['action'] in allowed_actions:
@@ -73,67 +77,88 @@ class Iptables(AbstractFirewall):
         logger.info("We will flush all rules from peer " + peer_ip)
 
         if pyflow_list == None:
-            execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain ])
+            execute_command_with_shell(self.iptables_path, ['--flush', self.working_chain])
             return True
 
         rules_list = self.generate_rules(peer_ip, pyflow_list, "-D")
         if rules_list != None and len(rules_list) > 0:
             for iptables_rule in rules_list:
-                execute_command_with_shell(self.iptables_path, iptables_rule)
+                search_by = iptables_rule[-1].replace('-D', insertion_policy)
+                proc1 = Popen(["iptables-save"], stdout=PIPE)
+                out, err = proc1.communicate()
+                out = out.decode("utf-8")
+                for line in out.split('\n'):
+                    if search_by in line:
+                        proc2 = Popen("iptables -D "+line[3:], shell=True)
         else:
             logger.error("Generated rule list is blank!")
 
     def flush(self):
         logger.info("We will flush all rules from peer " + peer_ip)
-        execute_command_with_shell(self.iptables_path, [ '--flush', self.working_chain  ])
+        execute_command_with_shell(self.iptables_path, ['--flush', self.working_chain])
+
     def add_rules(self, peer_ip, pyflow_list):
-        rules_list = self.generate_rules(peer_ip, pyflow_list, "-I")
+        rules_list = self.generate_rules(peer_ip, pyflow_list, insertion_policy)
 
         if rules_list != None and len(rules_list) > 0:
             for iptables_rule in rules_list:
                 execute_command_with_shell(self.iptables_path, iptables_rule)
         else:
             logger.error("Generated rule list is blank!")
+
     def generate_rule(self, peer_ip, pyflow_rule, policy):
-            iptables_arguments = [ policy, self.working_chain ]
+        iptables_arguments = [policy, self.working_chain]
 
-            if pyflow_rule['protocol'] != 'all':
-                iptables_arguments.extend(['-p', pyflow_rule['protocol']])
+        if pyflow_rule['protocol'] != 'all':
+            iptables_arguments.extend(['-p', pyflow_rule['protocol']])
 
-            if pyflow_rule['source_host'] != 'any':
-                iptables_arguments.extend(['-s', pyflow_rule['source_host']])
+        if pyflow_rule['source_host'] != 'any':
+            iptables_arguments.extend(['-s', pyflow_rule['source_host']])
 
-            if pyflow_rule['target_host'] != 'any':
-                iptables_arguments.extend(['-d', pyflow_rule['target_host']])
+        if pyflow_rule['target_host'] != 'any':
+            iptables_arguments.extend(['-d', pyflow_rule['target_host']])
 
-            # We have ports only for udp and tcp protocol
-            if pyflow_rule['protocol'] == 'udp' or pyflow_rule['protocol'] == 'tcp':
-                if 'source_port' in pyflow_rule and len(pyflow_rule['source_port']) > 0:
-                    iptables_arguments.extend(['--sport', pyflow_rule['source_port']])
+        # We have ports only for udp and tcp protocol
+        if pyflow_rule['protocol'] == 'udp' or pyflow_rule['protocol'] == 'tcp':
+            if 'source_port' in pyflow_rule and len(pyflow_rule['source_port']) > 0:
+                iptables_arguments.extend(['--sport', pyflow_rule['source_port']])
 
-                if 'target_port' in pyflow_rule and len(pyflow_rule['target_port']) > 0:
-                    iptables_arguments.extend(['--dport', pyflow_rule['target_port']])
+            if 'target_port' in pyflow_rule and len(pyflow_rule['target_port']) > 0:
+                iptables_arguments.extend(['--dport', pyflow_rule['target_port']])
 
-            if 'tcp_flags' in pyflow_rule and len(pyflow_rule['tcp_flags']) > 0:
-                # ALL means we check all flags for packet
-                iptables_arguments.extend([ '--tcp-flags', 'ALL', ",".join(pyflow_rule['tcp_flags'])])
+        base_rule = ' '.join(iptables_arguments)
 
-            if pyflow_rule['fragmentation']:
-                iptables_arguments.extend(['--fragment'])
+        if 'tcp_flags' in pyflow_rule and len(pyflow_rule['tcp_flags']) > 0:
+            # ALL means we check all flags for packet
+            iptables_arguments.extend(['--tcp-flags', 'ALL', ",".join(pyflow_rule['tcp_flags'])])
 
+        if pyflow_rule['fragmentation']:
+            iptables_arguments.extend(['--fragment'])
 
-            iptables_arguments.extend([ '-m', 'comment', '--comment', firewall_comment_text + str(peer_ip) ])
+        # We could specify only range here, list is not allowed
+        if 'packet-length' in pyflow_rule:
+            iptables_arguments.extend(['-m', 'length', '--length', pyflow_rule[packet-length]])
 
-            # We could specify only range here, list is not allowed
-            if 'packet-length' in pyflow_rule:
-                iptables_arguments.extend(['-m', 'length', '--length', pyflow_rule[packet-length] ])
+        if pyflow_rule['action'] == 'rate-limit':
+            rule_name = pyflow_rule['source_host']+pyflow_rule['target_host']+\
+                pyflow_rule['protocol']+pyflow_rule['source_port']+pyflow_rule['target_port']
+            iptables_arguments.extend(['-m', 'hashlimit'])
+            #iptables_arguments.extend(['--hashlimit-srcmask', '32'])
+            iptables_arguments.extend(['--hashlimit-mode', 'srcip,dstip'])
+            iptables_arguments.extend(['--hashlimit-above', pyflow_rule['action_value']+"b/s"])
+            # hashlimit-name needs to be short and diferent between diferent rules
+            iptables_arguments.extend(['--hashlimit-name', str(abs(hash(rule_name)) % (10 ** 8))])
 
-            iptables_arguments.extend(['-j', 'DROP' ])
+        iptables_arguments.extend(['-j', 'DROP'])
 
-            pp = pprint.PrettyPrinter(indent=4)
-            logger.info("Will run iptables command: " + pp.pformat(iptables_arguments))
+        iptables_arguments.extend(['-m', 'comment', '--comment', \
+            "{0} {1} {2}".format(fw_comment_text, str(peer_ip), base_rule)])
 
-            return iptables_arguments
+        pp = pprint.PrettyPrinter(indent=4)
+        logger.info("Will run iptables command: " + pp.pformat(iptables_arguments))
+
+        print(iptables_arguments)
+        return iptables_arguments
 
 
 def execute_command_with_shell(command_name, arguments):
@@ -142,7 +167,7 @@ def execute_command_with_shell(command_name, arguments):
     if arguments != None:
         args.extend( arguments )
 
-    subprocess.Popen( args );
+    Popen( args );
 
 
 firewall = None;
@@ -155,7 +180,7 @@ else:
     logger.error("Firewall" + firewall_backend + " is not supported")
     sys.exit("Firewall" + firewall_backend + " is not supported")
 
-def manage_flow(action, peer_ip, flow, firewall):
+def manage_flow(action, peer_ip, flow, flow_body, firewall):
     allowed_actions = [ 'withdrawal', 'announce' ]
     logger.warning("Action " + action + " checking...")
 
@@ -170,21 +195,22 @@ def manage_flow(action, peer_ip, flow, firewall):
         firewall.flush_rules(peer_ip, None)
         return True
     elif action == 'withdrawal' and flow != None:
-        py_flow_list = convert_exabgp_to_pyflow(flow)
+        py_flow_list = convert_exabgp_to_pyflow(flow, flow_body)
         logger.info("Call flush_rules non None") 
         logger.info("PyFlow: "+str(py_flow_list))
         firewall.flush_rules(peer_ip, py_flow_list)
         return True
 
-    py_flow_list = convert_exabgp_to_pyflow(flow)
+    py_flow_list = convert_exabgp_to_pyflow(flow, flow_body)
     return firewall.add_rules(peer_ip, py_flow_list)
 
-def convert_exabgp_to_pyflow(flow):
+def convert_exabgp_to_pyflow(flow, flow_body):
     # Flow in python format, here
     # We use customer formate because ExaBGP output is not so friendly for firewall generation
     logger.info("In convert: "+str(flow))
     current_flow = {
         'action'        : 'deny',
+        'action_value'  : None,
         'protocol'      : 'all',
         'source_port'   : '',
         'source_host'   : 'any',
@@ -194,6 +220,18 @@ def convert_exabgp_to_pyflow(flow):
         'packet_length' : '',
         'tcp_flags'     : [],
     }
+
+    # Analyzing extended community:
+    # This may come parsed from exabgp but not by now (https://github.com/Exa-Networks/exabgp/issues/265) 
+    # RFC 5575 (https://tools.ietf.org/html/rfc5575#section-7)
+    # ICMP: 0000002C800E1100018500000B0120B617006F02000381014001010040020602010000163CC010088006000044800000
+    # UDP : 0000002F800E1400018500000E0120B617006F020003811106817B4001010040020602010000163CC0100880060000462D9C00
+    # Checking extended-community rate limit 0x8006
+    extended_community = flow_body[-16:]
+    if extended_community[0:4] == "8006":
+        current_flow['action'] = 'rate-limit'
+        # Hex is formated as floating point
+        current_flow['action_value'] = str(int(struct.unpack('!f', extended_community[8:].decode('hex'))[0]))
 
     # But we definitely could have MULTIPLE ports here
     if 'packet-length' in flow:
@@ -234,7 +272,7 @@ def convert_exabgp_to_pyflow(flow):
     else:
         current_flow['protocol'] = 'all'
         pyflow_list.append(current_flow)
-
+    
     return pyflow_list
 
 
@@ -261,12 +299,11 @@ ip route add {4} dev {2}
         pass
     return None
 
-
 while True:
     try:
         line = sys.stdin.readline().strip()
         # print >> sys.stderr, "GOT A LINE"
-
+        logger.warn(line)
         sys.stdout.flush()
         counter = 0
 
@@ -302,7 +339,7 @@ while True:
 
                 for flow in flow_announce_with_certain_hop:
                     pp.pprint(flow)
-                    manage_flow('announce', peer_ip, flow, firewall)
+                    manage_flow('announce', peer_ip, flow, decoded_update['body'], firewall)
         except KeyError:
             pass
 
@@ -311,7 +348,7 @@ while True:
             peer_ip = decoded_update['neighbor']['address']['peer']
             for flow in current_flow_withdraw:
                 pp.pprint(flow)
-                manage_flow('withdrawal', peer_ip, flow, firewall)
+                manage_flow('withdrawal', peer_ip, flow, decoded_update['body'], firewall)
         except KeyError:
             pass
 
@@ -320,7 +357,7 @@ while True:
             if 'state' in decoded_update['neighbor'] and decoded_update['neighbor']['state'] == 'down':
                 peer_ip = decoded_update['neighbor']['address']['peer']
                 print >> sys.stderr, "We received notification about peer down for: " + peer_ip
-                manage_flow('withdrawal', peer_ip, None, firewall)
+                manage_flow('withdrawal', peer_ip, None, None, firewall)
 
         exabgp_log.write(line + "\n")
     except KeyboardInterrupt:
@@ -328,3 +365,4 @@ while True:
     except IOError:
         # most likely a signal during readline
         pass
+

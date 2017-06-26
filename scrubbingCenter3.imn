@@ -372,8 +372,8 @@ node n33 {
 	!
     }
     canvas c1
-    iconcoords {746.0 217.0}
-    labelcoords {746.0 249.0}
+    iconcoords {743.0 237.0}
+    labelcoords {743.0 269.0}
     interface-peer {eth0 n36}
     services {zebra BGP vtysh IPForward}
     interface-peer {eth1 n28}
@@ -390,8 +390,8 @@ node n36 {
 	!
     }
     canvas c1
-    iconcoords {978.0 248.0}
-    labelcoords {978.0 280.0}
+    iconcoords {945.0 254.0}
+    labelcoords {945.0 286.0}
     interface-peer {eth0 n33}
 }
 
@@ -474,8 +474,8 @@ node n37 {
 	!
     }
     canvas c1
-    iconcoords {584.0 422.0}
-    labelcoords {565.0 407.0}
+    iconcoords {618.0 434.0}
+    labelcoords {599.0 419.0}
     interface-peer {eth1 n8}
     services {zebra BGP vtysh IPForward}
     interface-peer {eth2 n4}
@@ -487,6 +487,10 @@ node n1 {
     model router
     network-config {
 	hostname England
+	!
+	interface eth2
+	 ip address 10.0.9.1/24
+	 ipv6 address 2001:6::1/64
 	!
 	interface eth1
 	 ip address 10.0.11.1/24
@@ -534,6 +538,7 @@ node n1 {
 	}
     }
     services {zebra BGP vtysh IPForward}
+    interface-peer {eth2 n43}
 }
 
 node n2 {
@@ -550,8 +555,8 @@ node n2 {
 	!
     }
     canvas c1
-    iconcoords {347.0 227.0}
-    labelcoords {347.0 259.0}
+    iconcoords {357.0 235.0}
+    labelcoords {357.0 267.0}
     interface-peer {eth0 n4}
     interface-peer {eth1 n1}
     custom-config {
@@ -604,8 +609,8 @@ node n4 {
 	!
     }
     canvas c1
-    iconcoords {593.0 284.0}
-    labelcoords {593.0 316.0}
+    iconcoords {587.0 291.0}
+    labelcoords {587.0 323.0}
     interface-peer {eth0 n37}
     interface-peer {eth1 n2}
     services {zebra BGP vtysh IPForward}
@@ -926,6 +931,7 @@ node n13 {
     iconcoords {566.0 433.0}
     labelcoords {592.0 443.0}
     interface-peer {eth0 n12}
+    services {DefaultRoute SSH HTTP}
 }
 
 node n12 {
@@ -1154,6 +1160,23 @@ node n42 {
     hidden 1
 }
 
+node n43 {
+    type router
+    model PC
+    network-config {
+	hostname n43
+	!
+	interface eth0
+	 ip address 10.0.9.20/24
+	 ipv6 address 2001:6::20/64
+	!
+    }
+    canvas c1
+    iconcoords {151.0 50.0}
+    labelcoords {151.0 82.0}
+    interface-peer {eth0 n1}
+}
+
 link l16 {
     nodes {n15 n20}
     bandwidth 0
@@ -1350,6 +1373,11 @@ link l38 {
     bandwidth 0
 }
 
+link l41 {
+    nodes {n43 n1}
+    bandwidth 0
+}
+
 annotation a8 {
     type text
     iconcoords {431.0 36.0}
@@ -1404,7 +1432,7 @@ annotation a22 {
 }
 
 annotation a4 {
-    iconcoords {732.0 156.0 993.0 274.0}
+    iconcoords {699 168 968 294}
     type rectangle
     label {Scrubbing Center - AS 33}
     labelcolor black
@@ -1449,7 +1477,7 @@ annotation a1 {
 }
 
 annotation a3 {
-    iconcoords {462 353 674 520}
+    iconcoords {503 351 723 526}
     type rectangle
     label {ISP B - AS 444}
     labelcolor black
@@ -1509,7 +1537,7 @@ annotation a15 {
 }
 
 annotation a16 {
-    iconcoords {290.0 7.0 434.0 122.0}
+    iconcoords {113.0 7.0 434.0 122.0}
     type rectangle
     label {AS 6781}
     labelcolor black
@@ -1544,7 +1572,7 @@ annotation a20 {
     label {ISP_X - AS 6243 - 182.23.0.0/16}
     labelcolor black
     fontfamily {Arial}
-    fontsize 12
+    fontsize {12}
     color #C0C0FF
     width 0
     border black
@@ -1559,7 +1587,7 @@ annotation a21 {
     label {ISP_Y - AS 3928 110.20.0.0/16}
     labelcolor black
     fontfamily {Arial}
-    fontsize 12
+    fontsize {12}
     color #C0C0FF
     width 0
     border black
@@ -1569,9 +1597,9 @@ annotation a21 {
 }
 
 annotation a23 {
-    iconcoords {700 366 951 668}
+    iconcoords {720 360 975 666}
     type rectangle
-    label {CABASE - AS 52376}
+    label {IXP - AS 52376}
     labelcolor black
     fontfamily {Arial}
     fontsize {12}
@@ -1676,6 +1704,8 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 
 
+
+
 }
 
 hook 6:shutdown_hook.sh {
@@ -1697,6 +1727,8 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
+
+
 
 
 
