@@ -1,0 +1,1265 @@
+node n1 {
+    type router
+    model host
+    network-config {
+	hostname DB1
+	!
+	interface eth0
+	 ip address 193.81.7.11/24
+	!
+    }
+    canvas c1
+    iconcoords {117.0 486.0}
+    labelcoords {110.0 525.0}
+    interface-peer {eth0 n6}
+    services {DefaultRoute SSH StaticRoute}
+}
+
+node n2 {
+    type router
+    model host
+    network-config {
+	hostname intranet-syper-edu
+	!
+	interface eth0
+	 ip address 193.81.7.12/24
+	!
+    }
+    canvas c1
+    iconcoords {89.0 378.0}
+    labelcoords {89.0 410.0}
+    interface-peer {eth0 n6}
+    services {DefaultRoute HTTP SSH}
+}
+
+node n3 {
+    type router
+    model host
+    network-config {
+	hostname www-syper-edu
+	!
+	interface eth0
+	 ip address 193.81.7.10/24
+	!
+    }
+    canvas c1
+    iconcoords {92.0 285.0}
+    labelcoords {97.0 269.0}
+    interface-peer {eth0 n6}
+    services {DefaultRoute HTTP SSH}
+}
+
+node n4 {
+    type router
+    model host
+    network-config {
+	hostname SMTP-syper-edu
+	!
+	interface eth0
+	 ip address 193.81.7.15/24
+	!
+    }
+    canvas c1
+    iconcoords {134.0 187.0}
+    labelcoords {129.0 169.0}
+    interface-peer {eth0 n6}
+    services {DefaultRoute SSH StaticRoute}
+}
+
+node n5 {
+    type router
+    model host
+    network-config {
+	hostname ExaBGPSyper
+	!
+	interface eth0
+	 ip address 193.81.8.2/24
+	!
+    }
+    canvas c1
+    iconcoords {516.0 174.0}
+    labelcoords {513.0 154.0}
+    interface-peer {eth0 n7}
+    services {DefaultRoute SSH}
+}
+
+node n6 {
+    type lanswitch
+    network-config {
+	hostname n6
+	!
+    }
+    canvas c1
+    iconcoords {280.0 345.0}
+    labelcoords {280.0 369.0}
+    interface-peer {e0 n3}
+    interface-peer {e1 n4}
+    interface-peer {e2 n2}
+    interface-peer {e3 n1}
+    interface-peer {e4 n7}
+}
+
+node n7 {
+    type router
+    model router
+    network-config {
+	hostname Syper-A
+	!
+	interface eth2
+	 ip address 193.81.8.1/24
+	!
+	interface eth1
+	 ip address 10.0.0.1/24
+	!
+	interface eth0
+	 ip address 193.81.7.1/24
+	!
+    }
+    canvas c1
+    iconcoords {447.0 345.0}
+    labelcoords {447.0 377.0}
+    interface-peer {eth0 n6}
+    interface-peer {eth1 n8}
+    interface-peer {eth2 n5}
+    services {FRROSPFv2 FRRzebra IPForward}
+}
+
+node n8 {
+    type router
+    model router
+    network-config {
+	hostname Syper-Borde
+	!
+	interface eth2
+	 ip address 10.0.3.1/24
+	!
+	interface eth1
+	 ip address 10.0.1.1/24
+	!
+	interface eth0
+	 ip address 10.0.0.2/24
+	!
+    }
+    canvas c1
+    iconcoords {757.0 344.0}
+    labelcoords {755.0 317.0}
+    interface-peer {eth0 n7}
+    services {FRRBGP FRROSPFv2 FRRzebra HTTP IPForward}
+    interface-peer {eth1 n13}
+    interface-peer {eth2 n9}
+}
+
+node n9 {
+    type rj45
+    network-config {
+	hostname enp0s8
+	!
+    }
+    canvas c1
+    iconcoords {757.0 487.0}
+    labelcoords {757.0 519.0}
+    interface-peer {0 n8}
+}
+
+node n10 {
+    type router
+    model router
+    network-config {
+	hostname ISP-A
+	!
+	interface eth1
+	 ip address 10.0.1.2/24
+	!
+	interface eth0
+	 ip address 10.0.2.1/24
+	!
+    }
+    canvas c2
+    iconcoords {320.0 288.0}
+    labelcoords {326.0 270.0}
+    interface-peer {eth0 n11}
+    interface-peer {eth1 n12}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n11 {
+    type router
+    model router
+    network-config {
+	hostname ISP-B
+	!
+	interface eth3
+	 ip address 10.0.12.1/24
+	!
+	interface eth2
+	 ip address 10.0.4.1/24
+	!
+	interface eth1
+	 ip address 10.0.5.2/24
+	!
+	interface eth0
+	 ip address 10.0.2.2/24
+	!
+    }
+    canvas c2
+    iconcoords {571.0 287.0}
+    labelcoords {570.0 261.0}
+    interface-peer {eth0 n10}
+    interface-peer {eth1 n20}
+    interface-peer {eth2 n14}
+    custom-config {
+	custom-config-id service:Firewall
+	custom-command Firewall
+	config {
+	files=('firewall.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:Firewall:firewall.sh
+	custom-command firewall.sh
+	config {
+	#!/bin/sh
+	
+	iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+	}
+    }
+    services {FRRBGP FRROSPFv2 FRRzebra Firewall IPForward}
+    interface-peer {eth3 n36}
+}
+
+node n12 {
+    type pseudo
+    network-config {
+	hostname n8
+	!
+    }
+    canvas c2
+    iconcoords {74.0 289.0}
+    labelcoords {74.0 289.0}
+    interface-peer {0 n10}
+    mirror n13
+}
+
+node n13 {
+    type pseudo
+    network-config {
+	hostname n10
+	!
+    }
+    canvas c1
+    iconcoords {935.0 343.0}
+    labelcoords {935.0 343.0}
+    interface-peer {0 n8}
+    mirror n12
+}
+
+node n14 {
+    type rj45
+    network-config {
+	hostname enp0s3
+	!
+    }
+    canvas c2
+    iconcoords {569.0 433.0}
+    labelcoords {569.0 465.0}
+    interface-peer {0 n11}
+}
+
+node n15 {
+    type router
+    model router
+    network-config {
+	hostname n19
+	!
+	interface eth3
+	 ip address 163.10.252.1/24
+	!
+	interface eth2
+	 ip address 10.0.5.1/24
+	!
+	interface eth1
+	 ip address 163.10.251.1/24
+	!
+	interface eth0
+	 ip address 163.10.10.1/24
+	!
+    }
+    canvas c3
+    iconcoords {230.0 286.0}
+    labelcoords {230.0 318.0}
+    interface-peer {eth0 n16}
+    interface-peer {eth1 n17}
+    interface-peer {eth2 n19}
+    interface-peer {eth3 n18}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n16 {
+    type lanswitch
+    network-config {
+	hostname n20
+	!
+    }
+    canvas c3
+    iconcoords {450.0 286.0}
+    labelcoords {448.0 321.0}
+    interface-peer {e0 n15}
+    interface-peer {e1 n21}
+    interface-peer {e2 n22}
+    interface-peer {e3 n23}
+    interface-peer {e4 n24}
+    interface-peer {e5 n25}
+    interface-peer {e6 n26}
+    interface-peer {e7 n27}
+    interface-peer {e8 n28}
+    interface-peer {e9 n29}
+    interface-peer {e10 n30}
+}
+
+node n17 {
+    type router
+    model host
+    network-config {
+	hostname dns-unlp
+	!
+	interface eth0
+	 ip address 163.10.251.10/24
+	!
+    }
+    canvas c3
+    iconcoords {229.0 471.0}
+    labelcoords {229.0 503.0}
+    interface-peer {eth0 n15}
+}
+
+node n18 {
+    type router
+    model host
+    network-config {
+	hostname n32
+	!
+	interface eth0
+	 ip address 163.10.252.2/24
+	!
+    }
+    canvas c3
+    iconcoords {231.0 139.0}
+    labelcoords {231.0 121.0}
+    interface-peer {eth0 n15}
+}
+
+node n19 {
+    type pseudo
+    network-config {
+	hostname n11
+	!
+    }
+    canvas c3
+    iconcoords {59.0 285.0}
+    labelcoords {59.0 285.0}
+    interface-peer {0 n15}
+    mirror n20
+}
+
+node n20 {
+    type pseudo
+    network-config {
+	hostname n15
+	!
+    }
+    canvas c2
+    iconcoords {821.0 434.0}
+    labelcoords {821.0 434.0}
+    interface-peer {0 n11}
+    mirror n19
+}
+
+node n21 {
+    type router
+    model PC
+    network-config {
+	hostname n9
+	!
+	interface eth0
+	 ip address 163.10.10.11/24
+	!
+    }
+    canvas c3
+    iconcoords {374.0 148.0}
+    labelcoords {374.0 180.0}
+    interface-peer {eth0 n16}
+    services {DefaultRoute}
+}
+
+node n22 {
+    type router
+    model PC
+    network-config {
+	hostname n10
+	!
+	interface eth0
+	 ip address 163.10.10.10/24
+	!
+    }
+    canvas c3
+    iconcoords {551.0 136.0}
+    labelcoords {551.0 168.0}
+    interface-peer {eth0 n16}
+}
+
+node n23 {
+    type router
+    model PC
+    network-config {
+	hostname n11
+	!
+	interface eth0
+	 ip address 163.10.10.9/24
+	!
+    }
+    canvas c3
+    iconcoords {706.0 162.0}
+    labelcoords {706.0 194.0}
+    interface-peer {eth0 n16}
+}
+
+node n24 {
+    type router
+    model PC
+    network-config {
+	hostname n12
+	!
+	interface eth0
+	 ip address 163.10.10.6/24
+	!
+    }
+    canvas c3
+    iconcoords {779.0 222.0}
+    labelcoords {779.0 254.0}
+    interface-peer {eth0 n16}
+}
+
+node n25 {
+    type router
+    model PC
+    network-config {
+	hostname N13
+	!
+	interface eth0
+	 ip address 163.10.10.8/24
+	!
+    }
+    canvas c3
+    iconcoords {815.0 291.0}
+    labelcoords {815.0 323.0}
+    interface-peer {eth0 n16}
+}
+
+node n26 {
+    type router
+    model PC
+    network-config {
+	hostname n14
+	!
+	interface eth0
+	 ip address 163.10.10.7/24
+	!
+    }
+    canvas c3
+    iconcoords {808.0 367.0}
+    labelcoords {808.0 399.0}
+    interface-peer {eth0 n16}
+}
+
+node n27 {
+    type router
+    model PC
+    network-config {
+	hostname n15
+	!
+	interface eth0
+	 ip address 163.10.10.3/24
+	!
+    }
+    canvas c3
+    iconcoords {768.0 443.0}
+    labelcoords {768.0 475.0}
+    interface-peer {eth0 n16}
+}
+
+node n28 {
+    type router
+    model PC
+    network-config {
+	hostname n16
+	!
+	interface eth0
+	 ip address 163.10.10.4/24
+	!
+    }
+    canvas c3
+    iconcoords {646.0 473.0}
+    labelcoords {646.0 505.0}
+    interface-peer {eth0 n16}
+}
+
+node n29 {
+    type router
+    model PC
+    network-config {
+	hostname n17
+	!
+	interface eth0
+	 ip address 163.10.10.5/24
+	!
+    }
+    canvas c3
+    iconcoords {507.0 465.0}
+    labelcoords {507.0 497.0}
+    interface-peer {eth0 n16}
+}
+
+node n30 {
+    type router
+    model PC
+    network-config {
+	hostname n18
+	!
+	interface eth0
+	 ip address 163.10.10.2/24
+	!
+    }
+    canvas c3
+    iconcoords {357.0 412.0}
+    labelcoords {357.0 444.0}
+    interface-peer {eth0 n16}
+}
+
+node n31 {
+    type router
+    model router
+    network-config {
+	hostname n37
+	!
+	interface eth2
+	 ip address 10.0.11.2/24
+	!
+	interface eth0
+	 ip address 10.0.10.1/24
+	!
+	interface eth1
+	 ip address 10.0.12.2/24
+	!
+    }
+    canvas c4
+    iconcoords {411.0 272.0}
+    labelcoords {411.0 304.0}
+    interface-peer {eth1 n37}
+    interface-peer {eth0 n34}
+    interface-peer {eth2 n42}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n32 {
+    type router
+    model router
+    network-config {
+	hostname n33
+	!
+	interface eth1
+	 ip address 10.0.10.2/24
+	!
+	interface eth0
+	 ip address 10.0.9.1/24
+	!
+    }
+    canvas c5
+    iconcoords {369.0 335.0}
+    labelcoords {369.0 367.0}
+    interface-peer {eth0 n33}
+    interface-peer {eth1 n35}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n33 {
+    type router
+    model host
+    network-config {
+	hostname n36
+	!
+	interface eth0
+	 ip address 10.0.9.10/24
+	!
+    }
+    canvas c5
+    iconcoords {716.0 335.0}
+    labelcoords {716.0 367.0}
+    interface-peer {eth0 n32}
+}
+
+node n34 {
+    type pseudo
+    network-config {
+	hostname n32
+	!
+    }
+    canvas c4
+    iconcoords {698.0 271.0}
+    labelcoords {698.0 271.0}
+    interface-peer {0 n31}
+    mirror n35
+}
+
+node n35 {
+    type pseudo
+    network-config {
+	hostname n31
+	!
+    }
+    canvas c5
+    iconcoords {58.0 336.0}
+    labelcoords {58.0 336.0}
+    interface-peer {0 n32}
+    mirror n34
+}
+
+node n36 {
+    type pseudo
+    network-config {
+	hostname n31
+	!
+    }
+    canvas c2
+    iconcoords {746.0 147.0}
+    labelcoords {746.0 147.0}
+    interface-peer {0 n11}
+    mirror n37
+}
+
+node n37 {
+    type pseudo
+    network-config {
+	hostname n11
+	!
+    }
+    canvas c4
+    iconcoords {226.0 430.0}
+    labelcoords {226.0 430.0}
+    interface-peer {0 n31}
+    mirror n36
+}
+
+node n38 {
+    type router
+    model router
+    network-config {
+	hostname n28
+	!
+	interface eth1
+	 ip address 10.0.11.1/24
+	!
+	interface eth0
+	 ip address 10.0.7.2/24
+	!
+    }
+    canvas c6
+    iconcoords {454.0 354.0}
+    labelcoords {454.0 386.0}
+    interface-peer {eth0 n43}
+    interface-peer {eth1 n41}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n39 {
+    type router
+    model router
+    network-config {
+	hostname n25
+	!
+	interface eth1
+	 ip address 10.0.7.1/24
+	!
+	interface eth0
+	 ip address 10.0.6.1/24
+	!
+    }
+    canvas c7
+    iconcoords {295.0 354.0}
+    labelcoords {295.0 386.0}
+    interface-peer {eth0 n40}
+    interface-peer {eth1 n44}
+    services {FRRBGP FRROSPFv2 FRRzebra IPForward}
+}
+
+node n40 {
+    type router
+    model PC
+    network-config {
+	hostname n24
+	!
+	interface eth0
+	 ip address 10.0.6.20/24
+	!
+    }
+    canvas c7
+    iconcoords {698.0 353.0}
+    labelcoords {698.0 385.0}
+    interface-peer {eth0 n39}
+}
+
+node n41 {
+    type pseudo
+    network-config {
+	hostname n31
+	!
+    }
+    canvas c6
+    iconcoords {157.0 355.0}
+    labelcoords {157.0 355.0}
+    interface-peer {0 n38}
+    mirror n42
+}
+
+node n42 {
+    type pseudo
+    network-config {
+	hostname n38
+	!
+    }
+    canvas c4
+    iconcoords {210.0 135.0}
+    labelcoords {210.0 135.0}
+    interface-peer {0 n31}
+    mirror n41
+}
+
+node n43 {
+    type pseudo
+    network-config {
+	hostname n39
+	!
+    }
+    canvas c6
+    iconcoords {788.0 354.0}
+    labelcoords {788.0 354.0}
+    interface-peer {0 n38}
+    mirror n44
+}
+
+node n44 {
+    type pseudo
+    network-config {
+	hostname n38
+	!
+    }
+    canvas c7
+    iconcoords {74.0 355.0}
+    labelcoords {74.0 355.0}
+    interface-peer {0 n39}
+    mirror n43
+}
+
+link l1 {
+    nodes {n3 n6}
+    bandwidth 0
+}
+
+link l2 {
+    nodes {n4 n6}
+    bandwidth 0
+}
+
+link l3 {
+    nodes {n2 n6}
+    bandwidth 0
+}
+
+link l4 {
+    nodes {n6 n1}
+    bandwidth 0
+}
+
+link l5 {
+    nodes {n6 n7}
+    bandwidth 0
+}
+
+link l6 {
+    color Blue
+    nodes {n7 n8}
+    bandwidth 5000000
+}
+
+link l7 {
+    nodes {n7 n5}
+    bandwidth 0
+}
+
+link l8 {
+    nodes {n10 n11}
+    bandwidth 0
+}
+
+link l10 {
+    nodes {n8 n9}
+}
+
+link l11 {
+    mirror l12
+    nodes {n10 n12}
+}
+
+link l12 {
+    mirror l11
+    nodes {n8 n13}
+}
+
+link l9 {
+    nodes {n15 n16}
+    bandwidth 0
+}
+
+link l13 {
+    nodes {n15 n17}
+    bandwidth 0
+}
+
+link l15 {
+    nodes {n15 n18}
+    bandwidth 0
+}
+
+link l16 {
+    mirror l17
+    nodes {n15 n19}
+}
+
+link l17 {
+    mirror l16
+    nodes {n11 n20}
+}
+
+link l14 {
+    nodes {n11 n14}
+}
+
+link l18 {
+    nodes {n16 n21}
+    bandwidth 0
+}
+
+link l19 {
+    nodes {n16 n22}
+    bandwidth 0
+}
+
+link l20 {
+    nodes {n16 n23}
+    bandwidth 0
+}
+
+link l21 {
+    nodes {n16 n24}
+    bandwidth 0
+}
+
+link l22 {
+    nodes {n16 n25}
+    bandwidth 0
+}
+
+link l23 {
+    nodes {n16 n26}
+    bandwidth 0
+}
+
+link l24 {
+    nodes {n16 n27}
+    bandwidth 0
+}
+
+link l25 {
+    nodes {n16 n28}
+    bandwidth 0
+}
+
+link l26 {
+    nodes {n16 n29}
+    bandwidth 0
+}
+
+link l27 {
+    nodes {n16 n30}
+    bandwidth 0
+}
+
+link l28 {
+    nodes {n32 n33}
+    bandwidth 0
+}
+
+link l31 {
+    mirror l32
+    nodes {n31 n34}
+}
+
+link l32 {
+    mirror l31
+    nodes {n32 n35}
+}
+
+link l30 {
+    mirror l33
+    nodes {n11 n36}
+}
+
+link l33 {
+    mirror l30
+    nodes {n31 n37}
+}
+
+link l29 {
+    nodes {n39 n40}
+    bandwidth 0
+}
+
+link l36 {
+    mirror l37
+    nodes {n38 n41}
+}
+
+link l37 {
+    mirror l36
+    nodes {n31 n42}
+}
+
+link l35 {
+    mirror l38
+    nodes {n38 n43}
+}
+
+link l38 {
+    mirror l35
+    nodes {n39 n44}
+}
+
+annotation a1 {
+    iconcoords {79.0 51.0 897.0 565.0}
+    type rectangle
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #f1c048
+    width 0
+    border black
+    rad 25
+    canvas c3
+}
+
+annotation a2 {
+    iconcoords {461.0 77.0}
+    type text
+    label {UNLP - AS 5692}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold italic}
+    canvas c3
+}
+
+annotation a3 {
+    type text
+    iconcoords {566.0 78.0}
+    label {}
+    canvas c3
+}
+
+annotation a4 {
+    iconcoords {202.0 84.0}
+    type text
+    label {ExaBGP}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    canvas c3
+}
+
+annotation a5 {
+    type text
+    iconcoords {248.0 93.0}
+    label {}
+    canvas c3
+}
+
+annotation a6 {
+    iconcoords {9.0 100.0 753.0 571.0}
+    type rectangle
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #c0c0ff
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a7 {
+    iconcoords {287.0 122.0}
+    type text
+    label {AS 2200}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold}
+    canvas c1
+}
+
+annotation a8 {
+    type text
+    iconcoords {310.0 128.0}
+    label {}
+    canvas c1
+}
+
+annotation a9 {
+    iconcoords {224 207 603 360}
+    type rectangle
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #C0C0FF
+    width 0
+    border black
+    rad 25
+    canvas c2
+}
+
+annotation a10 {
+    iconcoords {378.0 227.0}
+    type text
+    label {AS 256}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold}
+    canvas c2
+}
+
+annotation a11 {
+    type text
+    iconcoords {213.0 137.0}
+    label {}
+    canvas c2
+}
+
+annotation a12 {
+    iconcoords {484.0 483.0}
+    type text
+    label {Enlace a VM - Internet}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    canvas c2
+}
+
+annotation a13 {
+    iconcoords {212.0 144.0}
+    type text
+    label {Proveedor de internet (ISP)}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {20}
+    effects {bold italic}
+    canvas c2
+}
+
+annotation a14 {
+    iconcoords {688.0 387.0}
+    type text
+    label {ExaBGP}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    canvas c5
+}
+
+annotation a15 {
+    type text
+    iconcoords {715.0 392.0}
+    label {}
+    canvas c5
+}
+
+annotation a16 {
+    iconcoords {226 133 809 524}
+    type oval
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #CFCFFF
+    width 0
+    border black
+    canvas c5
+}
+
+annotation a17 {
+    iconcoords {473.0 161.0}
+    type text
+    label {AS 123}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold}
+    canvas c5
+}
+
+annotation a18 {
+    iconcoords {332.0 39.0}
+    type text
+    label {Scrubbing Center}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {24}
+    effects {bold italic}
+    canvas c5
+}
+
+annotation a19 {
+    iconcoords {153 114 652 433}
+    type oval
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #CFCFFF
+    width 0
+    border black
+    canvas c4
+}
+
+annotation a20 {
+    iconcoords {289.0 153.0}
+    type text
+    label {ISP Tier 1 - AS 128}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold}
+    canvas c4
+}
+
+annotation a21 {
+    iconcoords {130 163 814 544}
+    type oval
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #CFCFFF
+    width 0
+    border black
+    canvas c6
+}
+
+annotation a22 {
+    iconcoords {366.0 200.0}
+    type text
+    label {ISP-B - AS 512}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {18}
+    effects {bold italic}
+    canvas c6
+}
+
+annotation a23 {
+    iconcoords {118 190 789 520}
+    type rectangle
+    label {}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #C0C0FF
+    width 0
+    border black
+    rad 25
+    canvas c7
+}
+
+annotation a24 {
+    iconcoords {352.0 220.0}
+    type text
+    label {Atacante - AS 666}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {14}
+    effects {bold}
+    canvas c7
+}
+
+annotation a25 {
+    iconcoords {552.0 533.0}
+    type text
+    label {Enlace a VM - Nfsen feed (cambiarlo por otro servicio)}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize 12
+    canvas c1
+}
+
+annotation a26 {
+    type text
+    iconcoords {712.0 532.0}
+    label {}
+    canvas c1
+}
+
+canvas c1 {
+    name {Syper}
+}
+
+canvas c2 {
+    name {ISP Tier 2}
+}
+
+canvas c3 {
+    name {UNLP}
+}
+
+canvas c4 {
+    name {ISP Tier 1}
+}
+
+canvas c6 {
+    name {ISP Tier 2B}
+}
+
+canvas c7 {
+    name {Atacante}
+}
+
+canvas c5 {
+    name {Scrubbing Center}
+}
+
+option global {
+    interface_names yes
+    ip_addresses yes
+    ipv6_addresses yes
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid yes
+    traffic_start 0
+}
+
+option session {
+}
+
