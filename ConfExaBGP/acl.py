@@ -8,7 +8,7 @@ import pprint
 import logging
 import multiprocessing
 from subprocess import Popen, PIPE
-from StringIO import StringIO
+from io import StringIO
 import struct
 import uuid
 
@@ -324,7 +324,7 @@ while True:
         # Fix bug: https://github.com/Exa-Networks/exabgp/issues/269
         line = line.replace('0x800900000000000A', '"0x800900000000000A"')
         io = StringIO(line)
-        print >> sys.stderr, line
+        print (line, file=sys.stderr)
         decoded_update = json.load(io)
 
         pp = pprint.PrettyPrinter(indent=4, stream=sys.stderr)
@@ -356,7 +356,7 @@ while True:
         if 'type' in decoded_update and decoded_update['type'] == 'state':
             if 'state' in decoded_update['neighbor'] and decoded_update['neighbor']['state'] == 'down':
                 peer_ip = decoded_update['neighbor']['address']['peer']
-                print >> sys.stderr, "We received notification about peer down for: " + peer_ip
+                print ("We received notification about peer down for: " + peer_ip, file=sys.stderr)
                 manage_flow('withdrawal', peer_ip, None, None, firewall)
 
         exabgp_log.write(line + "\n")

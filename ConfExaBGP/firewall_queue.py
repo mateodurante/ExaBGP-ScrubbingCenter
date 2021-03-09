@@ -163,7 +163,7 @@ class Ipfw(AbstractFirewall):
             # Will fail without explicit conversion:
             #  TypeError: execve() arg 3 contains a non-string value
             new_env[ self.netmap_env_port_name ] = str(port_for_current_instance)
-
+            print(args)
             subprocess.Popen( args, env=new_env)
     def flush_rules(self, peer_ip):
         # If we got blank flow we should remove all rules for this peer

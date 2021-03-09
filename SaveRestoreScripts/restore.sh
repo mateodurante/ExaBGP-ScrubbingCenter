@@ -43,6 +43,7 @@ for file in $CONFIGS_DIR/*; do
 	case $node_type in
 		"router") # Si es un router usaré vtysh
 			cmd="$cmd_base vtysh -E -c 'conf t'"
+			echo $cmd
 			# Verificamos si BGP está habilitado.
 			bgp_number=$( eval "$cmd -c 'do sh run'" | grep "router bgp" | awk '{ print $NF }' )
 			if [ ${#bgp_number} -ne 0 ]; then
