@@ -34,7 +34,7 @@ node n8 {
     canvas c1
     iconcoords {360.0 406.0}
     labelcoords {335.0 393.0}
-    services {zebra BGP vtysh IPForward Firewall}
+    services {FRRzebra FRRBGP vtysh IPForward Firewall}
     interface-peer {eth2 n23}
     custom-config {
 	custom-config-id service:zebra
@@ -206,7 +206,7 @@ node n3 {
     iconcoords {118.0 434.0}
     labelcoords {136.0 456.0}
     interface-peer {eth0 n29}
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
     custom-config {
 	custom-config-id service:zebra
 	custom-command zebra
@@ -324,7 +324,7 @@ node n19 {
 	
 	}
     }
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
     interface-peer {eth3 n32}
     interface-peer {eth2 n21}
     interface-peer {eth1 n40}
@@ -375,7 +375,7 @@ node n33 {
     iconcoords {743.0 237.0}
     labelcoords {743.0 269.0}
     interface-peer {eth0 n36}
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
     interface-peer {eth1 n28}
 }
 
@@ -428,7 +428,7 @@ node n25 {
     iconcoords {685.0 71.0}
     labelcoords {658.0 52.0}
     interface-peer {eth1 n28}
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
     interface-peer {eth0 n24}
 }
 
@@ -452,7 +452,7 @@ node n28 {
     iconcoords {546.0 152.0}
     labelcoords {536.0 132.0}
     interface-peer {eth0 n25}
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
     interface-peer {eth1 n1}
     interface-peer {eth2 n33}
 }
@@ -477,7 +477,7 @@ node n37 {
     iconcoords {618.0 434.0}
     labelcoords {599.0 419.0}
     interface-peer {eth1 n8}
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
     interface-peer {eth2 n4}
     interface-peer {eth0 n31}
 }
@@ -537,7 +537,7 @@ node n1 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {FRRBGP FRRzebra IPForward}
     interface-peer {eth2 n43}
 }
 
@@ -592,7 +592,7 @@ node n2 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
 }
 
 node n4 {
@@ -613,7 +613,7 @@ node n4 {
     labelcoords {587.0 323.0}
     interface-peer {eth0 n37}
     interface-peer {eth1 n2}
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
 }
 
 node n5 {
@@ -655,7 +655,7 @@ node n26 {
     iconcoords {256.0 425.0}
     labelcoords {261.0 403.0}
     interface-peer {eth1 n12}
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRROSPFv2 FRRBGP FRRzebra IPForward}
     interface-peer {eth2 n41}
     interface-peer {eth0 n39}
 }
@@ -682,7 +682,7 @@ node n27 {
     labelcoords {292.0 590.0}
     interface-peer {eth0 n34}
     interface-peer {eth1 n22}
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
     interface-peer {eth2 n42}
 }
 
@@ -789,7 +789,7 @@ node n6 {
 	
 	}
     }
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
 }
 
 node n9 {
@@ -859,7 +859,7 @@ node n10 {
 	
 	}
     }
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
 }
 
 node n11 {
@@ -913,7 +913,7 @@ node n11 {
 	
 	}
     }
-    services {zebra OSPFv2 BGP vtysh IPForward}
+    services {FRRzebra FRROSPFv2 FRRBGP vtysh IPForward}
 }
 
 node n13 {
@@ -992,7 +992,7 @@ node n14 {
 	
 	}
     }
-    services {zebra BGP vtysh IPForward}
+    services {FRRzebra FRRBGP vtysh IPForward}
 }
 
 node n16 {
