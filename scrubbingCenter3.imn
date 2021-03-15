@@ -356,6 +356,14 @@ node n32 {
     iconcoords {158.0 130.0}
     labelcoords {158.0 162.0}
     interface-peer {eth0 n19}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	dirs=('/run', )
+	}
+    }
+    services {DefaultRoute SSH UserDefined}
 }
 
 node n33 {
@@ -393,6 +401,14 @@ node n36 {
     iconcoords {945.0 254.0}
     labelcoords {945.0 286.0}
     interface-peer {eth0 n33}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	dirs=('/run', )
+	}
+    }
+    services {DefaultRoute SSH UserDefined}
 }
 
 node n24 {
@@ -1090,6 +1106,14 @@ node n35 {
     iconcoords {867.0 606.0}
     labelcoords {867.0 638.0}
     interface-peer {eth0 n9}
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	dirs=('/run', )
+	}
+    }
+    services {DefaultRoute SSH UserDefined}
 }
 
 node n38 {
