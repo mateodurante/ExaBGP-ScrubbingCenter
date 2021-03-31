@@ -32,8 +32,8 @@ router bgp 5692
 router ospf
  network 163.20.10.0/24 area 0.0.0.0
 !
-ip as-path access-list transit permit $^
-ip as-path access-list transit deny .*
+bgp as-path access-list transit permit $^
+bgp as-path access-list transit deny .*
 !
 route-map non-transit permit 10
  match as-path transit

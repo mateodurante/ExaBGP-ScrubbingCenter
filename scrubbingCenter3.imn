@@ -333,7 +333,7 @@ node n19 {
 node n23 {
     type rj45
     network-config {
-	hostname eth1
+	hostname enp0s8
 	!
     }
     canvas c1

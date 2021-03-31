@@ -54,7 +54,7 @@ echo "Iniciando mongodb en máquina de WebService"
 
 echo "Iniciando servicio web en máquina de WebService"
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py runsslserver 0.0.0.0:443" &
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py runserver 0.0.0.0:443" &
 
 
 ################################################ Túneles GRE ################################################
@@ -170,7 +170,7 @@ echo "Armado de túneles GRE"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set 6243 up"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip addr add 172.16.3.2 dev 6243"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip route add 172.16.4.0/24 dev 6243"
-6243
+
 
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip tunnel add 3928 mode gre remote 110.20.9.10 local 10.0.8.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "ip link set 3928 up"

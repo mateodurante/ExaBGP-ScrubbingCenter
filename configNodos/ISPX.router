@@ -41,8 +41,8 @@ router ospf
  network 182.23.0.0/24 area 0.0.0.0
  network 182.23.9.0/24 area 0.0.0.0
 !
-ip as-path access-list 1 permit ^$
-ip as-path access-list 1 deny .*
+bgp as-path access-list 1 permit ^$
+bgp as-path access-list 1 deny .*
 !
 route-map nontransit permit 10
  match as-path 1
