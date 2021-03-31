@@ -4,7 +4,9 @@
 
 * [ExaBGP](https://github.com/Exa-Networks/exabgp):
   * `cd /opt/`
-  * `sudo git clone https://github.com/Exa-Networks/exabgp`
+  * `sudo git clone https://github.com/Exa-Networks/exabgp && cd exabgp/`
+  * `git checkout 4.2.11`
+  * `sudo python3 -m zipapp -o /usr/local/sbin/exabgp -m exabgp.application:main  -p "/usr/bin/env python3" lib`
 
 * MongoDB:
   * `sudo apt-get install mongodb`
@@ -20,11 +22,13 @@
 
 #### Comandos que debemos ejecutar:
 
-* Descargar el repositorio del servicio [WebScrub](https://gitlab.linti.unlp.edu.ar/certunlp/WebScrub) en cualquier otra carpeta que no sea dentro del repositorio de ScrubbingCenter:
-  * `git clone https://gitlab.linti.unlp.edu.ar/certunlp/WebScrub.git`
+* Descargar el repositorio del servicio [WebScrub](https://github.com/mateodurante/WebScrub.git) en cualquier otra carpeta que no sea dentro del repositorio de ScrubbingCenter:
+  * `git clone https://github.com/mateodurante/WebScrub.git`
+  * `cd WebScrub/ && sudo pip3 install -r requirements.txt`
 
 * Pararse en la carpeta de este proyecto:
-  * `git clone https://gitlab.linti.unlp.edu.ar/certunlp/ExaBGP-ScrubbingCenter.git && cd ExaBGP-ScrubbingCenter`
+  * `git clone https://github.com/mateodurante/ExaBGP-ScrubbingCenter.git && cd ExaBGP-ScrubbingCenter`
+  * `sudo pip3 install -r requirements.txt`
 
 * Renombrar el archivo `.env-example` y configurar la variable `webapp_path` en el nuevo archivo `.env`:
   * `cp .env-example .env`
