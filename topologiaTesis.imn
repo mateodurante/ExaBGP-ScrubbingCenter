@@ -353,8 +353,8 @@ node n32 {
 	!
     }
     canvas c2
-    iconcoords {158.0 130.0}
-    labelcoords {158.0 162.0}
+    iconcoords {158.0 129.0}
+    labelcoords {158.0 161.0}
     interface-peer {eth0 n19}
     custom-config {
 	custom-config-id service:UserDefined
@@ -1664,7 +1664,7 @@ hook 4:runtime_hook.sh {
 # specified state 
 
 # Puente entre VM e Internet
-BReth1=`brctl show | grep -w eth1 | cut -f1`
+BReth1=`brctl show | grep -w enp0s8 | cut -f1`
 if [ -z $BReth1 ]; then
 	BReth1=`brctl show | grep -w veth8.2* | cut -f1`
 fi
@@ -1709,27 +1709,6 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and src net 193.81.7.0/24' 10.0.3.2:5555
 # Netflow para Nfcapd IN
 #vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and dst net 193.81.7.0/24' 10.0.3.2:5556
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 hook 6:shutdown_hook.sh {
@@ -1737,7 +1716,7 @@ hook 6:shutdown_hook.sh {
 # session hook script; write commands here to execute on the host at the
 # specified state
 
-/sbin/iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+/sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
 
 /etc/init.d/nfsen stop
 
@@ -1751,39 +1730,6 @@ route del -net 163.20.251.0/24 gw 10.0.4.1
 #route del -net 200.0.60.0/24
 #route del -net 10.0.0.0/24
 #route del -net 10.0.1.0/24
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 option global {

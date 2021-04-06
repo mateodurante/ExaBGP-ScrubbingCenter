@@ -54,7 +54,9 @@ echo "Iniciando mongodb en máquina de WebService"
 
 echo "Iniciando servicio web en máquina de WebService"
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py runserver 0.0.0.0:443" &
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py makemigrations"
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py migrate"
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 $webapp_path_repo/manage.py runserver 0.0.0.0:80" &
 
 
 ################################################ Túneles GRE ################################################

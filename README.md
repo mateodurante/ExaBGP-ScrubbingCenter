@@ -20,6 +20,9 @@
   * `sudo apt-get install -y python-redis python-pip`
   * `sudo pip install rq`
 
+* Utils:
+  * `sudo apt install bridge-utils`
+
 #### Comandos que debemos ejecutar:
 
 * Descargar el repositorio del servicio [WebScrub](https://github.com/mateodurante/WebScrub.git) en cualquier otra carpeta que no sea dentro del repositorio de ScrubbingCenter:
@@ -41,6 +44,18 @@
 
 * Para detener los servicios, ejecutar el script `stop.sh`
   * `sudo bash stop.sh`
+
+* **Contraseñas de los usuarios:**
+ * **LEER EL README DEL REPO DE WEBSCRUBBING**.
+
+```
+admin	admin@admin.com
+administrator	 	
+coopx	coopx@coopx.com
+coopy	coopy@coopy.com
+redes	redes@redes.com
+unlp	unlp@unlp.edu.ar
+```
 
 
 ===== Cosas viejas, hasta aquí ya no debe hacerse nada extra ====

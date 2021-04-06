@@ -323,9 +323,14 @@ while True:
 
         # Fix bug: https://github.com/Exa-Networks/exabgp/issues/269
         line = line.replace('0x800900000000000A', '"0x800900000000000A"')
-        io = StringIO(line)
-        print (line, file=sys.stderr)
-        decoded_update = json.load(io)
+        #io = StringIO(line)        
+        sys.stderr.write(line)
+        
+        try:
+            decoded_update = json.loads(line)
+        except:
+            sys.stderr.write("No se puede decodear: " + line)
+            break
 
         pp = pprint.PrettyPrinter(indent=4, stream=sys.stderr)
         pp.pprint(decoded_update)
