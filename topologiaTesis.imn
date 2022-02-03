@@ -398,8 +398,8 @@ node n36 {
 	!
     }
     canvas c1
-    iconcoords {945.0 254.0}
-    labelcoords {945.0 286.0}
+    iconcoords {946.0 254.0}
+    labelcoords {946.0 286.0}
     interface-peer {eth0 n33}
     custom-config {
 	custom-config-id service:UserDefined
@@ -408,7 +408,7 @@ node n36 {
 	dirs=('/run', )
 	}
     }
-    services {DefaultRoute SSH UserDefined}
+    services {DefaultRoute IPForward SSH UserDefined}
 }
 
 node n24 {
@@ -465,8 +465,8 @@ node n28 {
 	!
     }
     canvas c1
-    iconcoords {546.0 152.0}
-    labelcoords {536.0 132.0}
+    iconcoords {547.0 152.0}
+    labelcoords {537.0 132.0}
     interface-peer {eth0 n25}
     services {FRRzebra FRRBGP vtysh IPForward}
     interface-peer {eth1 n1}
@@ -1026,6 +1026,7 @@ node n16 {
     iconcoords {315.0 497.0}
     labelcoords {315.0 529.0}
     interface-peer {eth0 n39}
+    services {DefaultRoute IPForward SSH}
 }
 
 node n17 {
@@ -1043,6 +1044,7 @@ node n17 {
     iconcoords {345.0 670.0}
     labelcoords {345.0 702.0}
     interface-peer {eth0 n42}
+    services {DefaultRoute IPForward SSH}
 }
 
 node n18 {
@@ -1090,6 +1092,7 @@ node n30 {
     iconcoords {380.0 283.0}
     labelcoords {416.0 267.0}
     interface-peer {eth0 n40}
+    services {DefaultRoute IPForward SSH}
 }
 
 node n35 {
@@ -1113,7 +1116,7 @@ node n35 {
 	dirs=('/run', )
 	}
     }
-    services {DefaultRoute SSH UserDefined}
+    services {DefaultRoute IPForward SSH UserDefined}
 }
 
 node n38 {

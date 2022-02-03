@@ -5,12 +5,12 @@
 * [ExaBGP](https://github.com/Exa-Networks/exabgp):
   * `cd /opt/`
   * `sudo git clone https://github.com/Exa-Networks/exabgp && cd exabgp/`
-  * `git checkout 4.2.11`
+  * `sudo git checkout 4.2.11`
   * `sudo python3 -m zipapp -o /usr/local/sbin/exabgp -m exabgp.application:main  -p "/usr/bin/env python3" lib`
 
 * MongoDB:
   * `sudo apt-get install mongodb`
-  * Configurar la `bind_ip` en el archivo de configuración con la ip `0.0.0.0`.
+  * Configurar la `bind_ip` en el archivo de configuración `/etc/mongodb.conf` con la ip `0.0.0.0`. 
 
 * PyMongo:
   * `sudo pip install pymongo`
@@ -27,7 +27,9 @@
 
 * Descargar el repositorio del servicio [WebScrub](https://github.com/mateodurante/WebScrub.git) en cualquier otra carpeta que no sea dentro del repositorio de ScrubbingCenter:
   * `git clone https://github.com/mateodurante/WebScrub.git`
-  * `cd WebScrub/ && sudo pip3 install -r requirements.txt`
+  * `cd WebScrub/`
+  * `cp db.sqlite3.initial db.sqlite3`
+  * `sudo pip3 install -r requirements.txt`
 
 * Pararse en la carpeta de este proyecto:
   * `git clone https://github.com/mateodurante/ExaBGP-ScrubbingCenter.git && cd ExaBGP-ScrubbingCenter`

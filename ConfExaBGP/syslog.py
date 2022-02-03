@@ -2,13 +2,20 @@
 import json
 import os
 from sys import stdin, stdout
-from pymongo import MongoClient
+# from pymongo import MongoClient
 import datetime
+import logging
+import socket
 
-###  DB Setup ###
-client = MongoClient('10.0.4.2', 27017)
-db = client.exabgp_db
-updates = db.bgp_updates
+hostname = socket.gethostname()
+
+logging.basicConfig(filename=f'/var/log/received_exabgp_{hostname}.log', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# ###  DB Setup ###
+# client = MongoClient('10.0.4.2', 27017)
+# db = client.exabgp_db
+# updates = db.bgp_updates
 
 counter = 0
 while True:
@@ -22,4 +29,5 @@ while True:
         continue
     counter = 0
 
-    updates.insert({"data": line}, check_keys=False)
+    # updates.insert({"data": line}, check_keys=False)
+    logging.info(line)
