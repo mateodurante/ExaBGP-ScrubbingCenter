@@ -158,8 +158,10 @@ node n15 {
 	    
 	    
 	    
+	    
     }
     custom-config {
+	    
 	    
 	    
 	    
@@ -1674,9 +1676,9 @@ hook 4:runtime_hook.sh {
 
 # Puente entre VM e Internet
 BReth1=`brctl show | grep -w enp0s9 | cut -f1`
-if [ -z $BReth1 ]; then
-	BReth1=`brctl show | grep -w veth8.2* | cut -f1`
-fi
+#if [ -z $BReth1 ]; then
+#	BReth1=`brctl show | grep -w veth8.2* | cut -f1`
+#fi
 
 
 # Puente con router de Syper-Borde para Nfsen
@@ -1693,6 +1695,9 @@ ifconfig "$BReth1" 10.0.4.2 netmask 255.255.255.0
 route add -net 193.81.7.0/24 gw 10.0.4.1
 route add -net 193.81.8.0/24 gw 10.0.4.1
 route add -net 163.20.0.0/16 gw 10.0.4.1
+
+# nat para poder rutear trafico entre la vm usando el bridge:
+/sbin/iptables -t nat -A POSTROUTING -o "$BReth1" -j MASQUERADE
 
 #ifconfig "$INTERFAZ" 163.20.250.5 netmask 255.255.255.0
 #route add -net 193.81.7.0/24 gw 163.20.250.1
@@ -1711,6 +1716,7 @@ route add -net 163.20.0.0/16 gw 10.0.4.1
 # Enmascaro las direcciones IP para que la topologia salga a Internet.
 /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
+
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 #cd $core_path
 
@@ -1725,7 +1731,10 @@ hook 6:shutdown_hook.sh {
 # session hook script; write commands here to execute on the host at the
 # specified state
 
-/sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
+BReth1=`brctl show | grep -w enp0s9 | cut -f1`
+
+# hay que configurar el borrado de los nateos al detener los servicios:
+/sbin/iptables -t nat -D POSTROUTING -o $BReth1 -j MASQUERADE
 
 /etc/init.d/nfsen stop
 
