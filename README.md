@@ -8,13 +8,6 @@
   * `sudo git checkout 4.2.11`
   * `sudo python3 -m zipapp -o /usr/local/sbin/exabgp -m exabgp.application:main  -p "/usr/bin/env python3" lib`
 
-* MongoDB:
-  * `sudo apt-get install mongodb`
-  * Configurar la `bind_ip` en el archivo de configuración `/etc/mongodb.conf` con la ip `0.0.0.0`. 
-
-* PyMongo:
-  * `sudo pip install pymongo`
-
 * Instalar además (para DJango y otras hierbas):
   * `sudo apt-get install redis-server`
   * `sudo apt-get install -y python-redis python-pip`
