@@ -10,7 +10,7 @@
 
 * Instalar además (para DJango y otras hierbas):
   * `sudo apt-get install redis-server`
-  * `sudo apt-get install -y python-redis python-pip`
+  * `sudo apt-get install -y python-redis python3-pip`
   * `sudo pip install rq`
 
 * Utils:
