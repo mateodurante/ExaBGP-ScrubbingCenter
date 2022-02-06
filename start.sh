@@ -15,10 +15,6 @@ echo "Moviendo archivos de configuración .ini a /root"
 
 cp ConfExaBGP/*.ini /root/
 
-echo "Moviendo scripts de Python a /opt/exabgp/scripts/"
-
-cp ConfExaBGP/*.py /opt/exabgp/scripts/
-
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 echo "Moviendo .ini a los nodos del CORE"
