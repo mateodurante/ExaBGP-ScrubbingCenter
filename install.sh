@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source .env
-
 if [ "$(id -u)" != "0" ]; then
     echo "Este script debés ejecutarlo como root" 1>&2
     exit 1
@@ -15,7 +13,7 @@ echo "Instalando ScrubbingUNLP"
 
 if [[ -d /opt/ScrubbingUNLP ]]; then
     echo "Ya existe una instalación de ScrubbingUNLP en /opt/ScrubbingUNLP, borrando..."
-    rm -rf /opt/ScrubbingUNLP
+    sudo rm -rf /opt/ScrubbingUNLP
 fi
 
 echo "Descargando ScrubbingUNLP en /opt/ScrubbingUNLP"
@@ -25,7 +23,7 @@ bash /opt/ScrubbingUNLP/install.sh
 
 if [[ -d /opt/WebScrub ]]; then
     echo "Ya existe una instalación de WebScrub en /opt/WebScrub, borrando..."
-    rm -rf /opt/WebScrub
+    sudo rm -rf /opt/WebScrub
 fi
 
 echo "Descargando WebScrub en /opt/WebScrub"
