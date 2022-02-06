@@ -1,5 +1,18 @@
 ## ExaBGP Scrubbing Center
 
+#### Instalar:
+
+`bash install.sh`
+
+#### Ejecutar:
+
+`bash start.sh`
+
+#### Detener:
+
+`bash stop.sh`
+
+# VIEJO
 #### Dependencias / paquetes necesarios:
 
 * [ExaBGP](https://github.com/Exa-Networks/exabgp):
@@ -9,8 +22,7 @@
   * `sudo python3 -m zipapp -o /usr/local/sbin/exabgp -m exabgp.application:main  -p "/usr/bin/env python3" lib`
 
 * Instalar además (para DJango y otras hierbas):
-  * `sudo apt-get install redis-server`
-  * `sudo apt-get install -y python-redis python3-pip`
+  * `sudo apt-get install -y redis-server python-redis python3-pip`
   * `sudo pip install rq`
 
 * Utils:
