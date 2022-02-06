@@ -33,11 +33,11 @@ echo "Ejecutando ExaBGP en los nodos de CORE."
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -b 133.1.0.10 -c /root/exabgpScrubbing1.ini"
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -b 133.1.0.10 -c /root/exabgpScrubbing1.ini"
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -b 10.0.8.10 -c /root/exabgpScrubbing2.ini"
+/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "/opt/ScrubbingUNLP/start.sh -b 10.0.8.10 -c /root/exabgpScrubbing2.ini"
 
 echo "Iniciando servicio web WebScrub en máquina n32"
 
