@@ -2,15 +2,17 @@
 
 #### Instalar:
 
-`bash install.sh`
+* `sudo bash install.sh`
 
 #### Ejecutar:
 
-`bash start.sh`
+* Iniciar la topología en el core. 
+* Ejecutar el comando `sudo bash start.sh`
 
 #### Detener:
 
-`bash stop.sh`
+* `sudo bash stop.sh`
+
 
 # VIEJO
 #### Dependencias / paquetes necesarios:

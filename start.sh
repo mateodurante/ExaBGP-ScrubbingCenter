@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if [ "$(id -u)" != "0" ]; then
-   echo "Este script debés ejecutarlo como root, gato" 1>&2
+   echo "Ejecutar el script como usuario root" 1>&2
    exit 1
 fi
 
-echo "Script para simplificarnos la vida, chabón."
+echo "Verificando instalación de Scrubbing Center y ExaBGP."
 
 [[ -d /opt/exabgp/scripts/ ]] || mkdir -p /opt/exabgp/scripts/
 
-[[! -d /opt/ScrubbingUNLP/ ]] && echo "No existe una instalación de ScrubbingUNLP en /opt/ScrubbingUNLP, usa install.sh" && exit 1
+[[ ! -d /opt/ScrubbingUNLP/ ]] && echo "No existe una instalación de ScrubbingUNLP en /opt/ScrubbingUNLP, ejecutar install.sh" && exit 1
 
 echo "Moviendo archivos de configuración .ini a /root"
 
