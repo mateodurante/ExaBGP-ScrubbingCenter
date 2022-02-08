@@ -18,6 +18,7 @@ fi
 
 echo "Descargando ScrubbingUNLP en /opt/ScrubbingUNLP"
 git clone https://github.com/mateodurante/ScrubbingUNLP.git /opt/ScrubbingUNLP
+# cp -r ../ScrubbingUNLP /opt/
 bash /opt/ScrubbingUNLP/install.sh
 
 
@@ -28,6 +29,7 @@ fi
 
 echo "Descargando WebScrub en /opt/WebScrub"
 git clone https://github.com/mateodurante/WebScrub.git /opt/WebScrub
+# cp -r ../WebScrub /opt/
 cd /opt/WebScrub
 cp db.sqlite3.initial db.sqlite3
 sudo pip3 install -r requirements.txt
