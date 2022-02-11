@@ -37,7 +37,7 @@ sleep 5
 
 echo "Iniciando servicio web WebScrub en máquina n32"
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
 
 
 ################################################ Túneles GRE ################################################
