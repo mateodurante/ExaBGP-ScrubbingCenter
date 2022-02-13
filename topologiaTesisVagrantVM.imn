@@ -159,8 +159,12 @@ node n15 {
 	    
 	    
 	    
+	    
+	    
     }
     custom-config {
+	    
+	    
 	    
 	    
 	    
@@ -1676,21 +1680,8 @@ hook 4:runtime_hook.sh {
 
 # Puente entre VM e Internet
 BReth1=`brctl show | grep -w enp0s9 | cut -f1`
-#if [ -z $BReth1 ]; then
-#	BReth1=`brctl show | grep -w veth8.2* | cut -f1`
-#fi
-
-
-# Puente con router de Syper-Borde para Nfsen
-# Identificador de Syper-Borde: veth2.0 (eth0 de veth2)
-nfsen=$(brctl show | grep -w "veth2.0.*" | cut -f1)
-
-# Puente con eth1
-#BReth1=$(brctl show | grep -w  eth1 | cut -f1)
-
 
 # Completo la tabla de ruteo de la VM para que alcance las rutas de la topologia.
-#ifconfig "$BReth1" 10.0.3.2 netmask 255.255.255.0
 ifconfig "$BReth1" 10.0.4.2 netmask 255.255.255.0
 route add -net 193.81.7.0/24 gw 10.0.4.1
 route add -net 193.81.8.0/24 gw 10.0.4.1
@@ -1699,31 +1690,9 @@ route add -net 163.20.0.0/16 gw 10.0.4.1
 # nat para poder rutear trafico entre la vm usando el bridge:
 /sbin/iptables -t nat -A POSTROUTING -o "$BReth1" -j MASQUERADE
 
-#ifconfig "$INTERFAZ" 163.20.250.5 netmask 255.255.255.0
-#route add -net 193.81.7.0/24 gw 163.20.250.1
-#route add -net 200.0.60.0/24 gw 163.20.250.1
-#route add -net 163.20.251.0/24 gw 163.20.250.1
-#route add -net 10.0.0.0/24 gw 163.20.250.1
-#route add -net 10.0.1.0/24 gw 163.20.250.1
-
-# Configuro los NetFlow para Nfsen
-#/usr/sbin/fprobe -i"$nfsen" -f'ip and src net 163.20.0.0/16' localhost:5555
-#/usr/sbin/fprobe -i"$nfsen" -f'ip and dst net 163.20.0.0/16' localhost:5556
-
-# Inicio Nfsen
-#/etc/init.d/nfsen start
-
-# Enmascaro las direcciones IP para que la topologia salga a Internet.
-/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
-
+# agrego ruta estatica router ISP-A debido a que los servicios no funcionan:
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
-#cd $core_path
-
-# Netflow para Nfcapd OUT
-#vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and src net 193.81.7.0/24' 10.0.3.2:5555
-# Netflow para Nfcapd IN
-#vcmd -c Syper-Borde -- fprobe -ieth0 -f'ip and dst net 193.81.7.0/24' 10.0.3.2:5556
+/usr/sbin/vcmd -c $core_path/ISP-A -- bash -E -c "ip route add default via 10.0.4.2"
 }
 
 hook 6:shutdown_hook.sh {

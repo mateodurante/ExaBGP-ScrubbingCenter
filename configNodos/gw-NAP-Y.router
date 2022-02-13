@@ -1,44 +1,42 @@
 !
-!
+frr version 7.2.1
+frr defaults traditional
+hostname gw-NAP-Y
+log syslog informational
 service integrated-vtysh-config
 !
 interface eth0
  ip address 10.0.8.2/24
- ipv6 nd suppress-ra
 !
 interface eth1
  ip address 10.0.13.2/24
+ ip address 110.20.0.2/24
  ipv6 address 10:13::2/64
- ipv6 nd suppress-ra
 !
-interface gre0
- ipv6 nd suppress-ra
-!
-interface gretap0
- ipv6 nd suppress-ra
-!
-interface lo
+router-id 10.0.8.2
 !
 router bgp 3928
  bgp router-id 10.0.8.2
- network 110.20.0.0/16
  neighbor 10.0.8.4 remote-as 52376
- neighbor 10.0.8.4 route-map nontransit out
  neighbor 110.20.0.1 remote-as 3928
- neighbor 110.20.0.1 next-hop-self
- neighbor 110.20.0.1 soft-reconfiguration inbound
+ !
+ address-family ipv4 unicast
+  network 110.20.0.0/16
+  neighbor 10.0.8.4 route-map nontransit out
+  neighbor 110.20.0.1 next-hop-self
+  neighbor 110.20.0.1 soft-reconfiguration inbound
+ exit-address-family
 !
 router ospf
- network 110.20.0.0/24 area 0.0.0.0
+ ospf router-id 10.0.8.2
+ network 10.0.8.0/24 area 0
+ network 110.20.0.0/24 area 0
 !
 bgp as-path access-list 1 permit ^$
 bgp as-path access-list 1 deny .*
 !
 route-map nontransit permit 10
  match as-path 1
-!
-ip forwarding
-ipv6 forwarding
 !
 line vty
 !
