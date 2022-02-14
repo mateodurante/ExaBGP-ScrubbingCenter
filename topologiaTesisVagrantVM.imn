@@ -161,8 +161,10 @@ node n15 {
 	    
 	    
 	    
+	    
     }
     custom-config {
+	    
 	    
 	    
 	    
@@ -1689,6 +1691,7 @@ route add -net 163.20.0.0/16 gw 10.0.4.1
 
 # nat para poder rutear trafico entre la vm usando el bridge:
 /sbin/iptables -t nat -A POSTROUTING -o "$BReth1" -j MASQUERADE
+/sbin/iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
 # agrego ruta estatica router ISP-A debido a que los servicios no funcionan:
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
@@ -1700,23 +1703,16 @@ hook 6:shutdown_hook.sh {
 # session hook script; write commands here to execute on the host at the
 # specified state
 
-BReth1=`brctl show | grep -w enp0s9 | cut -f1`
-
 # hay que configurar el borrado de los nateos al detener los servicios:
-/sbin/iptables -t nat -D POSTROUTING -o $BReth1 -j MASQUERADE
-
-/etc/init.d/nfsen stop
+/sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
+rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\." | cut -d" " -f1)
+/sbin/iptables -t nat -D POSTROUTING $rule_number
 
 /usr/bin/killall fprobe
 
 route del -net 193.81.7.0/24 gw 10.0.4.1
-route del -net 163.20.251.0/24 gw 10.0.4.1
-
-#route del -net 193.81.7.0/24
-#route del -net 163.20.251.0/24 gw 163.20.250.1
-#route del -net 200.0.60.0/24
-#route del -net 10.0.0.0/24
-#route del -net 10.0.1.0/24
+route del -net 193.81.8.0/24 gw 10.0.4.1
+route del -net 163.20.0.0/16 gw 10.0.4.1
 }
 
 option global {
