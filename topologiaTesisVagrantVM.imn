@@ -34,7 +34,7 @@ node n8 {
     canvas c1
     iconcoords {360.0 407.0}
     labelcoords {335.0 394.0}
-    services {FRRBGP FRRzebra Firewall IPForward}
+    services {FRRBGP FRRzebra IPForward}
     interface-peer {eth2 n23}
     custom-config {
 	custom-config-id service:zebra
@@ -163,8 +163,14 @@ node n15 {
 	    
 	    
 	    
+	    
+	    
+	    
     }
     custom-config {
+	    
+	    
+	    
 	    
 	    
 	    
@@ -1687,15 +1693,15 @@ BReth1=`brctl show | grep -w enp0s9 | cut -f1`
 
 # Completo la tabla de ruteo de la VM para que alcance las rutas de la topologia.
 ifconfig "$BReth1" 10.0.4.2 netmask 255.255.255.0
-route add -net 193.81.7.0/24 gw 10.0.4.1
-route add -net 193.81.8.0/24 gw 10.0.4.1
+route add -net 133.1.0.0/24 gw 10.0.4.1
+route add -net 10.0.8.0/24 gw 10.0.4.1
 route add -net 163.20.0.0/16 gw 10.0.4.1
 
 # nat para poder rutear trafico entre la vm usando el bridge:
 /sbin/iptables -t nat -A POSTROUTING -o "$BReth1" -j MASQUERADE
-/sbin/iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+#/sbin/iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
-# agrego ruta estatica router ISP-A debido a que los servicios no funcionan:
+# agrego ruta estatica router ISP-A para que los servicios puedan salir de core sin nateo:
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 /usr/sbin/vcmd -c $core_path/ISP-A -- bash -E -c "ip route add default via 10.0.4.2"
 }
@@ -1706,7 +1712,7 @@ hook 6:shutdown_hook.sh {
 # specified state
 
 # hay que configurar el borrado de los nateos al detener los servicios:
-/sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
+#/sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
 
 rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\." | cut -d " " -f1)
 
@@ -1714,8 +1720,8 @@ rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\
 
 /usr/bin/killall fprobe
 
-route del -net 193.81.7.0/24 gw 10.0.4.1
-route del -net 193.81.8.0/24 gw 10.0.4.1
+route del -net 133.1.0.0/24 gw 10.0.4.1
+route del -net 10.0.8.0/24 gw 10.0.4.1
 route del -net 163.20.0.0/16 gw 10.0.4.1
 }
 
