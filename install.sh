@@ -30,8 +30,10 @@ fi
 echo "Descargando WebScrub en /opt/WebScrub"
 git clone https://github.com/mateodurante/WebScrub.git /opt/WebScrub
 # cp -r ../WebScrub /opt/
+cp fixtures.yaml /opt/WebScrub/
 cd /opt/WebScrub
 cp db.sqlite3.initial db.sqlite3
 sudo pip3 install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
+sudo python3 manage.py loaddata fixtures.yaml --format yaml
