@@ -2,6 +2,8 @@
 
 SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 source ${SCRIPT_PATH}/.env
+FPROBE_PARAM=""
+[ -z "$FPROBE_URL" ] || FPROBE_PARAM="-f ${FPROBE_URL}"
 
 if [ "$(id -u)" != "0" ]; then
    echo "Ejecutar el script como usuario root" 1>&2
@@ -32,11 +34,11 @@ echo "Ejecutando ExaBGP en los nodos de CORE."
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 133.1.0.10 -f ${FPROBE_URL} -c /root/exabgpScrubbing1.ini &" &
+/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 133.1.0.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing1.ini &" &
 
 sleep 5
 
-/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 10.0.8.10 -f ${FPROBE_URL} -c /root/exabgpScrubbing2.ini &" &
+/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 10.0.8.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing2.ini &" &
 
 echo "Iniciando servicio web WebScrub en máquina n32"
 
