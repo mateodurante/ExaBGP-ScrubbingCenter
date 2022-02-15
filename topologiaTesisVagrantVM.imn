@@ -162,8 +162,10 @@ node n15 {
 	    
 	    
 	    
+	    
     }
     custom-config {
+	    
 	    
 	    
 	    
@@ -1705,7 +1707,9 @@ hook 6:shutdown_hook.sh {
 
 # hay que configurar el borrado de los nateos al detener los servicios:
 /sbin/iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
-rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\." | cut -d" " -f1)
+
+rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\." | cut -d " " -f1)
+
 /sbin/iptables -t nat -D POSTROUTING $rule_number
 
 /usr/bin/killall fprobe
