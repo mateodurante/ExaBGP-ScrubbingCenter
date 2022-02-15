@@ -3,6 +3,8 @@ services:
   elasticsearch:
     container_name: es-container
     image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+    volumes:
+      - esdata_nf:/usr/share/elasticsearch/data
     environment:
       - xpack.security.enabled=false
       - "discovery.type=single-node"
@@ -13,6 +15,7 @@ services:
     ports:
       - 9200:9200
   filebeat:
+    #user: root
     container_name: beat-container
     image: docker.elastic.co/beats/filebeat:8.0.0
     volumes: 
@@ -26,6 +29,8 @@ services:
   kibana:
     container_name: kb-container
     image: docker.elastic.co/kibana/kibana:8.0.0
+    volumes:
+      - kbdata_nf:/usr/share/kibana/data
     environment:
       - ELASTICSEARCH_HOSTS=http://es-container:9200
     networks:
@@ -37,3 +42,8 @@ services:
 networks:
   es-net:
     driver: bridge
+volumes:
+  esdata_nf:
+    driver: local
+  kbdata_nf:
+    driver: local
