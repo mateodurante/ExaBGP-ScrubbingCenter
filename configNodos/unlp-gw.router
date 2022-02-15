@@ -1,59 +1,50 @@
 !
-!
+frr version 7.2.1
+frr defaults traditional
+hostname unlp-gw
+log syslog informational
 service integrated-vtysh-config
 !
 interface eth0
  ip address 163.20.10.1/24
- ipv6 nd suppress-ra
 !
 interface eth1
  ip address 163.20.9.1/24
  ipv6 address 2001:3::1/64
- ipv6 nd suppress-ra
 !
 interface eth2
  ip address 10.0.5.2/24
  ipv6 address 10:9::2/64
- ipv6 nd suppress-ra
 !
 interface eth3
  ip address 163.20.252.1/24
- ipv6 nd suppress-ra
-!
-interface gre0
- ipv6 nd suppress-ra
-!
-interface gretap0
- ipv6 nd suppress-ra
-!
-interface lo
 !
 router-id 163.20.10.1
 !
 router bgp 5692
  bgp router-id 163.20.252.1
- network 163.20.0.0/16
  neighbor 10.0.5.1 remote-as 555
- neighbor 10.0.5.1 soft-reconfiguration inbound
- neighbor 10.0.5.1 route-map non-transit out
  neighbor 163.20.10.2 remote-as 5692
- neighbor 163.20.10.2 soft-reconfiguration inbound
+ !
+ address-family ipv4 unicast
+  network 163.20.0.0/16
+  neighbor 10.0.5.1 soft-reconfiguration inbound
+  neighbor 10.0.5.1 route-map non-transit out
+  neighbor 163.20.10.2 soft-reconfiguration inbound
+ exit-address-family
 !
 router ospf
  ospf router-id 163.20.10.1
- network 10.0.5.0/24 area 0.0.0.0
- network 163.20.9.0/24 area 0.0.0.0
- network 163.20.10.0/24 area 0.0.0.0
- network 163.20.252.0/24 area 0.0.0.0
+ network 10.0.5.0/24 area 0
+ network 163.20.9.0/24 area 0
+ network 163.20.10.0/24 area 0
+ network 163.20.252.0/24 area 0
 !
 bgp as-path access-list transit permit $^
 bgp as-path access-list transit deny .*
 !
 route-map non-transit permit 10
  match as-path transit
-!
-ip forwarding
-ipv6 forwarding
 !
 line vty
 !

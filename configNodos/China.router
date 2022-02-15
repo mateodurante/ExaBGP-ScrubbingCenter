@@ -1,39 +1,31 @@
 !
-!
+frr version 7.2.1
+frr defaults traditional
+hostname China
+log syslog informational
 service integrated-vtysh-config
 !
 interface eth0
  ip address 10.0.7.2/24
- ipv6 nd suppress-ra
 !
 interface eth1
  ip address 10.0.11.2/24
- ipv6 nd suppress-ra
 !
 interface eth2
  ip address 10.0.10.1/24
- ipv6 nd suppress-ra
-!
-interface gre0
- ipv6 nd suppress-ra
-!
-interface gretap0
- ipv6 nd suppress-ra
-!
-interface lo
 !
 router bgp 28
  bgp router-id 10.0.7.2
- redistribute connected
  neighbor 10.0.7.1 remote-as 666
- neighbor 10.0.7.1 soft-reconfiguration inbound
  neighbor 10.0.10.2 remote-as 33
- neighbor 10.0.10.2 soft-reconfiguration inbound
  neighbor 10.0.11.1 remote-as 6781
- neighbor 10.0.11.1 soft-reconfiguration inbound
-!
-ip forwarding
-ipv6 forwarding
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor 10.0.7.1 soft-reconfiguration inbound
+  neighbor 10.0.10.2 soft-reconfiguration inbound
+  neighbor 10.0.11.1 soft-reconfiguration inbound
+ exit-address-family
 !
 line vty
 !

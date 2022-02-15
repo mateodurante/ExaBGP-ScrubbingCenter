@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+source ${SCRIPT_PATH}/.env
+
 if [ "$(id -u)" != "0" ]; then
    echo "Ejecutar el script como usuario root" 1>&2
    exit 1
@@ -25,7 +28,7 @@ cp /root/exabgpScrubbing2.ini $core_path/ScrubCABASE.conf/
 
 echo "Ejecutando ExaBGP en los nodos de CORE."
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 163.20.252.2 -c /root/exabgpCentral.ini &" &
+/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 163.20.252.2 -f ${FPROBE_URL} -c /root/exabgpCentral.ini &" &
 
 sleep 5
 
