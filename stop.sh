@@ -14,17 +14,22 @@ do
 	kill -9 $webserver; 
 done
 
-for process in $(ps ax | grep "mongod --dbpath" | awk '{print $1}');
-do
-	kill -9 $process;
-done
-
 for process in $(ps ax | grep "ping" | awk '{print $1}');
 do
 	kill -9 $process;
 done
 
-echo "Elimino las bases de datos de las aplicaciones para eliminar datos sucios"
-rm -r /tmp/data/WebService
+for process in $(ps ax | grep "fprobe" | awk '{print $1}');
+do
+	kill -9 $process;
+done
+
+for process in $(ps ax | grep "python3\|/opt/exabgp" | awk '{print $1}');
+do
+	kill -9 $process;
+done
+
+#echo "Elimino las bases de datos de las aplicaciones para eliminar datos sucios"
+#rm -r /tmp/data/WebService
 
 exit 0
