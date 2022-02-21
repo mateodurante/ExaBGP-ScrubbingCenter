@@ -1,9 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<scenario name="/tmp/tmp3etyfm8f">
+<scenario name="/tmp/tmpe78w1q0z">
   <networks>
-    <network id="29" name="n29" icon="" canvas="0" type="SWITCH">
-      <position x="1399.0" y="895.0" lat="47.571030534921555" lon="-122.11347307251273" alt="2.0"/>
-    </network>
     <network id="20" name="n20" icon="" canvas="0" type="SWITCH">
       <position x="1651.0" y="722.0" lat="47.57260326676932" lon="-122.11007744073876" alt="2.0"/>
     </network>
@@ -28,6 +25,9 @@
     <network id="42" name="n42" icon="" canvas="0" type="SWITCH">
       <position x="1282.0" y="648.0" lat="47.57327598157675" lon="-122.11504961583636" alt="2.0"/>
     </network>
+    <network id="29" name="n29" icon="" canvas="0" type="SWITCH">
+      <position x="1399.0" y="895.0" lat="47.571030534921555" lon="-122.11347307251273" alt="2.0"/>
+    </network>
   </networks>
   <devices>
     <device id="8" name="ISP-A" icon="" canvas="0" type="router" class="" image="">
@@ -49,17 +49,14 @@
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
         <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
       </services>
     </device>
-    <device id="19" name="unlp-gw" icon="" canvas="0" type="router" class="" image="">
-      <position x="1545.0" y="734.0" lat="47.57249417706733" lon="-122.11150576204051" alt="2.0"/>
+    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
+      <position x="478.0" y="1105.0" lat="47.569121374995404" lon="-122.12588329816285" alt="2.0"/>
       <services>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
-        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
       </services>
     </device>
     <device id="32" name="n32" icon="" canvas="0" type="host" class="" image="">
@@ -67,6 +64,15 @@
       <services>
         <service name="DefaultRoute"/>
         <service name="SSH"/>
+      </services>
+    </device>
+    <device id="19" name="unlp-gw" icon="" canvas="0" type="router" class="" image="">
+      <position x="1545.0" y="734.0" lat="47.57249417706733" lon="-122.11150576204051" alt="2.0"/>
+      <services>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+        <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
       </services>
     </device>
     <device id="33" name="GW-Scrub" icon="" canvas="0" type="router" class="" image="">
@@ -81,14 +87,8 @@
       <position x="296.0" y="1269.0" lat="47.56763036360783" lon="-122.12833569888849" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
-        <service name="SSH"/>
         <service name="IPForward"/>
-      </services>
-    </device>
-    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
-      <position x="478.0" y="1105.0" lat="47.569121374995404" lon="-122.12588329816285" alt="2.0"/>
-      <services>
-        <service name="DefaultRoute"/>
+        <service name="SSH"/>
       </services>
     </device>
     <device id="25" name="ISP-China" icon="" canvas="0" type="router" class="" image="">
@@ -123,16 +123,34 @@
         <service name="IPForward"/>
       </services>
     </device>
-    <device id="2" name="Spain" icon="" canvas="0" type="router" class="" image="">
-      <position x="1154.0" y="1213.0" lat="47.56813949421972" lon="-122.11677438118187" alt="2.0"/>
+    <device id="4" name="Brasil" icon="" canvas="0" type="router" class="" image="">
+      <position x="1334.0" y="926.0" lat="47.57074871092997" lon="-122.11434892991475" alt="2.0"/>
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
         <service name="IPForward"/>
       </services>
     </device>
-    <device id="4" name="Brasil" icon="" canvas="0" type="router" class="" image="">
-      <position x="1334.0" y="926.0" lat="47.57074871092997" lon="-122.11434892991475" alt="2.0"/>
+    <device id="27" name="ISPY" icon="" canvas="0" type="router" class="" image="">
+      <position x="1402.0" y="673.0" lat="47.5730487140273" lon="-122.11343264832495" alt="2.0"/>
+      <services>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+        <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
+      </services>
+    </device>
+    <device id="6" name="gw-NAP-UNLP" icon="" canvas="0" type="router" class="" image="">
+      <position x="1777.0" y="786.0" lat="47.57202145239942" lon="-122.10837962485179" alt="2.0"/>
+      <services>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+        <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
+      </services>
+    </device>
+    <device id="2" name="Spain" icon="" canvas="0" type="router" class="" image="">
+      <position x="1154.0" y="1213.0" lat="47.56813949421972" lon="-122.11677438118187" alt="2.0"/>
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
@@ -150,26 +168,8 @@
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
         <service name="IPForward"/>
-      </services>
-    </device>
-    <device id="27" name="ISPY" icon="" canvas="0" type="router" class="" image="">
-      <position x="1402.0" y="673.0" lat="47.5730487140273" lon="-122.11343264832495" alt="2.0"/>
-      <services>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
         <service name="FRROSPFv2"/>
-        <service name="IPForward"/>
-      </services>
-    </device>
-    <device id="6" name="gw-NAP-UNLP" icon="" canvas="0" type="router" class="" image="">
-      <position x="1777.0" y="786.0" lat="47.57202145239942" lon="-122.10837962485179" alt="2.0"/>
-      <services>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
-        <service name="IPForward"/>
       </services>
     </device>
     <device id="10" name="gw-NAP-X" icon="" canvas="0" type="router" class="" image="">
@@ -177,8 +177,8 @@
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
         <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
       </services>
     </device>
     <device id="11" name="gw-NAP-Y" icon="" canvas="0" type="router" class="" image="">
@@ -186,15 +186,15 @@
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
         <service name="IPForward"/>
+        <service name="FRROSPFv2"/>
       </services>
     </device>
     <device id="13" name="www-x" icon="" canvas="0" type="host" class="" image="">
       <position x="1690.0" y="995.0" lat="47.570121419826805" lon="-122.10955192629757" alt="2.0"/>
       <services>
-        <service name="HTTP"/>
         <service name="DefaultRoute"/>
+        <service name="HTTP"/>
         <service name="SSH"/>
       </services>
     </device>
@@ -207,19 +207,19 @@
       </services>
     </device>
     <device id="16" name="GRE-X" icon="" canvas="0" type="host" class="" image="">
-      <position x="1670.0" y="1368.0" lat="47.566730281310804" lon="-122.1098214208828" alt="2.0"/>
+      <position x="1639.0" y="1453.0" lat="47.56595747103806" lon="-122.1102391374899" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
-        <service name="SSH"/>
         <service name="IPForward"/>
+        <service name="SSH"/>
       </services>
     </device>
     <device id="17" name="GRE-Y" icon="" canvas="0" type="host" class="" image="">
       <position x="1220.0" y="683.0" lat="47.57295780673136" lon="-122.11588504905059" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
-        <service name="SSH"/>
         <service name="IPForward"/>
+        <service name="SSH"/>
       </services>
     </device>
     <device id="18" name="www-y" icon="" canvas="0" type="host" class="" image="">
@@ -233,16 +233,16 @@
       <position x="1468.0" y="342.0" lat="47.57605765646264" lon="-122.11254331619367" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
-        <service name="SSH"/>
         <service name="IPForward"/>
+        <service name="SSH"/>
       </services>
     </device>
     <device id="35" name="ScrubCABASE" icon="" canvas="0" type="host" class="" image="">
       <position x="1669.0" y="616.0" lat="47.5735668826008" lon="-122.10983489561205" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
-        <service name="SSH"/>
         <service name="IPForward"/>
+        <service name="SSH"/>
       </services>
     </device>
     <device id="43" name="n43" icon="" canvas="0" type="PC" class="" image="">
@@ -260,14 +260,6 @@
     </device>
   </devices>
   <links>
-    <link node1="29" node2="3">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="193.81.7.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="29" node2="5">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:18" ip4="193.81.7.20" ip4_mask="24" ip6="10:6::20" ip6_mask="64"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="20" node2="15">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:00" ip4="163.20.10.3" ip4_mask="24" ip6="2001:1::28" ip6_mask="64"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
@@ -308,12 +300,12 @@
       <iface2 id="1" name="eth1" mac="00:00:00:aa:00:23" ip4="182.23.0.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="12" node2="10">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:24" ip4="182.23.0.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="12" node2="13">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:25" ip4="182.23.0.10" ip4_mask="24" ip6="10:12::10" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="12" node2="10">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:24" ip4="182.23.0.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="22" node2="27">
@@ -350,6 +342,14 @@
     </link>
     <link node1="42" node2="17">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:32" ip4="110.20.9.10" ip4_mask="24" ip6="2001:5::10" ip6_mask="64"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="29" node2="3">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="193.81.7.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="29" node2="5">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:18" ip4="193.81.7.20" ip4_mask="24" ip6="10:6::20" ip6_mask="64"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="32" node2="19">
@@ -434,6 +434,48 @@
     </link>
   </links>
   <service_configurations>
+    <service name="zebra" node="3">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 193.81.7.1/24
+  
+!
+interface eth1
+  ip address 10.0.0.1/24
+  ipv6 address 10::1/64
+!
+router ospf
+  router-id 193.81.7.1
+  network 193.81.7.0/24 area 0
+  network 10.0.0.0/24 area 0
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 2200
+  bgp router-id 193.81.7.1
+  redistribute connected
+! neighbor 10.0.0.2 remote-as 555
+!
+]]></file>
+      </files>
+    </service>
     <service name="zebra" node="8">
       <directories>
         <directory>/usr/local/etc/quagga</directory>
@@ -528,48 +570,6 @@ iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
 ]]></file>
       </files>
     </service>
-    <service name="zebra" node="3">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 193.81.7.1/24
-  
-!
-interface eth1
-  ip address 10.0.0.1/24
-  ipv6 address 10::1/64
-!
-router ospf
-  router-id 193.81.7.1
-  network 193.81.7.0/24 area 0
-  network 10.0.0.0/24 area 0
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 2200
-  bgp router-id 193.81.7.1
-  redistribute connected
-! neighbor 10.0.0.2 remote-as 555
-!
-]]></file>
-      </files>
-    </service>
     <service name="Firewall" node="19">
       <startups>
         <startup>bash firewall.sh</startup>
@@ -647,80 +647,6 @@ router bgp 6781
   bgp router-id 10.0.3.2
   redistribute connected
 ! neighbor 1.2.3.4 remote-as 555
-!
-]]></file>
-      </files>
-    </service>
-    <service name="zebra" node="2">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 10.0.2.2/24
-  ipv6 address 10:2::2/64
-!
-interface eth1
-  ip address 10.0.3.1/24
-  ipv6 address 10:3::1/64
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 345
-  bgp router-id 10.0.2.2
-  redistribute connected
-! neighbor 1.2.3.4 remote-as 555
-!
-]]></file>
-      </files>
-    </service>
-    <service name="zebra" node="6">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 163.20.10.2/24
-  ipv6 address 2001:1::1/64
-!
-interface eth1
-  ip address 10.0.8.3/24
-  ipv6 address 10:11::3/64
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 5692
-  bgp router-id 163.20.10.2
-  network 163.20.0.0/16
-  neighbor 10.0.8.4 remote-as 52376
 !
 ]]></file>
       </files>
@@ -833,6 +759,80 @@ router bgp 52376
 ]]></file>
       </files>
     </service>
+    <service name="zebra" node="2">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 10.0.2.2/24
+  ipv6 address 10:2::2/64
+!
+interface eth1
+  ip address 10.0.3.1/24
+  ipv6 address 10:3::1/64
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 345
+  bgp router-id 10.0.2.2
+  redistribute connected
+! neighbor 1.2.3.4 remote-as 555
+!
+]]></file>
+      </files>
+    </service>
+    <service name="zebra" node="6">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 163.20.10.2/24
+  ipv6 address 2001:1::1/64
+!
+interface eth1
+  ip address 10.0.8.3/24
+  ipv6 address 10:11::3/64
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 5692
+  bgp router-id 163.20.10.2
+  network 163.20.0.0/16
+  neighbor 10.0.8.4 remote-as 52376
+!
+]]></file>
+      </files>
+    </service>
   </service_configurations>
   <session_origin lat="47.579166412353516" lon="-122.13232421875" alt="2.0" scale="150.0"/>
   <session_hooks>
@@ -856,7 +856,9 @@ route add -net 163.20.0.0/16 gw 10.0.4.1
 # agrego ruta estatica router ISP-A para que los servicios puedan salir de core sin nateo:
 core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 /usr/sbin/vcmd -c $core_path/ISP-A -- bash -E -c "ip route add default via 10.0.4.2"
-</hook>
+
+
+ccmd -p hostsupdate</hook>
     <hook name="shutdown_hook.sh" state="6">#!/bin/sh
 # session hook script; write commands here to execute on the host at the
 # specified state
@@ -873,7 +875,8 @@ rule_number=$(/sbin/iptables -t nat -v -L POSTROUTING -n --line-number| grep "b\
 route del -net 133.1.0.0/24 gw 10.0.4.1
 route del -net 10.0.8.0/24 gw 10.0.4.1
 route del -net 163.20.0.0/16 gw 10.0.4.1
-</hook>
+
+ccmd -p hostsremove</hook>
   </session_hooks>
   <session_options>
     <configuration name="controlnet" value=""/>
@@ -897,9 +900,9 @@ route del -net 163.20.0.0/16 gw 10.0.4.1
   </session_options>
   <session_metadata>
     <configuration name="edges" value="[]"/>
-    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;/home/vagrant/shared/world_complete2.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [2169, 1965]}]}"/>
-    <configuration name="hidden" value="[]"/>
     <configuration name="shapes" value="[]"/>
+    <configuration name="hidden" value="[]"/>
+    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;/home/vagrant/shared/world_complete2.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [2169, 1965]}]}"/>
   </session_metadata>
   <default_services>
     <node type="mdr">
