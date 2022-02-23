@@ -1,42 +1,41 @@
 !
 frr version 7.2.1
 frr defaults traditional
-hostname ISPX
+hostname gw-UNQ
 log syslog informational
 service integrated-vtysh-config
 !
 interface eth0
- ip address 10.0.16.2/24
- ip address 182.23.9.1/24
+ ip address 207.248.75.1/24
  ipv6 address 2001:2::1/64
 !
 interface eth1
- ip address 182.23.0.1/24
+ ip address 207.248.74.1/24
  ipv6 address 10:12::1/64
 !
 interface eth2
  ip address 10.0.6.2/24
  ipv6 address 2001::2/64
 !
-router-id 182.23.9.1
+router-id 207.248.75.1
 !
-router bgp 6243
- bgp router-id 182.23.0.1
+router bgp 61486
+ bgp router-id 207.248.74.1
  neighbor 10.0.6.1 remote-as 2200
- neighbor 182.23.0.2 remote-as 6243
+ neighbor 207.248.74.2 remote-as 61486
  !
  address-family ipv4 unicast
-  network 182.23.0.0/16
+  network 207.248.74.0/23
   neighbor 10.0.6.1 soft-reconfiguration inbound
   neighbor 10.0.6.1 route-map nontransit out
-  neighbor 182.23.0.2 soft-reconfiguration inbound
+  neighbor 207.248.74.2 soft-reconfiguration inbound
  exit-address-family
 !
 router ospf
- ospf router-id 182.23.9.1
+ ospf router-id 207.248.75.1
  network 10.0.6.0/24 area 0
- network 182.23.0.0/24 area 0
- network 182.23.9.0/24 area 0
+ network 207.248.74.0/24 area 0
+ network 207.248.75.0/24 area 0
 !
 bgp as-path access-list 1 permit ^$
 bgp as-path access-list 1 deny .*

@@ -2,7 +2,7 @@
   pk: 3
   fields:
     asn: '5692'
-    gre_ip: 163.20.9.10
+    gre_ip: 163.10.9.10
     owner: 5
     scrubbing:
     - 1
@@ -10,8 +10,8 @@
 - model: asn.asn
   pk: 4
   fields:
-    asn: '6243'
-    gre_ip: 182.23.9.10
+    asn: '61486'
+    gre_ip: 207.248.75.10
     owner: 3
     scrubbing:
     - 1
@@ -19,8 +19,8 @@
 - model: asn.asn
   pk: 5
   fields:
-    asn: '3928'
-    gre_ip: 110.20.9.10
+    asn: '3449'
+    gre_ip: 157.92.9.10
     owner: 4
     scrubbing:
     - 1
@@ -28,19 +28,19 @@
 - model: netblock.netblock
   pk: 1
   fields:
-    network: 163.20.0.0
+    network: 163.10.0.0
     mask: 16
     asn: 3
 - model: netblock.netblock
   pk: 2
   fields:
-    network: 182.23.0.0
-    mask: 16
+    network: 207.248.74.0
+    mask: 23
     asn: 4
 - model: netblock.netblock
   pk: 3
   fields:
-    network: 110.20.0.0
+    network: 157.92.0.0
     mask: 16
     asn: 5
 - model: scrubbing.scrubbing
@@ -51,7 +51,7 @@
 - model: scrubbing.scrubbing
   pk: 2
   fields:
-    name: Scrubbing 2 - IXP
+    name: Scrubbing 2 - RIU
     address: 10.0.8.10
 - model: admin.logentry
   pk: 1
