@@ -1,7 +1,7 @@
 !
 frr version 7.2.1
 frr defaults traditional
-hostname ISPY
+hostname gw-UBA
 log syslog informational
 service integrated-vtysh-config
 !
@@ -10,32 +10,32 @@ interface eth0
 !
 interface eth1
  ip address 10.0.13.1/24
- ip address 110.20.0.1/24
+ ip address 157.92.0.1/24
  ipv6 address 10:13::1/64
 !
 interface eth2
- ip address 110.20.9.1/24
+ ip address 157.92.9.1/24
  ipv6 address 2001:5::1/64
 !
 router-id 10.0.14.2
 !
-router bgp 3928
+router bgp 3449
  bgp router-id 10.0.14.2
  neighbor 10.0.14.1 remote-as 444
- neighbor 110.20.0.2 remote-as 3928
+ neighbor 157.92.0.2 remote-as 3449
  !
  address-family ipv4 unicast
-  network 110.20.0.0/16
+  network 157.92.0.0/16
   neighbor 10.0.14.1 soft-reconfiguration inbound
   neighbor 10.0.14.1 route-map nontransit out
-  neighbor 110.20.0.2 soft-reconfiguration inbound
+  neighbor 157.92.0.2 soft-reconfiguration inbound
  exit-address-family
 !
 router ospf
  ospf router-id 10.0.14.2
  network 10.0.14.0/24 area 0
- network 110.20.0.0/24 area 0
- network 110.20.9.0/24 area 0
+ network 157.92.0.0/24 area 0
+ network 157.92.9.0/24 area 0
 !
 bgp as-path access-list 1 permit ^$
 bgp as-path access-list 1 deny .*

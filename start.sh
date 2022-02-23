@@ -24,26 +24,25 @@ core_path=$(ps aux | grep -oP "/tmp/pycore.[0-9]+" | head -n 1)
 
 echo "Moviendo .ini a los nodos del CORE"
 
-cp /root/exabgpCentral.ini $core_path/n32.conf/
-cp /root/exabgpScrubbing1.ini $core_path/n36.conf/
-cp /root/exabgpScrubbing2.ini $core_path/ScrubCABASE.conf/
+cp /root/exabgpCentral.ini $core_path/WebScrub.conf/
+cp /root/exabgpScrubbing1.ini $core_path/Scrubbing1.conf/
+cp /root/exabgpScrubbing2.ini $core_path/Scrubbing2.conf/
 
 echo "Ejecutando ExaBGP en los nodos de CORE."
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 163.20.252.2 -c /root/exabgpCentral.ini &" &
+/usr/sbin/vcmd -c $core_path/WebScrub -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.10.252.2/ -b 163.10.252.2 -c /root/exabgpCentral.ini &" &
 
 # sleep 5
 
-/usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 133.1.0.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing1.ini &" &
+/usr/sbin/vcmd -c $core_path/Scrubbing1 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.10.252.2/ -b 133.1.0.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing1.ini &" &
 
 # sleep 5
 
-/usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 10.0.8.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing2.ini &" &
+/usr/sbin/vcmd -c $core_path/Scrubbing2 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.10.252.2/ -b 10.0.8.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing2.ini &" &
 
-echo "Iniciando servicio web WebScrub en máquina n32"
+echo "Iniciando servicio web WebScrub en máquina WebScrub"
 
-/usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
-# /usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80 | grep -v 'POST /peermessage/nodestatus HTTP' | grep -v 'POST /peermessage/add HTTP/1.1'" &
+/usr/sbin/vcmd -c $core_path/WebScrub -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
 
 
 ################################################ Túneles GRE ################################################
@@ -51,27 +50,27 @@ echo "Iniciando servicio web WebScrub en máquina n32"
 echo "Armado de túneles GRE desde clientes a los ScrubbingCenters"
 
 # Túneles gre de unlp contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 163.20.9.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 163.10.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip link set scrub1 up"
 
-/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 163.20.9.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 163.10.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-unlp -- bash -E -c "ip link set cabase up"
 
 
 # Túneles gre de CooperativaX contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 182.23.9.10 ttl 255"
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip link set scrub1 up"
+/usr/sbin/vcmd -c $core_path/GRE-unq -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 207.248.75.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unq -- bash -E -c "ip link set scrub1 up"
 
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 182.23.9.10 ttl 255"
-/usr/sbin/vcmd -c $core_path/GRE-X -- bash -E -c "ip link set cabase up"
+/usr/sbin/vcmd -c $core_path/GRE-unq -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 207.248.75.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-unq -- bash -E -c "ip link set cabase up"
 
 
 # Túneles gre de CooperativaY contra scrubbings:
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 110.20.9.10 ttl 255"
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip link set scrub1 up"
+/usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip tunnel add scrub1 mode gre remote 133.1.0.10 local 157.92.9.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip link set scrub1 up"
 
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 110.20.9.10 ttl 255"
-/usr/sbin/vcmd -c $core_path/GRE-Y -- bash -E -c "ip link set cabase up"
+/usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 157.92.9.10 ttl 255"
+/usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip link set cabase up"
 
 
 echo "Configurando hosts y routers de la topologia con restore.sh"

@@ -17,8 +17,8 @@ if [[ -d /opt/ScrubbingUNLP ]]; then
 fi
 
 echo "Descargando ScrubbingUNLP en /opt/ScrubbingUNLP"
-# git clone https://github.com/mateodurante/ScrubbingUNLP.git /opt/ScrubbingUNLP || { echo 'No se pudo clonar ScrubbingUNLP' ; exit 1; }
-cp -r ../ScrubbingUNLP /opt/
+git clone https://github.com/mateodurante/ScrubbingUNLP.git /opt/ScrubbingUNLP || { echo 'No se pudo clonar ScrubbingUNLP' ; exit 1; }
+# cp -r ../ScrubbingUNLP /opt/
 bash /opt/ScrubbingUNLP/install.sh || { echo 'No se pudo instalar ScrubbingUNLP' ; exit 1; }
 
 if [[ -d /opt/WebScrub ]]; then
@@ -27,8 +27,8 @@ if [[ -d /opt/WebScrub ]]; then
 fi
 
 echo "Descargando WebScrub en /opt/WebScrub"
-# git clone https://github.com/mateodurante/WebScrub.git /opt/WebScrub || { echo 'No se pudo clonar WebScrub' ; exit 1; }
-cp -r ../WebScrub /opt/
+git clone https://github.com/mateodurante/WebScrub.git /opt/WebScrub || { echo 'No se pudo clonar WebScrub' ; exit 1; }
+# cp -r ../WebScrub /opt/
 cp fixtures.yaml /opt/WebScrub/
 cd /opt/WebScrub
 cp db.sqlite3.initial db.sqlite3
