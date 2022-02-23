@@ -32,17 +32,18 @@ echo "Ejecutando ExaBGP en los nodos de CORE."
 
 /usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 163.20.252.2 -c /root/exabgpCentral.ini &" &
 
-sleep 5
+# sleep 5
 
 /usr/sbin/vcmd -c $core_path/n36 -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 133.1.0.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing1.ini &" &
 
-sleep 5
+# sleep 5
 
 /usr/sbin/vcmd -c $core_path/ScrubCABASE -- bash -E -c "/opt/ScrubbingUNLP/start.sh -w http://163.20.252.2/ -b 10.0.8.10 ${FPROBE_PARAM} -c /root/exabgpScrubbing2.ini &" &
 
 echo "Iniciando servicio web WebScrub en máquina n32"
 
 /usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
+# /usr/sbin/vcmd -c $core_path/n32 -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80 | grep -v 'POST /peermessage/nodestatus HTTP' | grep -v 'POST /peermessage/add HTTP/1.1'" &
 
 
 ################################################ Túneles GRE ################################################
