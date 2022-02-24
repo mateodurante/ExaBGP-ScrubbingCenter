@@ -80,7 +80,7 @@
     user: 2
     content_type: 8
     object_id: '3'
-    object_repr: coopx
+    object_repr: unq
     action_flag: 2
     change_message: '[]'
 - model: admin.logentry
@@ -90,7 +90,7 @@
     user: 2
     content_type: 8
     object_id: '4'
-    object_repr: coopy
+    object_repr: uba
     action_flag: 2
     change_message: '[]'
 - model: admin.logentry
@@ -120,7 +120,7 @@
     user: 6
     content_type: 8
     object_id: '3'
-    object_repr: coopx
+    object_repr: unq
     action_flag: 2
     change_message: '[{"changed": {"fields": ["password"]}}]'
 - model: admin.logentry
@@ -130,7 +130,7 @@
     user: 6
     content_type: 8
     object_id: '4'
-    object_repr: coopy
+    object_repr: uba
     action_flag: 2
     change_message: '[{"changed": {"fields": ["password"]}}]'
 - model: admin.logentry
@@ -608,10 +608,10 @@
     password: pbkdf2_sha256$180000$lLXPLz17CMxz$SeCxMfq21M57aBuLvVGomsuv+sRA/ndiGUFE2Tid1uE=
     last_login: 2020-01-15 23:21:42.420355+00:00
     is_superuser: false
-    username: coopx
+    username: unq
     first_name: ''
     last_name: ''
-    email: coopx@coopx.com
+    email: unq@unq.com
     is_staff: false
     is_active: true
     date_joined: 2017-03-27 18:49:58+00:00
@@ -624,10 +624,10 @@
     password: pbkdf2_sha256$180000$AUghMOALhCDD$JC05//2aj+hYXdUTI9X0lcL4/1Hu8s+X6nwbXVCRsRk=
     last_login: 2017-03-27 18:50:39+00:00
     is_superuser: false
-    username: coopy
+    username: uba
     first_name: ''
     last_name: ''
-    email: coopy@coopy.com
+    email: uba@uba.com
     is_staff: false
     is_active: true
     date_joined: 2017-03-27 18:50:39+00:00
@@ -788,14 +788,14 @@
 #   pk: 3
 #   fields:
 #     user: 3
-#     email: coopx@coopx.com
+#     email: unq@unq.com
 #     verified: true
 #     primary: true
 # - model: account.emailaddress
 #   pk: 4
 #   fields:
 #     user: 4
-#     email: coopy@coopy.com
+#     email: uba@uba.com
 #     verified: true
 #     primary: true
 # - model: account.emailaddress
