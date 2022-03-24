@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<scenario name="/tmp/tmptbcpq6yo">
+<scenario name="/tmp/tmp4ls1w9tz">
   <networks>
     <network id="12" name="sw6" icon="" canvas="0" type="SWITCH">
       <position x="1016.1831665039062" y="1971.4935302734375" lat="47.56124314029079" lon="-122.11863142570095" alt="2.0"/>
@@ -7,29 +7,29 @@
     <network id="9" name="sw1" icon="" canvas="0" type="SWITCH">
       <position x="1008.3779296875" y="1880.09521484375" lat="47.56207419764097" lon="-122.11873659915389" alt="2.0"/>
     </network>
+    <network id="22" name="sw2" icon="" canvas="0" type="SWITCH">
+      <position x="955.3815307617188" y="1915.33935546875" lat="47.56175373484857" lon="-122.11945071128126" alt="2.0"/>
+    </network>
+    <network id="42" name="sw3" icon="" canvas="0" type="SWITCH">
+      <position x="976.1326293945312" y="1820.9097900390625" lat="47.56261234584769" lon="-122.11917109584529" alt="2.0"/>
+    </network>
     <network id="29" name="sw8" icon="" canvas="0" type="SWITCH">
       <position x="1123.537109375" y="1758.9151611328125" lat="47.56317603103937" lon="-122.11718486038558" alt="2.0"/>
     </network>
     <network id="20" name="sw4" icon="" canvas="0" type="SWITCH">
       <position x="1080.9501953125" y="1818.119384765625" lat="47.562637717694265" lon="-122.11775870752265" alt="2.0"/>
     </network>
-    <network id="40" name="sw5" icon="" canvas="0" type="SWITCH">
-      <position x="1030.2950439453125" y="1802.4954833984375" lat="47.56277977827544" lon="-122.11844127197305" alt="2.0"/>
+    <network id="23" name="enp0s9" icon="" canvas="0" type="RJ45">
+      <position x="1557.640869140625" y="955.5880126953125" lat="47.5704797220367" lon="-122.11133542975121" alt="2.0"/>
     </network>
     <network id="39" name="sw7" icon="" canvas="0" type="SWITCH">
       <position x="1020.0519409179688" y="2037.129638671875" lat="47.56064632279566" lon="-122.11857929501315" alt="2.0"/>
     </network>
-    <network id="42" name="sw3" icon="" canvas="0" type="SWITCH">
-      <position x="976.1326293945312" y="1820.9097900390625" lat="47.56261234584769" lon="-122.11917109584529" alt="2.0"/>
-    </network>
-    <network id="22" name="sw2" icon="" canvas="0" type="SWITCH">
-      <position x="955.3815307617188" y="1915.33935546875" lat="47.56175373484857" lon="-122.11945071128126" alt="2.0"/>
+    <network id="40" name="sw5" icon="" canvas="0" type="SWITCH">
+      <position x="1030.2950439453125" y="1802.4954833984375" lat="47.56277977827544" lon="-122.11844127197305" alt="2.0"/>
     </network>
     <network id="21" name="n21" icon="" canvas="0" type="SWITCH">
       <position x="1773.0054931640625" y="624.4241943359375" lat="47.57349030129629" lon="-122.10843344974992" alt="2.0"/>
-    </network>
-    <network id="23" name="enp0s9" icon="" canvas="0" type="RJ45">
-      <position x="1557.640869140625" y="955.5880126953125" lat="47.5704797220367" lon="-122.11133542975121" alt="2.0"/>
     </network>
   </networks>
   <devices>
@@ -56,21 +56,6 @@
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="32" name="WebScrub" icon="" canvas="0" type="host" class="" image="">
-      <position x="1007.087890625" y="1769.5396728515625" lat="47.56307942826375" lon="-122.11875398208097" alt="2.0"/>
-      <services>
-        <service name="DefaultRoute"/>
-        <service name="SSH"/>
-      </services>
-    </device>
-    <device id="25" name="ISP-China" icon="" canvas="0" type="router" class="" image="">
-      <position x="2883.658447265625" y="1012.3013916015625" lat="47.56996412866278" lon="-122.0934677018896" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-      </services>
-    </device>
     <device id="28" name="China" icon="" canvas="0" type="router" class="" image="">
       <position x="2872.22607421875" y="839.73095703125" lat="47.571532987362595" lon="-122.09362175002121" alt="2.0"/>
       <services>
@@ -79,20 +64,15 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
-      <position x="2996.46875" y="892.4994506835938" lat="47.5710532675906" lon="-122.0919476136023" alt="2.0"/>
+    <device id="32" name="WebScrub" icon="" canvas="0" type="host" class="" image="">
+      <position x="1007.087890625" y="1769.5396728515625" lat="47.56307942826375" lon="-122.11875398208097" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
+        <service name="SSH"/>
       </services>
     </device>
-    <device id="5" name="n5" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1093.078125" y="1738.90625" lat="47.56335796045553" lon="-122.1175952869536" alt="2.0"/>
-      <services>
-        <service name="DefaultRoute"/>
-      </services>
-    </device>
-    <device id="33" name="GW-Scrub" icon="" canvas="0" type="router" class="" image="">
-      <position x="3403.534912109375" y="568.1583862304688" lat="47.57400179128803" lon="-122.08646250727625" alt="2.0"/>
+    <device id="37" name="ISP-B" icon="" canvas="0" type="router" class="" image="">
+      <position x="964.7378540039062" y="1659.4896240234375" lat="47.56408004351317" lon="-122.11932463735866" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
@@ -107,24 +87,61 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="1" name="England" icon="" canvas="0" type="router" class="" image="">
-      <position x="1842.045654296875" y="447.3621520996094" lat="47.575099884736126" lon="-122.10750315227047" alt="2.0"/>
+    <device id="33" name="GW-Scrub" icon="" canvas="0" type="router" class="" image="">
+      <position x="3403.534912109375" y="568.1583862304688" lat="47.57400179128803" lon="-122.08646250727625" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="37" name="ISP-B" icon="" canvas="0" type="router" class="" image="">
-      <position x="964.7378540039062" y="1659.4896240234375" lat="47.56408004351317" lon="-122.11932463735866" alt="2.0"/>
+    <device id="16" name="GRE-unq" icon="" canvas="0" type="host" class="" image="">
+      <position x="1070.4793701171875" y="2096.663818359375" lat="47.56010498317616" lon="-122.11789979905731" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="36" name="Scrubbing1" icon="" canvas="0" type="host" class="" image="">
+      <position x="3298.50830078125" y="408.16522216796875" lat="47.57545619794837" lon="-122.08787771242918" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="5" name="n5" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1093.078125" y="1738.90625" lat="47.56335796045553" lon="-122.1175952869536" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="10" name="gw-RIU-UNQ" icon="" canvas="0" type="router" class="" image="">
+      <position x="1018.7880859375" y="1931.1871337890625" lat="47.561609635837456" lon="-122.11859632511684" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
+        <service name="FRROSPFv2"/>
+      </services>
+    </device>
+    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
+      <position x="2996.46875" y="892.4994506835938" lat="47.5710532675906" lon="-122.0919476136023" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
       </services>
     </device>
     <device id="4" name="Brasil" icon="" canvas="0" type="router" class="" image="">
       <position x="1316.4132080078125" y="1387.3140869140625" lat="47.56655468084391" lon="-122.11458590717544" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+      </services>
+    </device>
+    <device id="1" name="England" icon="" canvas="0" type="router" class="" image="">
+      <position x="1842.045654296875" y="447.3621520996094" lat="47.575099884736126" lon="-122.10750315227047" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
@@ -140,8 +157,22 @@
         <service name="FRROSPFv2"/>
       </services>
     </device>
-    <device id="10" name="gw-RIU-UNQ" icon="" canvas="0" type="router" class="" image="">
-      <position x="1018.7880859375" y="1931.1871337890625" lat="47.561609635837456" lon="-122.11859632511684" alt="2.0"/>
+    <device id="14" name="n14" icon="" canvas="0" type="router" class="" image="">
+      <position x="972.1837768554688" y="1853.2545166015625" lat="47.5623182495206" lon="-122.11922430556416" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+      </services>
+    </device>
+    <device id="43" name="n43" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1821.546630859375" y="397.7038269042969" lat="47.57555129512283" lon="-122.10777937106143" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="26" name="gw-UNQ" icon="" canvas="0" type="router" class="" image="">
+      <position x="1035.8525390625" y="2001.148681640625" lat="47.5609734920998" lon="-122.11836638623097" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
@@ -149,12 +180,12 @@
         <service name="FRROSPFv2"/>
       </services>
     </device>
-    <device id="16" name="GRE-unq" icon="" canvas="0" type="host" class="" image="">
-      <position x="1070.4793701171875" y="2096.663818359375" lat="47.56010498317616" lon="-122.11789979905731" alt="2.0"/>
+    <device id="25" name="ISP-China" icon="" canvas="0" type="router" class="" image="">
+      <position x="2883.658447265625" y="1012.3013916015625" lat="47.56996412866278" lon="-122.0934677018896" alt="2.0"/>
       <services>
         <service name="IPForward"/>
-        <service name="DefaultRoute"/>
-        <service name="SSH"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
       </services>
     </device>
     <device id="44" name="server-unlp" icon="" canvas="0" type="host" class="" image="">
@@ -164,10 +195,17 @@
         <service name="SSH"/>
       </services>
     </device>
-    <device id="17" name="GRE-uba" icon="" canvas="0" type="host" class="" image="">
-      <position x="974.0184936523438" y="1788.4169921875" lat="47.5629077868593" lon="-122.11919958325203" alt="2.0"/>
+    <device id="30" name="GRE-unlp" icon="" canvas="0" type="host" class="" image="">
+      <position x="1030.449462890625" y="1823.31201171875" lat="47.56259050356265" lon="-122.11843919121958" alt="2.0"/>
       <services>
         <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="18" name="www-uba" icon="" canvas="0" type="host" class="" image="">
+      <position x="982.6983642578125" y="1901.90625" lat="47.5618758776661" lon="-122.11908262434561" alt="2.0"/>
+      <services>
         <service name="DefaultRoute"/>
         <service name="SSH"/>
       </services>
@@ -181,10 +219,30 @@
         <service name="FRROSPFv2"/>
       </services>
     </device>
-    <device id="43" name="n43" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1821.546630859375" y="397.7038269042969" lat="47.57555129512283" lon="-122.10777937106143" alt="2.0"/>
+    <device id="17" name="GRE-uba" icon="" canvas="0" type="host" class="" image="">
+      <position x="974.0184936523438" y="1788.4169921875" lat="47.5629077868593" lon="-122.11919958325203" alt="2.0"/>
       <services>
+        <service name="IPForward"/>
         <service name="DefaultRoute"/>
+        <service name="SSH"/>
+      </services>
+    </device>
+    <device id="11" name="gw-RIU-UBA" icon="" canvas="0" type="router" class="" image="">
+      <position x="986.8971557617188" y="2038.0062255859375" lat="47.560638352100284" lon="-122.11902604676685" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+        <service name="FRROSPFv2"/>
+      </services>
+    </device>
+    <device id="27" name="gw-UBA" icon="" canvas="0" type="router" class="" image="">
+      <position x="934.7247314453125" y="1820.1864013671875" lat="47.56261892328283" lon="-122.11972905605944" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+        <service name="FRROSPFv2"/>
       </services>
     </device>
     <device id="13" name="www-unq" icon="" canvas="0" type="host" class="" image="">
@@ -202,69 +260,11 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="30" name="GRE-unlp" icon="" canvas="0" type="host" class="" image="">
-      <position x="1030.449462890625" y="1823.31201171875" lat="47.56259050356265" lon="-122.11843919121958" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="DefaultRoute"/>
-        <service name="SSH"/>
-      </services>
-    </device>
-    <device id="26" name="gw-UNQ" icon="" canvas="0" type="router" class="" image="">
-      <position x="1035.8525390625" y="2001.148681640625" lat="47.5609734920998" lon="-122.11836638623097" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
-      </services>
-    </device>
-    <device id="14" name="n14" icon="" canvas="0" type="router" class="" image="">
-      <position x="972.1837768554688" y="1853.2545166015625" lat="47.5623182495206" lon="-122.11922430556416" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-      </services>
-    </device>
-    <device id="18" name="www-uba" icon="" canvas="0" type="host" class="" image="">
-      <position x="982.6983642578125" y="1901.90625" lat="47.5618758776661" lon="-122.11908262434561" alt="2.0"/>
-      <services>
-        <service name="DefaultRoute"/>
-        <service name="SSH"/>
-      </services>
-    </device>
-    <device id="34" name="n34" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1755.6702880859375" y="580.6149291992188" lat="47.57388855426102" lon="-122.10866703694505" alt="2.0"/>
+    <device id="31" name="n31" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1806.252685546875" y="582.9021606445312" lat="47.57386776200581" lon="-122.10798545283384" alt="2.0"/>
       <configservices>
         <service name="DefaultRoute"/>
       </configservices>
-    </device>
-    <device id="36" name="Scrubbing1" icon="" canvas="0" type="host" class="" image="">
-      <position x="3298.50830078125" y="408.16522216796875" lat="47.57545619794837" lon="-122.08787771242918" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="DefaultRoute"/>
-        <service name="SSH"/>
-      </services>
-    </device>
-    <device id="27" name="gw-UBA" icon="" canvas="0" type="router" class="" image="">
-      <position x="934.7247314453125" y="1820.1864013671875" lat="47.56261892328283" lon="-122.11972905605944" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
-      </services>
-    </device>
-    <device id="11" name="gw-RIU-UBA" icon="" canvas="0" type="router" class="" image="">
-      <position x="986.8971557617188" y="2038.0062255859375" lat="47.560638352100284" lon="-122.11902604676685" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-        <service name="FRROSPFv2"/>
-      </services>
     </device>
     <device id="35" name="Scrubbing2" icon="" canvas="0" type="host" class="" image="">
       <position x="965.3836059570312" y="1876.5228271484375" lat="47.56210668001845" lon="-122.11931593602594" alt="2.0"/>
@@ -274,8 +274,8 @@
         <service name="SSH"/>
       </services>
     </device>
-    <device id="31" name="n31" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1806.252685546875" y="582.9021606445312" lat="47.57386776200581" lon="-122.10798545283384" alt="2.0"/>
+    <device id="34" name="n34" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1755.6702880859375" y="580.6149291992188" lat="47.57388855426102" lon="-122.10866703694505" alt="2.0"/>
       <configservices>
         <service name="DefaultRoute"/>
       </configservices>
@@ -314,6 +314,26 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:20" ip4="10.0.8.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
+    <link node1="22" node2="27">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:27" ip4="157.92.0.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="22" node2="11">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:29" ip4="157.92.0.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="22" node2="18">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:28" ip4="157.92.0.11" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="42" node2="17">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:32" ip4="157.92.9.10" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="42" node2="27">
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:31" ip4="157.92.9.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
     <link node1="29" node2="3">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="193.81.7.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
@@ -338,14 +358,6 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:00" ip4="163.10.10.3" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="40" node2="30">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:30" ip4="163.10.9.10" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="40" node2="19">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:2f" ip4="163.10.9.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="39" node2="26">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2d" ip4="207.248.75.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
@@ -354,36 +366,24 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2e" ip4="207.248.75.10" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="42" node2="17">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:32" ip4="157.92.9.10" ip4_mask="24"/>
+    <link node1="40" node2="19">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:2f" ip4="163.10.9.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="42" node2="27">
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:31" ip4="157.92.9.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="22" node2="27">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:27" ip4="157.92.0.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="22" node2="18">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:28" ip4="157.92.0.11" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="22" node2="11">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:29" ip4="157.92.0.2" ip4_mask="24"/>
+    <link node1="40" node2="30">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:30" ip4="163.10.9.10" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="21" node2="7">
       <iface2 id="1" name="eth1" mac="00:00:00:aa:00:39" ip4="87.111.200.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="21" node2="31">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:3b" ip4="87.111.200.20" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="21" node2="34">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:3a" ip4="87.111.200.211" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="21" node2="31">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:3b" ip4="87.111.200.20" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="37" node2="4">
@@ -401,6 +401,11 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:1a" ip4="10.0.14.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
+    <link node1="2" node2="1">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:0e" ip4="10.0.3.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip4="10.0.3.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
     <link node1="1" node2="28">
       <iface1 id="1" name="eth1" mac="00:00:00:aa:00:10" ip4="10.0.11.1" ip4_mask="24"/>
       <iface2 id="1" name="eth1" mac="00:00:00:aa:00:11" ip4="10.0.11.2" ip4_mask="24"/>
@@ -416,34 +421,19 @@
       <iface2 id="3" name="eth3" mac="00:00:00:aa:00:09" ip4="10.0.12.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="2" node2="1">
-      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:0e" ip4="10.0.3.1" ip4_mask="24"/>
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip4="10.0.3.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="36" node2="33">
       <iface1 id="0" name="eth0" mac="00:00:00:aa:00:14" ip4="133.1.0.10" ip4_mask="24"/>
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:15" ip4="133.1.0.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="8" node2="19">
-      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:1d" ip4="10.0.5.1" ip4_mask="24"/>
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:1e" ip4="10.0.5.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="25" node2="24">
-      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:1b" ip4="66.0.6.1" ip4_mask="24"/>
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:1c" ip4="66.0.6.20" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="25" node2="28">
-      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:12" ip4="10.0.7.1" ip4_mask="24"/>
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:13" ip4="10.0.7.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="28" node2="33">
       <iface1 id="2" name="eth2" mac="00:00:00:aa:00:16" ip4="10.0.10.1" ip4_mask="24"/>
       <iface2 id="1" name="eth1" mac="00:00:00:aa:00:17" ip4="10.0.10.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="43" node2="1">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:33" ip4="10.0.9.20" ip4_mask="24"/>
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:34" ip4="10.0.9.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="3" node2="8">
@@ -461,9 +451,14 @@
       <iface2 id="3" name="eth3" mac="00:00:00:aa:00:04" ip4="163.10.252.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="43" node2="1">
-      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:33" ip4="10.0.9.20" ip4_mask="24"/>
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:34" ip4="10.0.9.1" ip4_mask="24"/>
+    <link node1="8" node2="19">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:1d" ip4="10.0.5.1" ip4_mask="24"/>
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:1e" ip4="10.0.5.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="25" node2="24">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:1b" ip4="66.0.6.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:1c" ip4="66.0.6.20" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="2" node2="7">
@@ -471,51 +466,13 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:38" ip4="10.0.1.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
+    <link node1="25" node2="28">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:12" ip4="10.0.7.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:13" ip4="10.0.7.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
   </links>
   <service_configurations>
-    <service name="Firewall" node="8">
-      <startups>
-        <startup>bash firewall.sh</startup>
-      </startups>
-      <files>
-        <file name="firewall.sh"><![CDATA[#!/bin/sh
-# custom node firewall rules for service (security.py)
-# -------- CUSTOMIZATION REQUIRED --------
-#
-# Below are sample iptables firewall rules that you can uncomment and edit.
-# You can also use ip6tables rules for IPv6.
-#
-
-iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
-
-
-# start by flushing all firewall rules (so this script may be re-run)
-#iptables -F
-
-# allow traffic related to established connections
-#iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-# allow TCP packets from any source destined for 192.168.1.1
-#iptables -A INPUT -s 0/0 -i eth0 -d 192.168.1.1  -p TCP -j ACCEPT
-
-# allow OpenVPN server traffic from eth0
-#iptables -A INPUT -p udp --dport 1194 -j ACCEPT
-#iptables -A INPUT -i eth0 -j DROP
-#iptables -A OUTPUT -p udp --sport 1194 -j ACCEPT
-#iptables -A OUTPUT -o eth0 -j DROP
-
-# allow ICMP ping traffic
-#iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
-#iptables -A INPUT  -p icmp --icmp-type echo-reply   -j ACCEPT
-
-# allow SSH traffic
-#iptables -A -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
-
-# drop all other traffic coming in eth0
-#iptables -A INPUT -i eth0 -j DROP
-]]></file>
-      </files>
-    </service>
     <service name="zebra" node="8">
       <directories>
         <directory>/usr/local/etc/quagga</directory>
@@ -564,6 +521,49 @@ router bgp 8
   neighbor 10.0.12.2 remote-as 444
   neighbor 10.0.0.1 remote-as 2200
 !
+]]></file>
+      </files>
+    </service>
+    <service name="Firewall" node="8">
+      <startups>
+        <startup>bash firewall.sh</startup>
+      </startups>
+      <files>
+        <file name="firewall.sh"><![CDATA[#!/bin/sh
+# custom node firewall rules for service (security.py)
+# -------- CUSTOMIZATION REQUIRED --------
+#
+# Below are sample iptables firewall rules that you can uncomment and edit.
+# You can also use ip6tables rules for IPv6.
+#
+
+iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+
+
+# start by flushing all firewall rules (so this script may be re-run)
+#iptables -F
+
+# allow traffic related to established connections
+#iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# allow TCP packets from any source destined for 192.168.1.1
+#iptables -A INPUT -s 0/0 -i eth0 -d 192.168.1.1  -p TCP -j ACCEPT
+
+# allow OpenVPN server traffic from eth0
+#iptables -A INPUT -p udp --dport 1194 -j ACCEPT
+#iptables -A INPUT -i eth0 -j DROP
+#iptables -A OUTPUT -p udp --sport 1194 -j ACCEPT
+#iptables -A OUTPUT -o eth0 -j DROP
+
+# allow ICMP ping traffic
+#iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+#iptables -A INPUT  -p icmp --icmp-type echo-reply   -j ACCEPT
+
+# allow SSH traffic
+#iptables -A -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+
+# drop all other traffic coming in eth0
+#iptables -A INPUT -i eth0 -j DROP
 ]]></file>
       </files>
     </service>
@@ -683,6 +683,43 @@ router bgp 6781
 ]]></file>
       </files>
     </service>
+    <service name="zebra" node="10">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 10.0.8.1/24
+  
+!
+interface eth1
+  ip address 182.23.0.2/16
+  ipv6 address 10:12::2/64
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 6243
+  bgp router-id 10.0.8.1
+  network 182.23.0.0/16
+  neighbor 10.0.8.4 remote-as 52376
+!
+]]></file>
+      </files>
+    </service>
     <service name="Firewall" node="19">
       <startups>
         <startup>bash firewall.sh</startup>
@@ -727,43 +764,6 @@ iptables -t nat -A POSTROUTING ! -d 163.10.250.0/23 -j MASQUERADE
 ]]></file>
       </files>
     </service>
-    <service name="zebra" node="10">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 10.0.8.1/24
-  
-!
-interface eth1
-  ip address 182.23.0.2/16
-  ipv6 address 10:12::2/64
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 6243
-  bgp router-id 10.0.8.1
-  network 182.23.0.0/16
-  neighbor 10.0.8.4 remote-as 52376
-!
-]]></file>
-      </files>
-    </service>
     <service name="zebra" node="14">
       <directories>
         <directory>/usr/local/etc/quagga</directory>
@@ -794,43 +794,6 @@ router bgp 52376
   neighbor 10.0.8.3 remote-as 5692
   neighbor 10.0.8.1 remote-as 61486
   neighbor 10.0.8.2 remote-as 3449
-!
-]]></file>
-      </files>
-    </service>
-    <service name="zebra" node="11">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 10.0.8.2/24
-  
-!
-interface eth1
-  ip address 10.0.13.2/24
-  ipv6 address 10:13::2/64
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 3928
-  bgp router-id 10.0.8.2
-  network 110.20.0.0/16
-  neighbor 10.0.8.4 remote-as 52376
 !
 ]]></file>
       </files>
@@ -872,10 +835,47 @@ router bgp 5692
 ]]></file>
       </files>
     </service>
+    <service name="zebra" node="11">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 10.0.8.2/24
+  
+!
+interface eth1
+  ip address 10.0.13.2/24
+  ipv6 address 10:13::2/64
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 3928
+  bgp router-id 10.0.8.2
+  network 110.20.0.0/16
+  neighbor 10.0.8.4 remote-as 52376
+!
+]]></file>
+      </files>
+    </service>
   </service_configurations>
   <configservice_configurations>
-    <service name="DefaultRoute" node="34"/>
     <service name="DefaultRoute" node="31"/>
+    <service name="DefaultRoute" node="34"/>
   </configservice_configurations>
   <session_origin lat="47.579166412353516" lon="-122.13232421875" alt="2.0" scale="150.0"/>
   <session_hooks>
@@ -943,9 +943,9 @@ ccmd -p hostsremove</hook>
   </session_options>
   <session_metadata>
     <configuration name="shapes" value="[]"/>
-    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;/home/vagrant/shared/ExaBGP-ScrubbingCenter/world4.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [4500, 2592]}]}"/>
     <configuration name="edges" value="[]"/>
     <configuration name="hidden" value="[23]"/>
+    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;world.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [4500, 2592]}]}"/>
   </session_metadata>
   <default_services>
     <node type="mdr">
