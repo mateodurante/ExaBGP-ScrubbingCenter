@@ -1,0 +1,25 @@
+!
+frr version 7.2.1
+frr defaults traditional
+hostname ISP-Spain
+log syslog informational
+service integrated-vtysh-config
+!
+interface eth0
+ ip address 10.0.1.2/24
+!
+interface eth1
+ ip address 87.111.200.1/24
+!
+router bgp 3352
+ bgp router-id 10.0.1.2
+ neighbor 10.0.1.1 remote-as 345
+ !
+ address-family ipv4 unicast
+  network 87.111.0.0/16
+  neighbor 10.0.1.1 soft-reconfiguration inbound
+ exit-address-family
+!
+line vty
+!
+end
