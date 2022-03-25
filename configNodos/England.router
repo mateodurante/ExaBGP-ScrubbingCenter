@@ -14,16 +14,16 @@ interface eth1
  ipv6 address 10:4::1/64
 !
 interface eth2
- ip address 10.0.9.1/24
+ ip address 78.105.10.1/24
  ipv6 address 2001:6::1/64
 !
-router bgp 6781
+router bgp 5607
  bgp router-id 10.0.3.2
  neighbor 10.0.3.1 remote-as 345
  neighbor 10.0.11.2 remote-as 28
  !
  address-family ipv4 unicast
-  redistribute connected
+  network 78.105.0.0/16
   neighbor 10.0.3.1 soft-reconfiguration inbound
   neighbor 10.0.11.2 soft-reconfiguration inbound
  exit-address-family

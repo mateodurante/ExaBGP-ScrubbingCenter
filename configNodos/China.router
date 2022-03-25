@@ -16,9 +16,9 @@ interface eth2
 !
 router bgp 28
  bgp router-id 10.0.7.2
- neighbor 10.0.7.1 remote-as 666
+ neighbor 10.0.7.1 remote-as 17638
  neighbor 10.0.10.2 remote-as 33
- neighbor 10.0.11.1 remote-as 6781
+ neighbor 10.0.11.1 remote-as 5607
  !
  address-family ipv4 unicast
   redistribute connected

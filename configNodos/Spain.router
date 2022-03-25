@@ -16,7 +16,7 @@ interface eth1
 router bgp 345
  bgp router-id 10.0.2.2
  neighbor 10.0.2.1 remote-as 4
- neighbor 10.0.3.2 remote-as 6781
+ neighbor 10.0.3.2 remote-as 5607
  neighbor 10.0.1.2 remote-as 3352
  !
  address-family ipv4 unicast
