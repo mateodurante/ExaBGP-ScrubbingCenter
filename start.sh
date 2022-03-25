@@ -44,7 +44,6 @@ echo "Iniciando servicio web WebScrub en máquina WebScrub"
 
 /usr/sbin/vcmd -c $core_path/WebScrub -- bash -E -c "cd /opt/WebScrub/ && python3 /opt/WebScrub/manage.py runserver 0.0.0.0:80" &
 
-
 ################################################ Túneles GRE ################################################
 
 echo "Armado de túneles GRE desde clientes a los ScrubbingCenters"
@@ -75,6 +74,9 @@ echo "Armado de túneles GRE desde clientes a los ScrubbingCenters"
 
 echo "Configurando hosts y routers de la topologia con restore.sh"
 bash SaveRestoreScripts/restore.sh configNodos/
+
+[ -z "$FPROBE_URL" ] || echo "Iniciando fprobe para gateway de borde de UBA"
+[ -z "$FPROBE_URL" ] || /usr/sbin/vcmd -c $core_path/gw-UBA -- bash -E -c "/usr/sbin/fprobe -i eth0 ${FPROBE_URL}" &
 
 # Ejecutamos el script atacante.sh
 #bash ./atacante.sh
