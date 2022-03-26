@@ -16,25 +16,18 @@ interface eth2
  ip address 10.0.6.1/24
  ipv6 address 2001::1/64
 !
-router-id 193.81.7.1
+router-id 152.168.170.1
 !
-router bgp 2200
- bgp router-id 193.81.7.1
+router bgp 7303
+ bgp router-id 152.168.170.1
  neighbor 10.0.0.2 remote-as 555
  neighbor 10.0.6.2 remote-as 61486
  !
  address-family ipv4 unicast
-  network 193.81.7.0/24
-  redistribute connected
+  network 152.168.0.0/16
   neighbor 10.0.0.2 soft-reconfiguration inbound
   neighbor 10.0.6.2 soft-reconfiguration inbound
  exit-address-family
-!
-router ospf
- ospf router-id 193.81.7.1
- network 10.0.0.0/24 area 0
- network 10.0.6.0/24 area 0
- network 193.81.7.0/24 area 0
 !
 line vty
 !

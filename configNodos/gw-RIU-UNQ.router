@@ -28,14 +28,15 @@ router bgp 61486
 !
 router ospf
  ospf router-id 10.0.8.1
- network 10.0.8.0/24 area 0
- network 207.248.74.0/24 area 0
+ no network 10.0.8.0/24 area 0
+ no network 207.248.74.0/24 area 0
+ network 207.248.74.0/24 area 3
 !
-bgp as-path access-list 1 permit ^$
-bgp as-path access-list 1 deny .*
+bgp as-path access-list transit permit $^
+bgp as-path access-list transit deny .*
 !
 route-map nontransit permit 10
- match as-path 1
+ match as-path transit
 !
 line vty
 !

@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<scenario name="/tmp/tmplloheahe">
+<scenario name="/tmp/tmpkulk0n6p">
   <networks>
+    <network id="9" name="sw1" icon="" canvas="0" type="SWITCH">
+      <position x="1003.1218872070312" y="1875.343505859375" lat="47.56211740313889" lon="-122.11880742290329" alt="2.0"/>
+    </network>
+    <network id="42" name="sw3" icon="" canvas="0" type="SWITCH">
+      <position x="924.7698364257812" y="1757.1334228515625" lat="47.56319223137711" lon="-122.11986319557468" alt="2.0"/>
+    </network>
     <network id="21" name="n21" icon="" canvas="0" type="SWITCH">
       <position x="1773.0054931640625" y="624.4241943359375" lat="47.57349030129629" lon="-122.10843344974992" alt="2.0"/>
     </network>
@@ -10,26 +16,20 @@
     <network id="12" name="sw6" icon="" canvas="0" type="SWITCH">
       <position x="1049.432861328125" y="1832.2451171875" lat="47.56250927890736" lon="-122.11818339506515" alt="2.0"/>
     </network>
+    <network id="20" name="sw4" icon="" canvas="0" type="SWITCH">
+      <position x="1040.3587646484375" y="1744.2919921875" lat="47.56330899108974" lon="-122.1183056660612" alt="2.0"/>
+    </network>
     <network id="22" name="sw2" icon="" canvas="0" type="SWITCH">
       <position x="937.0191650390625" y="1816.969482421875" lat="47.562648173213454" lon="-122.11969813918796" alt="2.0"/>
-    </network>
-    <network id="40" name="sw5" icon="" canvas="0" type="SWITCH">
-      <position x="990.5170288085938" y="1731.3721923828125" lat="47.56342646310509" lon="-122.11897726995758" alt="2.0"/>
-    </network>
-    <network id="29" name="sw8" icon="" canvas="0" type="SWITCH">
-      <position x="1053.3431396484375" y="1648.8087158203125" lat="47.564177157215184" lon="-122.11813070512345" alt="2.0"/>
     </network>
     <network id="39" name="sw7" icon="" canvas="0" type="SWITCH">
       <position x="1093.8427734375" y="1828.547607421875" lat="47.56254289869318" lon="-122.11758498352295" alt="2.0"/>
     </network>
-    <network id="42" name="sw3" icon="" canvas="0" type="SWITCH">
-      <position x="924.7698364257812" y="1757.1334228515625" lat="47.56319223137711" lon="-122.11986319557468" alt="2.0"/>
+    <network id="29" name="sw8" icon="" canvas="0" type="SWITCH">
+      <position x="1053.3431396484375" y="1648.8087158203125" lat="47.564177157215184" lon="-122.11813070512345" alt="2.0"/>
     </network>
-    <network id="20" name="sw4" icon="" canvas="0" type="SWITCH">
-      <position x="1040.3587646484375" y="1744.2919921875" lat="47.56330899108974" lon="-122.1183056660612" alt="2.0"/>
-    </network>
-    <network id="9" name="sw1" icon="" canvas="0" type="SWITCH">
-      <position x="1003.1218872070312" y="1875.343505859375" lat="47.56211740313889" lon="-122.11880742290329" alt="2.0"/>
+    <network id="40" name="sw5" icon="" canvas="0" type="SWITCH">
+      <position x="990.5170288085938" y="1731.3721923828125" lat="47.56342646310509" lon="-122.11897726995758" alt="2.0"/>
     </network>
   </networks>
   <devices>
@@ -44,7 +44,6 @@
     <device id="3" name="gw" icon="" canvas="0" type="router" class="" image="">
       <position x="1043.0997314453125" y="1672.4818115234375" lat="47.56396191479289" lon="-122.11826873227571" alt="2.0"/>
       <services>
-        <service name="FRROSPFv2"/>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
@@ -87,18 +86,18 @@
         <service name="DefaultRoute"/>
       </services>
     </device>
+    <device id="5" name="n5" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1076.8304443359375" y="1704.434814453125" lat="47.563671387730544" lon="-122.11781422005171" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
     <device id="2" name="Spain" icon="" canvas="0" type="router" class="" image="">
       <position x="1835.527587890625" y="650.75048828125" lat="47.57325097775577" lon="-122.1075909814506" alt="2.0"/>
       <services>
         <service name="IPForward"/>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
-      </services>
-    </device>
-    <device id="5" name="n5" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1076.8304443359375" y="1698.583740234375" lat="47.563724587714866" lon="-122.11781422005171" alt="2.0"/>
-      <services>
-        <service name="DefaultRoute"/>
       </services>
     </device>
     <device id="33" name="GW-Scrub" icon="" canvas="0" type="router" class="" image="">
@@ -151,13 +150,6 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="44" name="server-unlp" icon="" canvas="0" type="host" class="" image="">
-      <position x="998.7340698242188" y="1796.272216796875" lat="47.562836363322496" lon="-122.11886654755457" alt="2.0"/>
-      <services>
-        <service name="SSH"/>
-        <service name="DefaultRoute"/>
-      </services>
-    </device>
     <device id="19" name="gw-UNLP" icon="" canvas="0" type="router" class="" image="">
       <position x="991.6246337890625" y="1695.3297119140625" lat="47.56375417443901" lon="-122.11896234528037" alt="2.0"/>
       <services>
@@ -167,31 +159,15 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
-      <position x="3059.663818359375" y="782.6769409179688" lat="47.57205166198861" lon="-122.09109607716549" alt="2.0"/>
+    <device id="44" name="server-unlp" icon="" canvas="0" type="host" class="" image="">
+      <position x="998.7340698242188" y="1796.272216796875" lat="47.562836363322496" lon="-122.11886654755457" alt="2.0"/>
       <services>
-        <service name="DefaultRoute"/>
-      </services>
-    </device>
-    <device id="18" name="www-uba" icon="" canvas="0" type="host" class="" image="">
-      <position x="965.1210327148438" y="1807.173583984375" lat="47.562737242609025" lon="-122.1193194741293" alt="2.0"/>
-      <services>
-        <service name="HTTP"/>
         <service name="SSH"/>
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="11" name="gw-RIU-UBA" icon="" canvas="0" type="router" class="" image="">
-      <position x="960.777099609375" y="1859.039794921875" lat="47.56226564636343" lon="-122.1193780074518" alt="2.0"/>
-      <services>
-        <service name="FRROSPFv2"/>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-      </services>
-    </device>
-    <device id="43" name="n43" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1825.0526123046875" y="401.4434814453125" lat="47.57551730057776" lon="-122.10773212891065" alt="2.0"/>
+    <device id="24" name="n24" icon="" canvas="0" type="PC" class="" image="">
+      <position x="3059.663818359375" y="782.6769409179688" lat="47.57205166198861" lon="-122.09109607716549" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
       </services>
@@ -204,8 +180,68 @@
         <service name="FRRzebra"/>
       </services>
     </device>
+    <device id="17" name="GRE-uba" icon="" canvas="0" type="host" class="" image="">
+      <position x="941.2429809570312" y="1779.22998046875" lat="47.56299131953108" lon="-122.11964122441202" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="SSH"/>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="43" name="n43" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1825.0526123046875" y="401.4434814453125" lat="47.57551730057776" lon="-122.10773212891065" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="18" name="www-uba" icon="" canvas="0" type="host" class="" image="">
+      <position x="965.1210327148438" y="1807.173583984375" lat="47.562737242609025" lon="-122.1193194741293" alt="2.0"/>
+      <services>
+        <service name="HTTP"/>
+        <service name="SSH"/>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
     <device id="27" name="gw-UBA" icon="" canvas="0" type="router" class="" image="">
       <position x="964.6016235351562" y="1756.3265380859375" lat="47.563199567921934" lon="-122.11932647302736" alt="2.0"/>
+      <services>
+        <service name="FRROSPFv2"/>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+      </services>
+    </device>
+    <device id="11" name="gw-RIU-UBA" icon="" canvas="0" type="router" class="" image="">
+      <position x="960.777099609375" y="1859.039794921875" lat="47.56226564636343" lon="-122.1193780074518" alt="2.0"/>
+      <services>
+        <service name="FRROSPFv2"/>
+        <service name="IPForward"/>
+        <service name="FRRBGP"/>
+        <service name="FRRzebra"/>
+      </services>
+    </device>
+    <device id="31" name="n31" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1806.252685546875" y="582.9021606445312" lat="47.57386776200581" lon="-122.10798545283384" alt="2.0"/>
+      <configservices>
+        <service name="DefaultRoute"/>
+      </configservices>
+    </device>
+    <device id="30" name="GRE-unlp" icon="" canvas="0" type="host" class="" image="">
+      <position x="1015.6314697265625" y="1742.2645263671875" lat="47.56332742564172" lon="-122.11863885966565" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="SSH"/>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="34" name="n34" icon="" canvas="0" type="PC" class="" image="">
+      <position x="1755.6702880859375" y="580.6149291992188" lat="47.57388855426102" lon="-122.10866703694505" alt="2.0"/>
+      <configservices>
+        <service name="DefaultRoute"/>
+      </configservices>
+    </device>
+    <device id="6" name="gw-RIU-UNLP" icon="" canvas="0" type="router" class="" image="">
+      <position x="1016.7296142578125" y="1831.9775390625" lat="47.56251171187509" lon="-122.1186240624654" alt="2.0"/>
       <services>
         <service name="FRROSPFv2"/>
         <service name="IPForward"/>
@@ -221,32 +257,12 @@
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="17" name="GRE-uba" icon="" canvas="0" type="host" class="" image="">
-      <position x="941.2429809570312" y="1779.22998046875" lat="47.56299131953108" lon="-122.11964122441202" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="SSH"/>
-        <service name="DefaultRoute"/>
-      </services>
-    </device>
     <device id="7" name="ISP-Spain" icon="" canvas="0" type="router" class="" image="">
       <position x="1803.686279296875" y="641.6461181640625" lat="47.573333742665724" lon="-122.10802003446324" alt="2.0"/>
       <services>
         <service name="FRRBGP"/>
         <service name="FRRzebra"/>
       </services>
-    </device>
-    <device id="34" name="n34" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1755.6702880859375" y="580.6149291992188" lat="47.57388855426102" lon="-122.10866703694505" alt="2.0"/>
-      <configservices>
-        <service name="DefaultRoute"/>
-      </configservices>
-    </device>
-    <device id="31" name="n31" icon="" canvas="0" type="PC" class="" image="">
-      <position x="1806.252685546875" y="582.9021606445312" lat="47.57386776200581" lon="-122.10798545283384" alt="2.0"/>
-      <configservices>
-        <service name="DefaultRoute"/>
-      </configservices>
     </device>
     <device id="13" name="www-unq" icon="" canvas="0" type="host" class="" image="">
       <position x="1070.5048828125" y="1844.823974609375" lat="47.5623949048782" lon="-122.11789945528065" alt="2.0"/>
@@ -264,25 +280,36 @@
         <service name="FRRzebra"/>
       </services>
     </device>
-    <device id="30" name="GRE-unlp" icon="" canvas="0" type="host" class="" image="">
-      <position x="1015.6314697265625" y="1742.2645263671875" lat="47.56332742564172" lon="-122.11863885966565" alt="2.0"/>
-      <services>
-        <service name="IPForward"/>
-        <service name="SSH"/>
-        <service name="DefaultRoute"/>
-      </services>
-    </device>
-    <device id="6" name="gw-RIU-UNLP" icon="" canvas="0" type="router" class="" image="">
-      <position x="1016.7296142578125" y="1831.9775390625" lat="47.56251171187509" lon="-122.1186240624654" alt="2.0"/>
-      <services>
-        <service name="FRROSPFv2"/>
-        <service name="IPForward"/>
-        <service name="FRRBGP"/>
-        <service name="FRRzebra"/>
-      </services>
-    </device>
   </devices>
   <links>
+    <link node1="9" node2="6">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:22" ip4="10.0.8.3" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="9" node2="11">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:21" ip4="10.0.8.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="9" node2="35">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2a" ip4="10.0.8.10" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="9" node2="14">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:26" ip4="10.0.8.4" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="9" node2="10">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:20" ip4="10.0.8.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="42" node2="17">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:32" ip4="157.92.9.10" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="42" node2="27">
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:31" ip4="157.92.9.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
     <link node1="21" node2="31">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:3b" ip4="87.111.200.20" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
@@ -307,50 +334,6 @@
       <iface2 id="1" name="eth1" mac="00:00:00:aa:00:24" ip4="207.248.74.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="22" node2="27">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:27" ip4="157.92.0.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="22" node2="18">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:28" ip4="157.92.0.11" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="22" node2="11">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:29" ip4="157.92.0.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="40" node2="30">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:30" ip4="163.10.9.10" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="40" node2="19">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:2f" ip4="163.10.9.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="29" node2="5">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:18" ip4="193.81.7.20" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="29" node2="3">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="193.81.7.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="39" node2="26">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2d" ip4="207.248.75.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="39" node2="16">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2e" ip4="207.248.75.10" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="42" node2="17">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:32" ip4="157.92.9.10" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="42" node2="27">
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:31" ip4="157.92.9.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
     <link node1="20" node2="6">
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:1f" ip4="163.10.10.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
@@ -367,24 +350,40 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:00" ip4="163.10.10.3" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="9" node2="6">
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:22" ip4="10.0.8.3" ip4_mask="24"/>
+    <link node1="22" node2="27">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:27" ip4="157.92.0.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="9" node2="35">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2a" ip4="10.0.8.10" ip4_mask="24"/>
+    <link node1="22" node2="11">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:29" ip4="157.92.0.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="9" node2="11">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:21" ip4="10.0.8.2" ip4_mask="24"/>
+    <link node1="22" node2="18">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:28" ip4="157.92.0.11" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="9" node2="14">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:26" ip4="10.0.8.4" ip4_mask="24"/>
+    <link node1="39" node2="26">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2d" ip4="207.248.75.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="9" node2="10">
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:20" ip4="10.0.8.1" ip4_mask="24"/>
+    <link node1="39" node2="16">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:2e" ip4="207.248.75.10" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="29" node2="5">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:18" ip4="152.168.170.20" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="29" node2="3">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="152.168.170.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="40" node2="30">
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:30" ip4="163.10.9.10" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="40" node2="19">
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:2f" ip4="163.10.9.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="27" node2="37">
@@ -395,16 +394,6 @@
     <link node1="37" node2="4">
       <iface1 id="2" name="eth2" mac="00:00:00:aa:00:0a" ip4="10.0.1.1" ip4_mask="24"/>
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0b" ip4="10.0.1.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="23" node2="8">
-      <iface1 id="0" name="enp0s9"/>
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:05" ip4="10.0.4.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="2" node2="1">
-      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:0e" ip4="10.0.3.1" ip4_mask="24"/>
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip4="10.0.3.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="1" node2="28">
@@ -437,19 +426,9 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:07" ip4="10.0.0.2" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="3" node2="26">
-      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:2b" ip4="10.0.6.1" ip4_mask="24"/>
-      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:2c" ip4="10.0.6.2" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="32" node2="19">
-      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:03" ip4="163.10.252.2" ip4_mask="24"/>
-      <iface2 id="3" name="eth3" mac="00:00:00:aa:00:04" ip4="163.10.252.1" ip4_mask="24"/>
-      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
-    </link>
-    <link node1="28" node2="33">
-      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:16" ip4="10.0.10.1" ip4_mask="24"/>
-      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:17" ip4="10.0.10.2" ip4_mask="24"/>
+    <link node1="23" node2="8">
+      <iface1 id="0" name="enp0s9"/>
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:05" ip4="10.0.4.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="25" node2="24">
@@ -457,9 +436,9 @@
       <iface2 id="0" name="eth0" mac="00:00:00:aa:00:1c" ip4="42.80.100.20" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
-    <link node1="25" node2="28">
-      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:12" ip4="10.0.7.1" ip4_mask="24"/>
-      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:13" ip4="10.0.7.2" ip4_mask="24"/>
+    <link node1="32" node2="19">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:03" ip4="163.10.252.2" ip4_mask="24"/>
+      <iface2 id="3" name="eth3" mac="00:00:00:aa:00:04" ip4="163.10.252.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
     <link node1="2" node2="7">
@@ -472,8 +451,71 @@
       <iface2 id="2" name="eth2" mac="00:00:00:aa:00:34" ip4="78.105.10.1" ip4_mask="24"/>
       <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
     </link>
+    <link node1="28" node2="33">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:16" ip4="10.0.10.1" ip4_mask="24"/>
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:17" ip4="10.0.10.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="3" node2="26">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:2b" ip4="10.0.6.1" ip4_mask="24"/>
+      <iface2 id="2" name="eth2" mac="00:00:00:aa:00:2c" ip4="10.0.6.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="25" node2="28">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:12" ip4="10.0.7.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:13" ip4="10.0.7.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="2" node2="1">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:0e" ip4="10.0.3.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip4="10.0.3.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
   </links>
   <service_configurations>
+    <service name="Firewall" node="8">
+      <startups>
+        <startup>bash firewall.sh</startup>
+      </startups>
+      <files>
+        <file name="firewall.sh"><![CDATA[#!/bin/sh
+# custom node firewall rules for service (security.py)
+# -------- CUSTOMIZATION REQUIRED --------
+#
+# Below are sample iptables firewall rules that you can uncomment and edit.
+# You can also use ip6tables rules for IPv6.
+#
+
+iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+
+
+# start by flushing all firewall rules (so this script may be re-run)
+#iptables -F
+
+# allow traffic related to established connections
+#iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# allow TCP packets from any source destined for 192.168.1.1
+#iptables -A INPUT -s 0/0 -i eth0 -d 192.168.1.1  -p TCP -j ACCEPT
+
+# allow OpenVPN server traffic from eth0
+#iptables -A INPUT -p udp --dport 1194 -j ACCEPT
+#iptables -A INPUT -i eth0 -j DROP
+#iptables -A OUTPUT -p udp --sport 1194 -j ACCEPT
+#iptables -A OUTPUT -o eth0 -j DROP
+
+# allow ICMP ping traffic
+#iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+#iptables -A INPUT  -p icmp --icmp-type echo-reply   -j ACCEPT
+
+# allow SSH traffic
+#iptables -A -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+
+# drop all other traffic coming in eth0
+#iptables -A INPUT -i eth0 -j DROP
+]]></file>
+      </files>
+    </service>
     <service name="zebra" node="8">
       <directories>
         <directory>/usr/local/etc/quagga</directory>
@@ -522,49 +564,6 @@ router bgp 8
   neighbor 10.0.12.2 remote-as 444
   neighbor 10.0.0.1 remote-as 2200
 !
-]]></file>
-      </files>
-    </service>
-    <service name="Firewall" node="8">
-      <startups>
-        <startup>bash firewall.sh</startup>
-      </startups>
-      <files>
-        <file name="firewall.sh"><![CDATA[#!/bin/sh
-# custom node firewall rules for service (security.py)
-# -------- CUSTOMIZATION REQUIRED --------
-#
-# Below are sample iptables firewall rules that you can uncomment and edit.
-# You can also use ip6tables rules for IPv6.
-#
-
-iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
-
-
-# start by flushing all firewall rules (so this script may be re-run)
-#iptables -F
-
-# allow traffic related to established connections
-#iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-# allow TCP packets from any source destined for 192.168.1.1
-#iptables -A INPUT -s 0/0 -i eth0 -d 192.168.1.1  -p TCP -j ACCEPT
-
-# allow OpenVPN server traffic from eth0
-#iptables -A INPUT -p udp --dport 1194 -j ACCEPT
-#iptables -A INPUT -i eth0 -j DROP
-#iptables -A OUTPUT -p udp --sport 1194 -j ACCEPT
-#iptables -A OUTPUT -o eth0 -j DROP
-
-# allow ICMP ping traffic
-#iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
-#iptables -A INPUT  -p icmp --icmp-type echo-reply   -j ACCEPT
-
-# allow SSH traffic
-#iptables -A -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
-
-# drop all other traffic coming in eth0
-#iptables -A INPUT -i eth0 -j DROP
 ]]></file>
       </files>
     </service>
@@ -718,43 +717,6 @@ router bgp 52376
 ]]></file>
       </files>
     </service>
-    <service name="zebra" node="11">
-      <directories>
-        <directory>/usr/local/etc/quagga</directory>
-        <directory>/var/run/quagga</directory>
-      </directories>
-      <startups>
-        <startup>bash quaggaboot.sh zebra</startup>
-      </startups>
-      <validates>
-        <validate>pidof zebra</validate>
-      </validates>
-      <shutdowns>
-        <shutdown>killall zebra</shutdown>
-      </shutdowns>
-      <files>
-        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
-  ip address 10.0.8.2/24
-  
-!
-interface eth1
-  ip address 10.0.13.2/24
-  ipv6 address 10:13::2/64
-!
-!
-! BGP configuration
-!
-! You should configure the AS number below,
-! along with this router's peers.
-!
-router bgp 3928
-  bgp router-id 10.0.8.2
-  network 110.20.0.0/16
-  neighbor 10.0.8.4 remote-as 52376
-!
-]]></file>
-      </files>
-    </service>
     <service name="Firewall" node="19">
       <startups>
         <startup>bash firewall.sh</startup>
@@ -836,6 +798,43 @@ router bgp 6781
 ]]></file>
       </files>
     </service>
+    <service name="zebra" node="11">
+      <directories>
+        <directory>/usr/local/etc/quagga</directory>
+        <directory>/var/run/quagga</directory>
+      </directories>
+      <startups>
+        <startup>bash quaggaboot.sh zebra</startup>
+      </startups>
+      <validates>
+        <validate>pidof zebra</validate>
+      </validates>
+      <shutdowns>
+        <shutdown>killall zebra</shutdown>
+      </shutdowns>
+      <files>
+        <file name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+  ip address 10.0.8.2/24
+  
+!
+interface eth1
+  ip address 10.0.13.2/24
+  ipv6 address 10:13::2/64
+!
+!
+! BGP configuration
+!
+! You should configure the AS number below,
+! along with this router's peers.
+!
+router bgp 3928
+  bgp router-id 10.0.8.2
+  network 110.20.0.0/16
+  neighbor 10.0.8.4 remote-as 52376
+!
+]]></file>
+      </files>
+    </service>
     <service name="zebra" node="6">
       <directories>
         <directory>/usr/local/etc/quagga</directory>
@@ -875,8 +874,8 @@ router bgp 5692
     </service>
   </service_configurations>
   <configservice_configurations>
-    <service name="DefaultRoute" node="34"/>
     <service name="DefaultRoute" node="31"/>
+    <service name="DefaultRoute" node="34"/>
   </configservice_configurations>
   <session_origin lat="47.579166412353516" lon="-122.13232421875" alt="2.0" scale="150.0"/>
   <session_hooks>
@@ -949,10 +948,10 @@ ccmd -p hostsremove</hook>
     <configuration name="mtu" value="0"/>
   </session_options>
   <session_metadata>
+    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;world.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [4500, 2592]}]}"/>
     <configuration name="hidden" value="[23]"/>
     <configuration name="edges" value="[]"/>
-    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: &quot;world.png&quot;, &quot;wallpaper_style&quot;: 0, &quot;fit_image&quot;: true, &quot;dimensions&quot;: [4500, 2592]}]}"/>
-    <configuration name="shapes" value="[{&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [957.0972405085051, 1831.11998173529, 1047.143447059868, 1918.6252018583957], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#002bff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [903.2577259662528, 1744.9073845030284, 979.6218809033875, 1860.328015629362], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1036.465151426569, 1803.8003713861556, 1118.2308684115044, 1868.0963206452464], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [975.8599167419649, 1679.637268202948, 1060.1715351921068, 1832.437316206423], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1015.0636384863012, 1806.9312803727626, 1015.0636384863012, 1806.9312803727626], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1030.6027459320687, 1711.584511717205, 1030.6027459320687, 1711.584511717205], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1020.3439017860103, 1717.6191259207685, 1020.7462093995791, 1717.8202797275508], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1780.791411125086, 563.1837666265894, 1826.9957544887977, 607.6995791696907], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1796.5650669847457, 375.41733927116945, 1848.874339036955, 423.29048931187094], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [3023.4573206258597, 757.4129000813818, 3078.908845769542, 809.5373337164266], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1073.5021329394767, 1820.1095766657324], &quot;label&quot;: &quot;AS61486  -  207.248.74.0/23&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1021.7074405169317, 1720.5149472736732], &quot;label&quot;: &quot;AS5692  -  163.10.0.0/16&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [951.6761305809475, 1798.1131995968103], &quot;label&quot;: &quot;AS3449  -  157.92.0.0/16&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1803.5892778905657, 567.3278887917734], &quot;label&quot;: &quot;Atacante Espa\u00f1a&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1817.1312238797943, 393.1914249976339], &quot;label&quot;: &quot;Atacante Inglaterra&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [3050.2314046813135, 765.3133183398902], &quot;label&quot;: &quot;Atacante China&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [939.9496404281379, 1750.8246649604462], &quot;label&quot;: &quot;UBA&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [996.878374451002, 1840.1506693238316], &quot;label&quot;: &quot;RIU&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1150.0512769577742, 1846.6297834211914], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1086.256922768415, 1809.4164101440556], &quot;label&quot;: &quot;UNQ&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1017.810896919386, 1688.9713403854757], &quot;label&quot;: &quot;UNLP&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}]"/>
+    <configuration name="shapes" value="[{&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [957.097240508503, 1831.1199817352908, 1047.1434470598679, 1918.6252018583968], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#002bff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [903.2577259662523, 1744.9073845030305, 979.6218809033849, 1860.3280156293636], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1036.4651514265702, 1803.800371386157, 1118.2308684115042, 1868.0963206452477], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [975.8599167419627, 1679.6372682029482, 1060.1715351921032, 1832.437316206424], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#0000ff&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1015.0636384863016, 1806.9312803727641, 1015.0636384863016, 1806.9312803727641], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1030.6027459320683, 1711.584511717206, 1030.6027459320683, 1711.584511717206], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1020.3439017860098, 1717.6191259207692, 1020.7462093995781, 1717.8202797275526], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1780.7914111250852, 563.1837666265924, 1826.9957544887984, 607.6995791696924], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [1796.5650669847432, 375.41733927117167, 1848.8743390369555, 423.29048931187316], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;oval&quot;, &quot;iconcoords&quot;: [3023.45732062586, 757.4129000813833, 3078.9088457695443, 809.537333716428], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#ff0000&quot;, &quot;width&quot;: 4, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1073.5021329394779, 1820.1095766657334], &quot;label&quot;: &quot;AS61486  -  207.248.74.0/23&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1021.707440516932, 1720.5149472736748], &quot;label&quot;: &quot;AS5692  -  163.10.0.0/16&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [951.676130580947, 1798.1131995968108], &quot;label&quot;: &quot;AS3449  -  157.92.0.0/16&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1803.5892778905654, 567.327888791775], &quot;label&quot;: &quot;Atacante Espa\u00f1a&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1817.1312238797932, 393.19142499763575], &quot;label&quot;: &quot;Atacante Inglaterra&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [3050.2314046813103, 765.3133183398924], &quot;label&quot;: &quot;Atacante China&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 16, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [939.9496404281347, 1750.8246649604466], &quot;label&quot;: &quot;UBA&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [996.8783744510013, 1840.1506693238318], &quot;label&quot;: &quot;RIU&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1150.0512769577736, 1846.6297834211928], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1086.256922768413, 1809.4164101440558], &quot;label&quot;: &quot;UNQ&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1017.8108969193852, 1688.9713403854767], &quot;label&quot;: &quot;UNLP&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 18, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}]"/>
   </session_metadata>
   <default_services>
     <node type="mdr">

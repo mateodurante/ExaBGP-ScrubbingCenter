@@ -29,8 +29,9 @@ router bgp 5692
 !
 router ospf
  ospf router-id 163.10.10.2
- network 10.0.8.0/24 area 0
- network 163.10.10.0/24 area 0
+ no network 10.0.8.3/24 area 0
+ no network 163.10.10.0/24 area 0
+ network 163.10.10.0/24 area 2
 !
 bgp as-path access-list transit permit $^
 bgp as-path access-list transit deny .*

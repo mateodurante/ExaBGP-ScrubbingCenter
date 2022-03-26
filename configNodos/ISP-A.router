@@ -21,7 +21,7 @@ interface eth3
 !
 router bgp 555
  bgp router-id 10.0.12.1
- neighbor 10.0.0.1 remote-as 2200
+ neighbor 10.0.0.1 remote-as 7303
  neighbor 10.0.5.2 remote-as 5692
  neighbor 10.0.12.2 remote-as 444
  !

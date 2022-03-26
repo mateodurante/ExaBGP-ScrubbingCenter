@@ -33,9 +33,11 @@ router bgp 3449
 !
 router ospf
  ospf router-id 10.0.14.2
- network 10.0.14.0/24 area 0
- network 157.92.0.0/24 area 0
- network 157.92.9.0/24 area 0
+ no network 10.0.14.0/24 area 0
+ no network 157.92.0.0/24 area 0
+ no network 157.92.9.0/24 area 0
+ network 157.92.0.0/24 area 1
+ network 157.92.9.0/24 area 1
 !
 bgp as-path access-list 1 permit ^$
 bgp as-path access-list 1 deny .*

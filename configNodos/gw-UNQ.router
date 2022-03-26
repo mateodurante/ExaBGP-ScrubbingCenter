@@ -17,11 +17,11 @@ interface eth2
  ip address 10.0.6.2/24
  ipv6 address 2001::2/64
 !
-router-id 207.248.75.1
+router-id 207.248.74.1
 !
 router bgp 61486
  bgp router-id 207.248.74.1
- neighbor 10.0.6.1 remote-as 2200
+ neighbor 10.0.6.1 remote-as 7303
  neighbor 207.248.74.2 remote-as 61486
  !
  address-family ipv4 unicast
@@ -32,10 +32,12 @@ router bgp 61486
  exit-address-family
 !
 router ospf
- ospf router-id 207.248.75.1
- network 10.0.6.0/24 area 0
- network 207.248.74.0/24 area 0
- network 207.248.75.0/24 area 0
+ ospf router-id 207.248.74.1
+ no network 10.0.6.0/24 area 0
+ no network 207.248.74.0/24 area 0
+ no network 207.248.75.0/24 area 0
+ network 207.248.74.0/24 area 3
+ network 207.248.75.0/24 area 3
 !
 bgp as-path access-list 1 permit ^$
 bgp as-path access-list 1 deny .*
