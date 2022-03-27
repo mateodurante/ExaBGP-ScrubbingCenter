@@ -71,12 +71,17 @@ echo "Armado de túneles GRE desde clientes a los ScrubbingCenters"
 /usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip tunnel add cabase mode gre remote 10.0.8.10 local 157.92.9.10 ttl 255"
 /usr/sbin/vcmd -c $core_path/GRE-uba -- bash -E -c "ip link set cabase up"
 
+# copiar imagen a servicio web:
+cp /home/vagrant/.coregui/backgrounds/nasa.png $core_path/www-uba.conf/var.www/
 
 echo "Configurando hosts y routers de la topologia con restore.sh"
 bash SaveRestoreScripts/restore.sh configNodos/
 
 [ -z "$FPROBE_URL" ] || echo "Iniciando fprobe para gateway de borde de UBA"
-[ -z "$FPROBE_URL" ] || /usr/sbin/vcmd -c $core_path/gw-UBA -- bash -E -c "/usr/sbin/fprobe -i eth0 ${FPROBE_URL}" &
+[ -z "$FPROBE_URL" ] || /usr/sbin/vcmd -c $core_path/gw-UBA -- bash -E -c "sleep 30; /usr/sbin/fprobe -i eth0 ${FPROBE_URL}" &
+
+echo "seteo de rate limit del servidor"
+/usr/sbin/vcmd -c $core_path/www-uba -- bash -E -c "tc qdisc add dev eth0 root tbf rate 1024mbit latency 10ms burst 1540"
 
 # Ejecutamos el script atacante.sh
 #bash ./atacante.sh
