@@ -10,10 +10,16 @@
 
 * `cd vagrant-coreemu/shared && git clone https://github.com/mateodurante/ExaBGP-ScrubbingCenter`
 
+* Iniciar la máquina virtual, si es que se la usa, siguiendo las instrucciones en el repositorio de la misma.
+
 
 #### Instalar:
 
 * `sudo bash install.sh` 
+
+#### Enviar métricas del tráfico:
+
+* Si se desea, se puede utilizar netflow, elasticsearch y kibana para ver las métricas del tráfico dentro de la topología de la demo. Para ello es necesario editar el archivo .env-example con la IP del servidor de netflow. Si se usa el docker-compose que se provee en este proyecto (en la carpeta `docker-netflow`), se debe colocar la dirección IP de la máquina host.
 
 #### Ejecutar:
 
