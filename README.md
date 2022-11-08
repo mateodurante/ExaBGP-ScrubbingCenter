@@ -1,8 +1,19 @@
 ## ExaBGP Scrubbing Center
 
+### Demo del funcionamiento del ScrubbingUNLP
+
+* Se recomienda utilizar la máquina virtual provista en https://github.com/cristianbarbaro/vagrant-coreemu o utilizar una máquina que cuente con CORE instalado. Esta máquina virtual ya tiene creada las rutas necesarias para acceder a los recursos de la demo desde la máquina host, además instala todas las dependencias necesarias para el correcto funcionamiento del CORE. 
+
+* `git clone https://github.com/cristianbarbaro/vagrant-coreemu`
+
+* Una vez clonado el repositorio, ingresar en la carpeta `shared` del proyecto de la máquina virtual y clonar este repositorio.
+
+* `cd vagrant-coreemu/shared && git clone https://github.com/mateodurante/ExaBGP-ScrubbingCenter`
+
+
 #### Instalar:
 
-* `sudo bash install.sh`
+* `sudo bash install.sh` 
 
 #### Ejecutar:
 
@@ -13,49 +24,15 @@
 
 * `sudo bash stop.sh`
 
+#### Descripción de los scripts:
 
-# VIEJO
-#### Dependencias / paquetes necesarios:
+* `install.sh` es el script instala las herramientas necesarias para ejecutar la demo. Es el encargado de instalar exaBGP, ScrubbingUNLP y WebScrub además de los dependencias necesarias para el funcionamiento de estos componentes.
 
-* [ExaBGP](https://github.com/Exa-Networks/exabgp):
-  * `cd /opt/`
-  * `sudo git clone https://github.com/Exa-Networks/exabgp && cd exabgp/`
-  * `sudo git checkout 4.2.11`
-  * `sudo python3 -m zipapp -o /usr/local/sbin/exabgp -m exabgp.application:main  -p "/usr/bin/env python3" lib`
+* `start.sh` configura el entorno de la máquina en la cual ejecutará la demo e inicializa los servicios y componentes necesarios para su ejecución (WebScrub, ExaBGP, etc.). Además, es el encargado de cargar las configuraciones de los nodos en la topología del CORE. 
 
-* Instalar además (para DJango y otras hierbas):
-  * `sudo apt-get install -y redis-server python-redis python3-pip`
-  * `sudo pip install rq`
+* `stop.sh` es el encargado de detener todos los servicios y procesos que se hayan inicializado durante la demo. 
 
-* Utils:
-  * `sudo apt install bridge-utils`
 
-#### Comandos que debemos ejecutar:
-
-* Descargar el repositorio del servicio [WebScrub](https://github.com/mateodurante/WebScrub.git) en cualquier otra carpeta que no sea dentro del repositorio de ScrubbingCenter:
-  * `git clone https://github.com/mateodurante/WebScrub.git`
-  * `cd WebScrub/`
-  * `cp db.sqlite3.initial db.sqlite3`
-  * `sudo pip3 install -r requirements.txt`
-
-* Pararse en la carpeta de este proyecto:
-  * `git clone https://github.com/mateodurante/ExaBGP-ScrubbingCenter.git && cd ExaBGP-ScrubbingCenter`
-  * `sudo pip3 install -r requirements.txt`
-
-* Renombrar el archivo `.env-example` y configurar la variable `webapp_path` en el nuevo archivo `.env`:
-  * `cp .env-example .env`
-
-* Iniciar el CORE, levantar la topología y ejecutar el script restore en SaveRestoreScripts
-  * `bash SaveRestoreScripts/restore.sh configNodos/`
-
-* Ejecutar el script `start.sh` para levantar todas las configuraciones necesarias para generar los peerings entre ExaBGP y el servicio WebScrub en el CORE (este script hará todo el trabajo sucio, o casi, ya que no ejecuta el restore.sh):
-  * `sudo bash start.sh`
-
-* Para detener los servicios, ejecutar el script `stop.sh`
-  * `sudo bash stop.sh`
-
-* **Contraseñas de los usuarios:**
- * **LEER EL README DEL REPO DE WEBSCRUBBING**.
 
 ```
 admin	admin@admin.com
